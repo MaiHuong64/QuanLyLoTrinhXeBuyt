@@ -24,16 +24,10 @@ namespace QuanLyLoTrinhXeBuyt.Migrations
 
             modelBuilder.Entity("QuanLyLoTrinhXeBuyt.Data.ChuyenXe", b =>
                 {
-                    b.Property<string>("MaChuyen")
+                    b.Property<string>("ChuyenXeID")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("DiemXuatPhat")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MaTuyen")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MaXe")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TenChuyen")
@@ -45,48 +39,42 @@ namespace QuanLyLoTrinhXeBuyt.Migrations
                     b.Property<DateTime>("ThoiGianDi")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("TuyenXeMaTuyen")
-                        .IsRequired()
+                    b.Property<string>("TuyenXeID")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("XeMaXe")
-                        .IsRequired()
+                    b.Property<string>("XeID")
                         .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("MaChuyen");
+                    b.HasKey("ChuyenXeID");
 
-                    b.HasIndex("TuyenXeMaTuyen");
+                    b.HasIndex("TuyenXeID");
 
-                    b.HasIndex("XeMaXe");
+                    b.HasIndex("XeID");
 
                     b.ToTable("ChuyenXe");
                 });
 
             modelBuilder.Entity("QuanLyLoTrinhXeBuyt.Data.DiemDung", b =>
                 {
-                    b.Property<string>("maDiemDung")
+                    b.Property<string>("DiemDungID")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("TuyenXeMaTuyen")
-                        .IsRequired()
+                    b.Property<string>("TuyenXeID")
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("maTuyen")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("tenDiemDung")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("maDiemDung");
+                    b.HasKey("DiemDungID");
 
-                    b.HasIndex("TuyenXeMaTuyen");
+                    b.HasIndex("TuyenXeID");
 
                     b.ToTable("DiemDung");
                 });
 
             modelBuilder.Entity("QuanLyLoTrinhXeBuyt.Data.NhanVien", b =>
                 {
-                    b.Property<string>("MaNV")
+                    b.Property<string>("NhanVienID")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ChucVu")
@@ -116,47 +104,40 @@ namespace QuanLyLoTrinhXeBuyt.Migrations
                     b.Property<string>("TenDangNhap")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("MaNV");
+                    b.HasKey("NhanVienID");
 
                     b.ToTable("NhanVien");
                 });
 
             modelBuilder.Entity("QuanLyLoTrinhXeBuyt.Data.PhanCong", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("PhanCongID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
-
-                    b.Property<string>("MaNhanVien")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MaXe")
-                        .HasColumnType("nvarchar(max)");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PhanCongID"));
 
                     b.Property<DateTime>("NgayLamViec")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("NhanVienMaNV")
+                    b.Property<string>("NhanVienID")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("XeMaXe")
-                        .IsRequired()
+                    b.Property<string>("XeID")
                         .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("ID");
+                    b.HasKey("PhanCongID");
 
-                    b.HasIndex("NhanVienMaNV");
+                    b.HasIndex("NhanVienID");
 
-                    b.HasIndex("XeMaXe");
+                    b.HasIndex("XeID");
 
                     b.ToTable("PhanCong");
                 });
 
             modelBuilder.Entity("QuanLyLoTrinhXeBuyt.Data.TuyenXe", b =>
                 {
-                    b.Property<string>("MaTuyen")
+                    b.Property<string>("TuyenXeID")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("SoChuyen")
@@ -165,17 +146,17 @@ namespace QuanLyLoTrinhXeBuyt.Migrations
                     b.Property<string>("TenTuyen")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("MaTuyen");
+                    b.HasKey("TuyenXeID");
 
                     b.ToTable("TuyenXe");
                 });
 
             modelBuilder.Entity("QuanLyLoTrinhXeBuyt.Data.VeXe", b =>
                 {
-                    b.Property<string>("MaVe")
+                    b.Property<string>("VeID")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("ChuyenXeMaChuyen")
+                    b.Property<string>("ChuyenXeID")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<float>("GiaVe")
@@ -187,16 +168,16 @@ namespace QuanLyLoTrinhXeBuyt.Migrations
                     b.Property<string>("TenVe")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("MaVe");
+                    b.HasKey("VeID");
 
-                    b.HasIndex("ChuyenXeMaChuyen");
+                    b.HasIndex("ChuyenXeID");
 
                     b.ToTable("VeXe");
                 });
 
             modelBuilder.Entity("QuanLyLoTrinhXeBuyt.Data.Xe", b =>
                 {
-                    b.Property<string>("MaXe")
+                    b.Property<string>("XeID")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("BienSo")
@@ -205,7 +186,7 @@ namespace QuanLyLoTrinhXeBuyt.Migrations
                     b.Property<string>("LoaiXe")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("NhanVienMaNV")
+                    b.Property<string>("NhanVienID")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("SoGhe")
@@ -214,9 +195,9 @@ namespace QuanLyLoTrinhXeBuyt.Migrations
                     b.Property<string>("TrangThai")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("MaXe");
+                    b.HasKey("XeID");
 
-                    b.HasIndex("NhanVienMaNV");
+                    b.HasIndex("NhanVienID");
 
                     b.ToTable("Xe");
                 });
@@ -225,15 +206,11 @@ namespace QuanLyLoTrinhXeBuyt.Migrations
                 {
                     b.HasOne("QuanLyLoTrinhXeBuyt.Data.TuyenXe", "TuyenXe")
                         .WithMany("ChuyenXe")
-                        .HasForeignKey("TuyenXeMaTuyen")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("TuyenXeID");
 
                     b.HasOne("QuanLyLoTrinhXeBuyt.Data.Xe", "Xe")
                         .WithMany()
-                        .HasForeignKey("XeMaXe")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("XeID");
 
                     b.Navigation("TuyenXe");
 
@@ -244,9 +221,7 @@ namespace QuanLyLoTrinhXeBuyt.Migrations
                 {
                     b.HasOne("QuanLyLoTrinhXeBuyt.Data.TuyenXe", "TuyenXe")
                         .WithMany("DiemDung")
-                        .HasForeignKey("TuyenXeMaTuyen")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("TuyenXeID");
 
                     b.Navigation("TuyenXe");
                 });
@@ -255,13 +230,11 @@ namespace QuanLyLoTrinhXeBuyt.Migrations
                 {
                     b.HasOne("QuanLyLoTrinhXeBuyt.Data.NhanVien", "NhanVien")
                         .WithMany()
-                        .HasForeignKey("NhanVienMaNV");
+                        .HasForeignKey("NhanVienID");
 
                     b.HasOne("QuanLyLoTrinhXeBuyt.Data.Xe", "Xe")
                         .WithMany()
-                        .HasForeignKey("XeMaXe")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("XeID");
 
                     b.Navigation("NhanVien");
 
@@ -272,14 +245,14 @@ namespace QuanLyLoTrinhXeBuyt.Migrations
                 {
                     b.HasOne("QuanLyLoTrinhXeBuyt.Data.ChuyenXe", null)
                         .WithMany("VeXe")
-                        .HasForeignKey("ChuyenXeMaChuyen");
+                        .HasForeignKey("ChuyenXeID");
                 });
 
             modelBuilder.Entity("QuanLyLoTrinhXeBuyt.Data.Xe", b =>
                 {
                     b.HasOne("QuanLyLoTrinhXeBuyt.Data.NhanVien", null)
                         .WithMany("Xe")
-                        .HasForeignKey("NhanVienMaNV");
+                        .HasForeignKey("NhanVienID");
                 });
 
             modelBuilder.Entity("QuanLyLoTrinhXeBuyt.Data.ChuyenXe", b =>

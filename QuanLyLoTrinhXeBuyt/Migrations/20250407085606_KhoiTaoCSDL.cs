@@ -15,7 +15,7 @@ namespace QuanLyLoTrinhXeBuyt.Migrations
                 name: "NhanVien",
                 columns: table => new
                 {
-                    MaNV = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    NhanVienID = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     HoTen = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     GioiTinh = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     NgaySinh = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -28,176 +28,167 @@ namespace QuanLyLoTrinhXeBuyt.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_NhanVien", x => x.MaNV);
+                    table.PrimaryKey("PK_NhanVien", x => x.NhanVienID);
                 });
 
             migrationBuilder.CreateTable(
                 name: "TuyenXe",
                 columns: table => new
                 {
-                    MaTuyen = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    TuyenXeID = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     TenTuyen = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SoChuyen = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TuyenXe", x => x.MaTuyen);
+                    table.PrimaryKey("PK_TuyenXe", x => x.TuyenXeID);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Xe",
                 columns: table => new
                 {
-                    MaXe = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    XeID = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     BienSo = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SoGhe = table.Column<int>(type: "int", nullable: false),
                     LoaiXe = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TrangThai = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    NhanVienMaNV = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    NhanVienID = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Xe", x => x.MaXe);
+                    table.PrimaryKey("PK_Xe", x => x.XeID);
                     table.ForeignKey(
-                        name: "FK_Xe_NhanVien_NhanVienMaNV",
-                        column: x => x.NhanVienMaNV,
+                        name: "FK_Xe_NhanVien_NhanVienID",
+                        column: x => x.NhanVienID,
                         principalTable: "NhanVien",
-                        principalColumn: "MaNV");
+                        principalColumn: "NhanVienID");
                 });
 
             migrationBuilder.CreateTable(
                 name: "DiemDung",
                 columns: table => new
                 {
-                    maDiemDung = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    maTuyen = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    tenDiemDung = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TuyenXeMaTuyen = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    DiemDungID = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    TuyenXeID = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    tenDiemDung = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_DiemDung", x => x.maDiemDung);
+                    table.PrimaryKey("PK_DiemDung", x => x.DiemDungID);
                     table.ForeignKey(
-                        name: "FK_DiemDung_TuyenXe_TuyenXeMaTuyen",
-                        column: x => x.TuyenXeMaTuyen,
+                        name: "FK_DiemDung_TuyenXe_TuyenXeID",
+                        column: x => x.TuyenXeID,
                         principalTable: "TuyenXe",
-                        principalColumn: "MaTuyen",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "TuyenXeID");
                 });
 
             migrationBuilder.CreateTable(
                 name: "ChuyenXe",
                 columns: table => new
                 {
-                    MaChuyen = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ChuyenXeID = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     TenChuyen = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DiemXuatPhat = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ThoiGianDi = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ThoiGianDen = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    MaTuyen = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    MaXe = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TuyenXeMaTuyen = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    XeMaXe = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    TuyenXeID = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    XeID = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ChuyenXe", x => x.MaChuyen);
+                    table.PrimaryKey("PK_ChuyenXe", x => x.ChuyenXeID);
                     table.ForeignKey(
-                        name: "FK_ChuyenXe_TuyenXe_TuyenXeMaTuyen",
-                        column: x => x.TuyenXeMaTuyen,
+                        name: "FK_ChuyenXe_TuyenXe_TuyenXeID",
+                        column: x => x.TuyenXeID,
                         principalTable: "TuyenXe",
-                        principalColumn: "MaTuyen",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "TuyenXeID");
                     table.ForeignKey(
-                        name: "FK_ChuyenXe_Xe_XeMaXe",
-                        column: x => x.XeMaXe,
+                        name: "FK_ChuyenXe_Xe_XeID",
+                        column: x => x.XeID,
                         principalTable: "Xe",
-                        principalColumn: "MaXe",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "XeID");
                 });
 
             migrationBuilder.CreateTable(
                 name: "PhanCong",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", nullable: false)
+                    PhanCongID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    MaXe = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    MaNhanVien = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    NgayLamViec = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    XeMaXe = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    NhanVienMaNV = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    XeID = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    NhanVienID = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    NgayLamViec = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PhanCong", x => x.ID);
+                    table.PrimaryKey("PK_PhanCong", x => x.PhanCongID);
                     table.ForeignKey(
-                        name: "FK_PhanCong_NhanVien_NhanVienMaNV",
-                        column: x => x.NhanVienMaNV,
+                        name: "FK_PhanCong_NhanVien_NhanVienID",
+                        column: x => x.NhanVienID,
                         principalTable: "NhanVien",
-                        principalColumn: "MaNV");
+                        principalColumn: "NhanVienID");
                     table.ForeignKey(
-                        name: "FK_PhanCong_Xe_XeMaXe",
-                        column: x => x.XeMaXe,
+                        name: "FK_PhanCong_Xe_XeID",
+                        column: x => x.XeID,
                         principalTable: "Xe",
-                        principalColumn: "MaXe",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "XeID");
                 });
 
             migrationBuilder.CreateTable(
                 name: "VeXe",
                 columns: table => new
                 {
-                    MaVe = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    VeID = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     TenVe = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     GiaVe = table.Column<float>(type: "real", nullable: false),
                     LoaiVe = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ChuyenXeMaChuyen = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    ChuyenXeID = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_VeXe", x => x.MaVe);
+                    table.PrimaryKey("PK_VeXe", x => x.VeID);
                     table.ForeignKey(
-                        name: "FK_VeXe_ChuyenXe_ChuyenXeMaChuyen",
-                        column: x => x.ChuyenXeMaChuyen,
+                        name: "FK_VeXe_ChuyenXe_ChuyenXeID",
+                        column: x => x.ChuyenXeID,
                         principalTable: "ChuyenXe",
-                        principalColumn: "MaChuyen");
+                        principalColumn: "ChuyenXeID");
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_ChuyenXe_TuyenXeMaTuyen",
+                name: "IX_ChuyenXe_TuyenXeID",
                 table: "ChuyenXe",
-                column: "TuyenXeMaTuyen");
+                column: "TuyenXeID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ChuyenXe_XeMaXe",
+                name: "IX_ChuyenXe_XeID",
                 table: "ChuyenXe",
-                column: "XeMaXe");
+                column: "XeID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DiemDung_TuyenXeMaTuyen",
+                name: "IX_DiemDung_TuyenXeID",
                 table: "DiemDung",
-                column: "TuyenXeMaTuyen");
+                column: "TuyenXeID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PhanCong_NhanVienMaNV",
+                name: "IX_PhanCong_NhanVienID",
                 table: "PhanCong",
-                column: "NhanVienMaNV");
+                column: "NhanVienID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PhanCong_XeMaXe",
+                name: "IX_PhanCong_XeID",
                 table: "PhanCong",
-                column: "XeMaXe");
+                column: "XeID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_VeXe_ChuyenXeMaChuyen",
+                name: "IX_VeXe_ChuyenXeID",
                 table: "VeXe",
-                column: "ChuyenXeMaChuyen");
+                column: "ChuyenXeID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Xe_NhanVienMaNV",
+                name: "IX_Xe_NhanVienID",
                 table: "Xe",
-                column: "NhanVienMaNV");
+                column: "NhanVienID");
         }
 
         /// <inheritdoc />

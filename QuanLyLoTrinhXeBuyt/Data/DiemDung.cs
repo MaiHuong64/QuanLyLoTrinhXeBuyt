@@ -10,8 +10,8 @@ namespace QuanLyLoTrinhXeBuyt.Data
     class DiemDung
     {
         [Key]
-        public string? maDiemDung { get; set; }
-        public string? maTuyen { get; set; }
+        public string? DiemDungID { get; set; }
+        public string? TuyenXeID { get; set; }
         public string? tenDiemDung { get; set; }
         public virtual TuyenXe TuyenXe { get; set; } = null!;
     }
