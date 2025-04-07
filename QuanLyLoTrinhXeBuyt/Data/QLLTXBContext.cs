@@ -3,7 +3,7 @@ using System.Configuration;
 
 namespace QuanLyLoTrinhXeBuyt.Data
 {
-    class QLLTXB: DbContext
+    class QLLTXBContext: DbContext
     {
         public DbSet<TuyenXe> TuyenXe { get; set; }
         public DbSet<ChuyenXe> ChuyenXe { get; set; }

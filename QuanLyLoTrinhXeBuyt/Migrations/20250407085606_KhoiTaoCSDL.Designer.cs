@@ -11,7 +11,7 @@ using QuanLyLoTrinhXeBuyt.Data;
 
 namespace QuanLyLoTrinhXeBuyt.Migrations
 {
-    [DbContext(typeof(QLLTXB))]
+    [DbContext(typeof(QLLTXBContext))]
     [Migration("20250407085606_KhoiTaoCSDL")]
     partial class KhoiTaoCSDL
     {

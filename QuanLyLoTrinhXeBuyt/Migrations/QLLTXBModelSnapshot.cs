@@ -10,7 +10,7 @@ using QuanLyLoTrinhXeBuyt.Data;
 
 namespace QuanLyLoTrinhXeBuyt.Migrations
 {
-    [DbContext(typeof(QLLTXB))]
+    [DbContext(typeof(QLLTXBContext))]
     partial class QLLTXBModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
