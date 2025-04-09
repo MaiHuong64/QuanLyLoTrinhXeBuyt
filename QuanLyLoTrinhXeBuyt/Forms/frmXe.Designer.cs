@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
+            btnDoiAnh = new Button();
+            picHinhAnh = new PictureBox();
             btnThoat = new Button();
             btnHuyBo = new Button();
             btnLuu = new Button();
@@ -48,6 +50,7 @@
             groupBox2 = new GroupBox();
             gridXe = new DataGridView();
             groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picHinhAnh).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numSoGhe).BeginInit();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)gridXe).BeginInit();
@@ -55,6 +58,8 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(btnDoiAnh);
+            groupBox1.Controls.Add(picHinhAnh);
             groupBox1.Controls.Add(btnThoat);
             groupBox1.Controls.Add(btnHuyBo);
             groupBox1.Controls.Add(btnLuu);
@@ -75,14 +80,33 @@
             groupBox1.Margin = new Padding(4);
             groupBox1.Name = "groupBox1";
             groupBox1.Padding = new Padding(4);
-            groupBox1.Size = new Size(1164, 221);
+            groupBox1.Size = new Size(1164, 263);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Thông tin xe buýt";
             // 
+            // btnDoiAnh
+            // 
+            btnDoiAnh.Location = new Point(990, 99);
+            btnDoiAnh.Name = "btnDoiAnh";
+            btnDoiAnh.Size = new Size(148, 43);
+            btnDoiAnh.TabIndex = 17;
+            btnDoiAnh.Text = "Đổi ảnh";
+            btnDoiAnh.UseVisualStyleBackColor = true;
+            btnDoiAnh.Click += btnDoiAnh_Click;
+            // 
+            // picHinhAnh
+            // 
+            picHinhAnh.Location = new Point(760, 17);
+            picHinhAnh.Name = "picHinhAnh";
+            picHinhAnh.Size = new Size(204, 185);
+            picHinhAnh.SizeMode = PictureBoxSizeMode.Zoom;
+            picHinhAnh.TabIndex = 16;
+            picHinhAnh.TabStop = false;
+            // 
             // btnThoat
             // 
-            btnThoat.Location = new Point(1017, 159);
+            btnThoat.Location = new Point(1018, 209);
             btnThoat.Margin = new Padding(4);
             btnThoat.Name = "btnThoat";
             btnThoat.Size = new Size(116, 36);
@@ -93,7 +117,7 @@
             // 
             // btnHuyBo
             // 
-            btnHuyBo.Location = new Point(893, 159);
+            btnHuyBo.Location = new Point(894, 209);
             btnHuyBo.Margin = new Padding(4);
             btnHuyBo.Name = "btnHuyBo";
             btnHuyBo.Size = new Size(116, 36);
@@ -104,7 +128,7 @@
             // 
             // btnLuu
             // 
-            btnLuu.Location = new Point(769, 159);
+            btnLuu.Location = new Point(770, 209);
             btnLuu.Margin = new Padding(4);
             btnLuu.Name = "btnLuu";
             btnLuu.Size = new Size(116, 36);
@@ -115,7 +139,7 @@
             // 
             // btnSua
             // 
-            btnSua.Location = new Point(645, 159);
+            btnSua.Location = new Point(637, 209);
             btnSua.Margin = new Padding(4);
             btnSua.Name = "btnSua";
             btnSua.Size = new Size(116, 36);
@@ -126,7 +150,7 @@
             // 
             // btnXoa
             // 
-            btnXoa.Location = new Point(521, 159);
+            btnXoa.Location = new Point(513, 209);
             btnXoa.Margin = new Padding(4);
             btnXoa.Name = "btnXoa";
             btnXoa.Size = new Size(116, 36);
@@ -139,16 +163,16 @@
             // 
             cboTrangThai.FormattingEnabled = true;
             cboTrangThai.Items.AddRange(new object[] { "Đang hoạt động", "Đang bảo trì" });
-            cboTrangThai.Location = new Point(909, 31);
+            cboTrangThai.Location = new Point(138, 148);
             cboTrangThai.Margin = new Padding(4);
             cboTrangThai.Name = "cboTrangThai";
-            cboTrangThai.Size = new Size(224, 33);
+            cboTrangThai.Size = new Size(186, 33);
             cboTrangThai.TabIndex = 10;
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(747, 36);
+            label5.Location = new Point(3, 151);
             label5.Margin = new Padding(4, 0, 4, 0);
             label5.Name = "label5";
             label5.Size = new Size(106, 26);
@@ -203,7 +227,7 @@
             // 
             // btnThem
             // 
-            btnThem.Location = new Point(397, 159);
+            btnThem.Location = new Point(389, 209);
             btnThem.Margin = new Padding(4);
             btnThem.Name = "btnThem";
             btnThem.Size = new Size(116, 36);
@@ -243,11 +267,11 @@
             // groupBox2
             // 
             groupBox2.Controls.Add(gridXe);
-            groupBox2.Location = new Point(18, 244);
+            groupBox2.Location = new Point(18, 286);
             groupBox2.Margin = new Padding(4);
             groupBox2.Name = "groupBox2";
             groupBox2.Padding = new Padding(4);
-            groupBox2.Size = new Size(1164, 379);
+            groupBox2.Size = new Size(1164, 337);
             groupBox2.TabIndex = 1;
             groupBox2.TabStop = false;
             groupBox2.Text = "Danh sách xe buýt";
@@ -263,8 +287,9 @@
             gridXe.MultiSelect = false;
             gridXe.Name = "gridXe";
             gridXe.RowHeadersWidth = 51;
-            gridXe.Size = new Size(1156, 345);
+            gridXe.Size = new Size(1156, 303);
             gridXe.TabIndex = 0;
+            gridXe.CellFormatting += gridXe_CellFormatting;
             // 
             // frmXe
             // 
@@ -281,6 +306,7 @@
             Load += frmXe_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)picHinhAnh).EndInit();
             ((System.ComponentModel.ISupportInitialize)numSoGhe).EndInit();
             groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)gridXe).EndInit();
@@ -308,5 +334,7 @@
         private Button btnHuyBo;
         private Button btnLuu;
         private DataGridView gridXe;
+        private Button btnDoiAnh;
+        private PictureBox picHinhAnh;
     }
 }

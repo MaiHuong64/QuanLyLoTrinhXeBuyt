@@ -12,7 +12,7 @@ using QuanLyLoTrinhXeBuyt.Data;
 namespace QuanLyLoTrinhXeBuyt.Migrations
 {
     [DbContext(typeof(QLLTXBContext))]
-    [Migration("20250407085606_KhoiTaoCSDL")]
+    [Migration("20250408025848_KhoiTaoCSDL")]
     partial class KhoiTaoCSDL
     {
         /// <inheritdoc />
@@ -184,6 +184,9 @@ namespace QuanLyLoTrinhXeBuyt.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("BienSo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("HinhAnh")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LoaiXe")

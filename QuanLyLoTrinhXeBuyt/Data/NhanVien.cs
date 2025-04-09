@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 namespace QuanLyLoTrinhXeBuyt.Data
 {
-    class NhanVien
+    public class NhanVien
     {
         [Key]
         public string? NhanVienID { get; set; }
@@ -15,7 +15,6 @@ namespace QuanLyLoTrinhXeBuyt.Data
         public string? TenDangNhap { get; set; } = null!;
         public string? MatKhau { get; set; } = null!;
         public string? QuyenHan { get; set; } = null!;
-
         public virtual ICollection<Xe> Xe { get; } = new List<Xe>();
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace QuanLyLoTrinhXeBuyt.Data
 {
-    class DiemDung
+    public class DiemDung
     {
         [Key]
         public string? DiemDungID { get; set; }

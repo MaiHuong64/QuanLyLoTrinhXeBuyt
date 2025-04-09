@@ -28,14 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            gridChuyenXe = new DataGridView();
-            ChuyenXeID = new DataGridViewTextBoxColumn();
-            TenChuyen = new DataGridViewTextBoxColumn();
-            DiemXuatPhat = new DataGridViewTextBoxColumn();
-            ThoiGianDi = new DataGridViewTextBoxColumn();
-            ThoiGianDen = new DataGridViewTextBoxColumn();
-            TuyenXeID = new DataGridViewTextBoxColumn();
-            XeID = new DataGridViewTextBoxColumn();
             btnThoat = new Button();
             btnHuyBo = new Button();
             btnLuu = new Button();
@@ -49,6 +41,7 @@
             txtMaChuyenXe = new TextBox();
             label1 = new Label();
             groupBox2 = new GroupBox();
+            gridChuyenXe = new DataGridView();
             groupBox1 = new GroupBox();
             label4 = new Label();
             cboXe = new ComboBox();
@@ -58,67 +51,17 @@
             dtpThoiGianDi = new DateTimePicker();
             txtDiemXuatPhat = new TextBox();
             label6 = new Label();
-            ((System.ComponentModel.ISupportInitialize)gridChuyenXe).BeginInit();
+            ChuyenXeID = new DataGridViewTextBoxColumn();
+            TenChuyen = new DataGridViewTextBoxColumn();
+            DiemXuatPhat = new DataGridViewTextBoxColumn();
+            ThoiGianDi = new DataGridViewTextBoxColumn();
+            ThoiGianDen = new DataGridViewTextBoxColumn();
+            TenTuyen = new DataGridViewTextBoxColumn();
+            BienSo = new DataGridViewTextBoxColumn();
             groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)gridChuyenXe).BeginInit();
             groupBox1.SuspendLayout();
             SuspendLayout();
-            // 
-            // gridChuyenXe
-            // 
-            gridChuyenXe.AllowUserToAddRows = false;
-            gridChuyenXe.AllowUserToDeleteRows = false;
-            gridChuyenXe.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            gridChuyenXe.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            gridChuyenXe.Columns.AddRange(new DataGridViewColumn[] { ChuyenXeID, TenChuyen, DiemXuatPhat, ThoiGianDi, ThoiGianDen, TuyenXeID, XeID });
-            gridChuyenXe.Dock = DockStyle.Fill;
-            gridChuyenXe.Location = new Point(4, 24);
-            gridChuyenXe.MultiSelect = false;
-            gridChuyenXe.Name = "gridChuyenXe";
-            gridChuyenXe.RowHeadersWidth = 51;
-            gridChuyenXe.Size = new Size(1156, 351);
-            gridChuyenXe.TabIndex = 0;
-            // 
-            // ChuyenXeID
-            // 
-            ChuyenXeID.HeaderText = "Mã Chuyến Xe";
-            ChuyenXeID.MinimumWidth = 6;
-            ChuyenXeID.Name = "ChuyenXeID";
-            // 
-            // TenChuyen
-            // 
-            TenChuyen.HeaderText = "Tên Chuyến Xe";
-            TenChuyen.MinimumWidth = 6;
-            TenChuyen.Name = "TenChuyen";
-            // 
-            // DiemXuatPhat
-            // 
-            DiemXuatPhat.HeaderText = "Điểm xuất phát";
-            DiemXuatPhat.MinimumWidth = 6;
-            DiemXuatPhat.Name = "DiemXuatPhat";
-            // 
-            // ThoiGianDi
-            // 
-            ThoiGianDi.HeaderText = "Thời Gian Đi";
-            ThoiGianDi.MinimumWidth = 6;
-            ThoiGianDi.Name = "ThoiGianDi";
-            // 
-            // ThoiGianDen
-            // 
-            ThoiGianDen.HeaderText = "Thời Gian Đến";
-            ThoiGianDen.MinimumWidth = 6;
-            ThoiGianDen.Name = "ThoiGianDen";
-            // 
-            // TuyenXeID
-            // 
-            TuyenXeID.HeaderText = "Tuyến Xe";
-            TuyenXeID.MinimumWidth = 6;
-            TuyenXeID.Name = "TuyenXeID";
-            // 
-            // XeID
-            // 
-            XeID.HeaderText = "Xe";
-            XeID.MinimumWidth = 6;
-            XeID.Name = "XeID";
             // 
             // btnThoat
             // 
@@ -254,6 +197,25 @@
             groupBox2.TabStop = false;
             groupBox2.Text = "Danh sách các chuyến xe";
             // 
+            // gridChuyenXe
+            // 
+            gridChuyenXe.AllowUserToAddRows = false;
+            gridChuyenXe.AllowUserToDeleteRows = false;
+            gridChuyenXe.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            gridChuyenXe.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            gridChuyenXe.Columns.AddRange(new DataGridViewColumn[] { ChuyenXeID, TenChuyen, DiemXuatPhat, ThoiGianDi, ThoiGianDen, TenTuyen, BienSo });
+            gridChuyenXe.Dock = DockStyle.Fill;
+            gridChuyenXe.Location = new Point(4, 24);
+            gridChuyenXe.MultiSelect = false;
+            gridChuyenXe.Name = "gridChuyenXe";
+            gridChuyenXe.ReadOnly = true;
+            gridChuyenXe.RowHeadersVisible = false;
+            gridChuyenXe.RowHeadersWidth = 51;
+            gridChuyenXe.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            gridChuyenXe.Size = new Size(1156, 351);
+            gridChuyenXe.TabIndex = 0;
+            gridChuyenXe.CellContentClick += gridChuyenXe_CellContentClick;
+            // 
             // groupBox1
             // 
             groupBox1.Controls.Add(label4);
@@ -318,6 +280,7 @@
             dtpThoiGianDen.Format = DateTimePickerFormat.Time;
             dtpThoiGianDen.Location = new Point(484, 70);
             dtpThoiGianDen.Name = "dtpThoiGianDen";
+            dtpThoiGianDen.ShowUpDown = true;
             dtpThoiGianDen.Size = new Size(186, 27);
             dtpThoiGianDen.TabIndex = 20;
             // 
@@ -336,6 +299,7 @@
             dtpThoiGianDi.Format = DateTimePickerFormat.Time;
             dtpThoiGianDi.Location = new Point(484, 27);
             dtpThoiGianDi.Name = "dtpThoiGianDi";
+            dtpThoiGianDi.ShowUpDown = true;
             dtpThoiGianDi.Size = new Size(186, 27);
             dtpThoiGianDi.TabIndex = 18;
             // 
@@ -350,33 +314,88 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(4, 114);
+            label6.Location = new Point(10, 114);
             label6.Margin = new Padding(4, 0, 4, 0);
             label6.Name = "label6";
             label6.Size = new Size(111, 20);
             label6.TabIndex = 16;
             label6.Text = "Điểm xuất phát";
             // 
+            // ChuyenXeID
+            // 
+            ChuyenXeID.DataPropertyName = "ChuyenXeID";
+            ChuyenXeID.HeaderText = "Mã chuyến xe";
+            ChuyenXeID.MinimumWidth = 6;
+            ChuyenXeID.Name = "ChuyenXeID";
+            ChuyenXeID.ReadOnly = true;
+            // 
+            // TenChuyen
+            // 
+            TenChuyen.DataPropertyName = "TenChuyen";
+            TenChuyen.HeaderText = "Tên chuyến";
+            TenChuyen.MinimumWidth = 6;
+            TenChuyen.Name = "TenChuyen";
+            TenChuyen.ReadOnly = true;
+            // 
+            // DiemXuatPhat
+            // 
+            DiemXuatPhat.DataPropertyName = "DiemXuatPhat";
+            DiemXuatPhat.HeaderText = "Diem Xuat Phat";
+            DiemXuatPhat.MinimumWidth = 6;
+            DiemXuatPhat.Name = "DiemXuatPhat";
+            DiemXuatPhat.ReadOnly = true;
+            // 
+            // ThoiGianDi
+            // 
+            ThoiGianDi.DataPropertyName = "ThoiGianDi";
+            ThoiGianDi.HeaderText = "Thoi gian di";
+            ThoiGianDi.MinimumWidth = 6;
+            ThoiGianDi.Name = "ThoiGianDi";
+            ThoiGianDi.ReadOnly = true;
+            // 
+            // ThoiGianDen
+            // 
+            ThoiGianDen.DataPropertyName = "ThoiGianDen";
+            ThoiGianDen.HeaderText = "Thoi Gian Den";
+            ThoiGianDen.MinimumWidth = 6;
+            ThoiGianDen.Name = "ThoiGianDen";
+            ThoiGianDen.ReadOnly = true;
+            // 
+            // TenTuyen
+            // 
+            TenTuyen.DataPropertyName = "TenTuyen";
+            TenTuyen.HeaderText = "Ten Tuyen";
+            TenTuyen.MinimumWidth = 6;
+            TenTuyen.Name = "TenTuyen";
+            TenTuyen.ReadOnly = true;
+            // 
+            // BienSo
+            // 
+            BienSo.DataPropertyName = "BienSo";
+            BienSo.HeaderText = "Bien So";
+            BienSo.MinimumWidth = 6;
+            BienSo.Name = "BienSo";
+            BienSo.ReadOnly = true;
+            // 
             // frmChuyenXe
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1170, 639);
+            BackColor = SystemColors.Control;
+            ClientSize = new Size(1170, 625);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Name = "frmChuyenXe";
             Text = "frmChuyenXe";
             Load += frmChuyenXe_Load;
-            ((System.ComponentModel.ISupportInitialize)gridChuyenXe).EndInit();
             groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)gridChuyenXe).EndInit();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
-
-        private DataGridView gridChuyenXe;
         private Button btnThoat;
         private Button btnHuyBo;
         private Button btnLuu;
@@ -399,12 +418,13 @@
         private DateTimePicker dtpThoiGianDen;
         private ComboBox cboXe;
         private Label label4;
+        private DataGridView gridChuyenXe;
         private DataGridViewTextBoxColumn ChuyenXeID;
         private DataGridViewTextBoxColumn TenChuyen;
         private DataGridViewTextBoxColumn DiemXuatPhat;
         private DataGridViewTextBoxColumn ThoiGianDi;
         private DataGridViewTextBoxColumn ThoiGianDen;
-        private DataGridViewTextBoxColumn TuyenXeID;
-        private DataGridViewTextBoxColumn XeID;
+        private DataGridViewTextBoxColumn TenTuyen;
+        private DataGridViewTextBoxColumn BienSo;
     }
 }

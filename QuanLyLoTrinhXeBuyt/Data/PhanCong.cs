@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace QuanLyLoTrinhXeBuyt.Data
 {
-    class PhanCong
+    public class PhanCong
     {
         public int PhanCongID { get; set; }
         public string? XeID { get; set; }

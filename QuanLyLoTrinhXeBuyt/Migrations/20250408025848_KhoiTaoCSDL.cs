@@ -53,6 +53,7 @@ namespace QuanLyLoTrinhXeBuyt.Migrations
                     SoGhe = table.Column<int>(type: "int", nullable: false),
                     LoaiXe = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TrangThai = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    HinhAnh = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     NhanVienID = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>

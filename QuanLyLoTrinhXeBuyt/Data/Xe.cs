@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace QuanLyLoTrinhXeBuyt.Data
 {
-    class Xe
+    public class Xe
     {
         [Key]
         public string? XeID { get; set; }
@@ -11,6 +11,7 @@ namespace QuanLyLoTrinhXeBuyt.Data
         public int SoGhe { get; set; }
         public string? LoaiXe { get; set; }
         public string? TrangThai { get; set; }
-        
+        public string? HinhAnh { get; set; }
+
     }
 }

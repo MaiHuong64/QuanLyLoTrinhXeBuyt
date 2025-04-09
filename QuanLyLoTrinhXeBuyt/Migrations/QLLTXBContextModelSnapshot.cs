@@ -11,7 +11,7 @@ using QuanLyLoTrinhXeBuyt.Data;
 namespace QuanLyLoTrinhXeBuyt.Migrations
 {
     [DbContext(typeof(QLLTXBContext))]
-    partial class QLLTXBModelSnapshot : ModelSnapshot
+    partial class QLLTXBContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -181,6 +181,9 @@ namespace QuanLyLoTrinhXeBuyt.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("BienSo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("HinhAnh")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LoaiXe")

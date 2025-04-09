@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace QuanLyLoTrinhXeBuyt.Data
 {
-    class VeXe
+    public class VeXe
     {
         [Key]
         public string? VeID { get; set; }

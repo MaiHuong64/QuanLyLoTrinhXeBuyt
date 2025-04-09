@@ -52,14 +52,16 @@ namespace QuanLyLoTrinhXeBuyt.Forms
         }
         private void frmChuyenXe_Load(object sender, EventArgs e)
         {
+
             BatTatChucNang(false);
             LayTuyenXeVaoComboBox();
             LayXeVaoComboBox();
 
             gridChuyenXe.AutoGenerateColumns = false;
 
-            List<ChuyenXe> chuyenXe = new List<ChuyenXe>();
-            chuyenXe = context.ChuyenXe.Select(r => new ChuyenXe
+            List<DanhSachChuyenXe> chuyenXe = new List<DanhSachChuyenXe>();
+
+            chuyenXe = context.ChuyenXe.Select(r => new DanhSachChuyenXe
             {
                 ChuyenXeID = r.ChuyenXeID,
                 TenChuyen = r.TenChuyen,
@@ -67,8 +69,11 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                 ThoiGianDi = r.ThoiGianDi,
                 ThoiGianDen = r.ThoiGianDen,
                 TuyenXeID = r.TuyenXeID,
-                XeID = r.XeID
+                TenTuyen = r.TuyenXe.TenTuyen,
+                XeID = r.XeID,
+                BienSo = r.Xe.BienSo
             }).ToList();
+
 
             BindingSource bindingSource = new BindingSource();
             bindingSource.DataSource = chuyenXe;
@@ -90,11 +95,12 @@ namespace QuanLyLoTrinhXeBuyt.Forms
 
             cboTuyenXe.DataBindings.Clear();
             cboTuyenXe.DataBindings.Add("SelectedValue", bindingSource, "TuyenXeID", true, DataSourceUpdateMode.Never);
-            
+
             cboXe.DataBindings.Clear();
             cboXe.DataBindings.Add("SelectedValue", bindingSource, "XeID", true, DataSourceUpdateMode.Never);
 
             gridChuyenXe.DataSource = bindingSource;
+
         }
 
         private void btnThem_Click(object sender, EventArgs e)
@@ -193,6 +199,11 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             {
                 this.Close();
             }
+        }
+
+        private void gridChuyenXe_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
