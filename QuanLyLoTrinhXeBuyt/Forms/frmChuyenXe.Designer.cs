@@ -42,15 +42,6 @@
             label1 = new Label();
             groupBox2 = new GroupBox();
             gridChuyenXe = new DataGridView();
-            groupBox1 = new GroupBox();
-            label4 = new Label();
-            cboXe = new ComboBox();
-            label3 = new Label();
-            dtpThoiGianDen = new DateTimePicker();
-            label7 = new Label();
-            dtpThoiGianDi = new DateTimePicker();
-            txtDiemXuatPhat = new TextBox();
-            label6 = new Label();
             ChuyenXeID = new DataGridViewTextBoxColumn();
             TenChuyen = new DataGridViewTextBoxColumn();
             DiemXuatPhat = new DataGridViewTextBoxColumn();
@@ -58,6 +49,13 @@
             ThoiGianDen = new DataGridViewTextBoxColumn();
             TenTuyen = new DataGridViewTextBoxColumn();
             BienSo = new DataGridViewTextBoxColumn();
+            groupBox1 = new GroupBox();
+            label4 = new Label();
+            cboXe = new ComboBox();
+            label7 = new Label();
+            dtpThoiGianDi = new DateTimePicker();
+            txtDiemXuatPhat = new TextBox();
+            label6 = new Label();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)gridChuyenXe).BeginInit();
             groupBox1.SuspendLayout();
@@ -216,12 +214,66 @@
             gridChuyenXe.TabIndex = 0;
             gridChuyenXe.CellContentClick += gridChuyenXe_CellContentClick;
             // 
+            // ChuyenXeID
+            // 
+            ChuyenXeID.DataPropertyName = "ChuyenXeID";
+            ChuyenXeID.HeaderText = "Mã chuyến xe";
+            ChuyenXeID.MinimumWidth = 6;
+            ChuyenXeID.Name = "ChuyenXeID";
+            ChuyenXeID.ReadOnly = true;
+            // 
+            // TenChuyen
+            // 
+            TenChuyen.DataPropertyName = "TenChuyen";
+            TenChuyen.HeaderText = "Tên chuyến";
+            TenChuyen.MinimumWidth = 6;
+            TenChuyen.Name = "TenChuyen";
+            TenChuyen.ReadOnly = true;
+            // 
+            // DiemXuatPhat
+            // 
+            DiemXuatPhat.DataPropertyName = "DiemXuatPhat";
+            DiemXuatPhat.HeaderText = "Điểm xuất phát";
+            DiemXuatPhat.MinimumWidth = 6;
+            DiemXuatPhat.Name = "DiemXuatPhat";
+            DiemXuatPhat.ReadOnly = true;
+            // 
+            // ThoiGianDi
+            // 
+            ThoiGianDi.DataPropertyName = "ThoiGianDi";
+            ThoiGianDi.HeaderText = "Thời gian đi";
+            ThoiGianDi.MinimumWidth = 6;
+            ThoiGianDi.Name = "ThoiGianDi";
+            ThoiGianDi.ReadOnly = true;
+            // 
+            // ThoiGianDen
+            // 
+            ThoiGianDen.DataPropertyName = "ThoiGianDen";
+            ThoiGianDen.HeaderText = "Thời gian đến";
+            ThoiGianDen.MinimumWidth = 6;
+            ThoiGianDen.Name = "ThoiGianDen";
+            ThoiGianDen.ReadOnly = true;
+            // 
+            // TenTuyen
+            // 
+            TenTuyen.DataPropertyName = "TenTuyen";
+            TenTuyen.HeaderText = "Tên tuyến";
+            TenTuyen.MinimumWidth = 6;
+            TenTuyen.Name = "TenTuyen";
+            TenTuyen.ReadOnly = true;
+            // 
+            // BienSo
+            // 
+            BienSo.DataPropertyName = "BienSo";
+            BienSo.HeaderText = "Biến số";
+            BienSo.MinimumWidth = 6;
+            BienSo.Name = "BienSo";
+            BienSo.ReadOnly = true;
+            // 
             // groupBox1
             // 
             groupBox1.Controls.Add(label4);
             groupBox1.Controls.Add(cboXe);
-            groupBox1.Controls.Add(label3);
-            groupBox1.Controls.Add(dtpThoiGianDen);
             groupBox1.Controls.Add(label7);
             groupBox1.Controls.Add(dtpThoiGianDi);
             groupBox1.Controls.Add(txtDiemXuatPhat);
@@ -265,29 +317,10 @@
             cboXe.Size = new Size(203, 28);
             cboXe.TabIndex = 22;
             // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(354, 75);
-            label3.Margin = new Padding(4, 0, 4, 0);
-            label3.Name = "label3";
-            label3.Size = new Size(100, 20);
-            label3.TabIndex = 21;
-            label3.Text = "Thời gian đến";
-            // 
-            // dtpThoiGianDen
-            // 
-            dtpThoiGianDen.Format = DateTimePickerFormat.Time;
-            dtpThoiGianDen.Location = new Point(484, 70);
-            dtpThoiGianDen.Name = "dtpThoiGianDen";
-            dtpThoiGianDen.ShowUpDown = true;
-            dtpThoiGianDen.Size = new Size(186, 27);
-            dtpThoiGianDen.TabIndex = 20;
-            // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(354, 32);
+            label7.Location = new Point(360, 78);
             label7.Margin = new Padding(4, 0, 4, 0);
             label7.Name = "label7";
             label7.Size = new Size(88, 20);
@@ -297,7 +330,7 @@
             // dtpThoiGianDi
             // 
             dtpThoiGianDi.Format = DateTimePickerFormat.Time;
-            dtpThoiGianDi.Location = new Point(484, 27);
+            dtpThoiGianDi.Location = new Point(488, 70);
             dtpThoiGianDi.Name = "dtpThoiGianDi";
             dtpThoiGianDi.ShowUpDown = true;
             dtpThoiGianDi.Size = new Size(186, 27);
@@ -305,7 +338,7 @@
             // 
             // txtDiemXuatPhat
             // 
-            txtDiemXuatPhat.Location = new Point(138, 107);
+            txtDiemXuatPhat.Location = new Point(488, 28);
             txtDiemXuatPhat.Margin = new Padding(4);
             txtDiemXuatPhat.Name = "txtDiemXuatPhat";
             txtDiemXuatPhat.Size = new Size(186, 27);
@@ -314,68 +347,12 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(10, 114);
+            label6.Location = new Point(360, 35);
             label6.Margin = new Padding(4, 0, 4, 0);
             label6.Name = "label6";
             label6.Size = new Size(111, 20);
             label6.TabIndex = 16;
             label6.Text = "Điểm xuất phát";
-            // 
-            // ChuyenXeID
-            // 
-            ChuyenXeID.DataPropertyName = "ChuyenXeID";
-            ChuyenXeID.HeaderText = "Mã chuyến xe";
-            ChuyenXeID.MinimumWidth = 6;
-            ChuyenXeID.Name = "ChuyenXeID";
-            ChuyenXeID.ReadOnly = true;
-            // 
-            // TenChuyen
-            // 
-            TenChuyen.DataPropertyName = "TenChuyen";
-            TenChuyen.HeaderText = "Tên chuyến";
-            TenChuyen.MinimumWidth = 6;
-            TenChuyen.Name = "TenChuyen";
-            TenChuyen.ReadOnly = true;
-            // 
-            // DiemXuatPhat
-            // 
-            DiemXuatPhat.DataPropertyName = "DiemXuatPhat";
-            DiemXuatPhat.HeaderText = "Diem Xuat Phat";
-            DiemXuatPhat.MinimumWidth = 6;
-            DiemXuatPhat.Name = "DiemXuatPhat";
-            DiemXuatPhat.ReadOnly = true;
-            // 
-            // ThoiGianDi
-            // 
-            ThoiGianDi.DataPropertyName = "ThoiGianDi";
-            ThoiGianDi.HeaderText = "Thoi gian di";
-            ThoiGianDi.MinimumWidth = 6;
-            ThoiGianDi.Name = "ThoiGianDi";
-            ThoiGianDi.ReadOnly = true;
-            // 
-            // ThoiGianDen
-            // 
-            ThoiGianDen.DataPropertyName = "ThoiGianDen";
-            ThoiGianDen.HeaderText = "Thoi Gian Den";
-            ThoiGianDen.MinimumWidth = 6;
-            ThoiGianDen.Name = "ThoiGianDen";
-            ThoiGianDen.ReadOnly = true;
-            // 
-            // TenTuyen
-            // 
-            TenTuyen.DataPropertyName = "TenTuyen";
-            TenTuyen.HeaderText = "Ten Tuyen";
-            TenTuyen.MinimumWidth = 6;
-            TenTuyen.Name = "TenTuyen";
-            TenTuyen.ReadOnly = true;
-            // 
-            // BienSo
-            // 
-            BienSo.DataPropertyName = "BienSo";
-            BienSo.HeaderText = "Bien So";
-            BienSo.MinimumWidth = 6;
-            BienSo.Name = "BienSo";
-            BienSo.ReadOnly = true;
             // 
             // frmChuyenXe
             // 
@@ -386,7 +363,7 @@
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Name = "frmChuyenXe";
-            Text = "frmChuyenXe";
+            Text = "Chuyến xe";
             Load += frmChuyenXe_Load;
             groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)gridChuyenXe).EndInit();
@@ -414,8 +391,6 @@
         private Label label6;
         private DateTimePicker dtpThoiGianDi;
         private Label label7;
-        private Label label3;
-        private DateTimePicker dtpThoiGianDen;
         private ComboBox cboXe;
         private Label label4;
         private DataGridView gridChuyenXe;

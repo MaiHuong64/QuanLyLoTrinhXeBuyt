@@ -10,6 +10,7 @@ namespace QuanLyLoTrinhXeBuyt.Data
         public string? TenVe { get; set; } = null!;
         public float GiaVe { get; set; }
         public string? LoaiVe { get; set; } = null!;
+        public string? ChuyenXeID { get; set; }
 
     }
 }

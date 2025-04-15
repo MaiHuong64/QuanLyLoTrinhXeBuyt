@@ -34,7 +34,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             cboTuyenXe.Enabled = giaTri;
             cboXe.Enabled = giaTri;
             dtpThoiGianDi.Enabled = giaTri;
-            dtpThoiGianDen.Enabled = giaTri;
+            //dtpThoiGianDen.Enabled = giaTri;
 
         }
         public void LayTuyenXeVaoComboBox()
@@ -67,7 +67,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                 TenChuyen = r.TenChuyen,
                 DiemXuatPhat = r.DiemXuatPhat,
                 ThoiGianDi = r.ThoiGianDi,
-                ThoiGianDen = r.ThoiGianDen,
+                //ThoiGianDen = r.ThoiGianDen,
                 TuyenXeID = r.TuyenXeID,
                 TenTuyen = r.TuyenXe.TenTuyen,
                 XeID = r.XeID,
@@ -90,8 +90,8 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             dtpThoiGianDi.DataBindings.Clear();
             dtpThoiGianDi.DataBindings.Add("Value", bindingSource, "ThoiGianDi", true, DataSourceUpdateMode.Never);
 
-            dtpThoiGianDen.DataBindings.Clear();
-            dtpThoiGianDen.DataBindings.Add("Value", bindingSource, "ThoiGianDen", true, DataSourceUpdateMode.Never);
+            //dtpThoiGianDen.DataBindings.Clear();
+            //dtpThoiGianDen.DataBindings.Add("Value", bindingSource, "ThoiGianDen", true, DataSourceUpdateMode.Never);
 
             cboTuyenXe.DataBindings.Clear();
             cboTuyenXe.DataBindings.Add("SelectedValue", bindingSource, "TuyenXeID", true, DataSourceUpdateMode.Never);
@@ -111,7 +111,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             txtTenChuyenXe.Text = "";
             txtDiemXuatPhat.Text = "";
             dtpThoiGianDi.Value = DateTime.Now;
-            dtpThoiGianDen.Value = DateTime.Now;
+            //dtpThoiGianDen.Value = DateTime.Now;
             cboTuyenXe.Text = "";
             cboXe.Text = "";
             txtMaChuyenXe.Focus();
@@ -119,7 +119,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Xác nhận xóa tuyên " + txtTenChuyenXe.Text + "?", "Xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("Xác nhận xóa chuyến " + txtTenChuyenXe.Text + "?", "Xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 id = gridChuyenXe.CurrentRow.Cells["ChuyenXeID"].Value.ToString();
                 ChuyenXe chuyenXe = context.ChuyenXe.Find(id);
@@ -128,7 +128,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                     context.Remove(chuyenXe);
                 }
                 context.SaveChanges();
-                frmChuyenXe_Load(sender, e); // Load lại dữ liệu
+                frmChuyenXe_Load(sender, e);
             }
         }
 
@@ -149,8 +149,6 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                 MessageBox.Show("Vui lòng nhập đầy đủ thông tin", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             else if (string.IsNullOrWhiteSpace(cboXe.Text))
                 MessageBox.Show("Vui lòng nhập đầy đủ thông tin", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            else if (dtpThoiGianDi.Value > dtpThoiGianDen.Value)
-                MessageBox.Show("Thời gian đi không được lớn hơn thời gian đến", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             else
             {
                 if (xuLyThem)
@@ -160,7 +158,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                     chuyenXe.TenChuyen = txtTenChuyenXe.Text;
                     chuyenXe.DiemXuatPhat = txtDiemXuatPhat.Text;
                     chuyenXe.ThoiGianDi = dtpThoiGianDi.Value;
-                    chuyenXe.ThoiGianDen = dtpThoiGianDen.Value;
+                    //chuyenXe.ThoiGianDen = dtpThoiGianDen.Value;
                     chuyenXe.TuyenXeID = cboTuyenXe.SelectedValue.ToString();
                     chuyenXe.XeID = cboXe.SelectedValue.ToString();
 
@@ -176,7 +174,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                         chuyenXe.TenChuyen = txtTenChuyenXe.Text;
                         chuyenXe.DiemXuatPhat = txtDiemXuatPhat.Text;
                         chuyenXe.ThoiGianDi = dtpThoiGianDi.Value;
-                        chuyenXe.ThoiGianDen = dtpThoiGianDen.Value;
+                        //chuyenXe.ThoiGianDen = dtpThoiGianDen.Value;
                         chuyenXe.TuyenXeID = cboTuyenXe.SelectedValue.ToString();
                         chuyenXe.XeID = cboXe.SelectedValue.ToString();
 

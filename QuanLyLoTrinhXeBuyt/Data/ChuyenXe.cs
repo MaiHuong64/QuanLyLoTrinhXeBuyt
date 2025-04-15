@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -15,10 +16,9 @@ namespace QuanLyLoTrinhXeBuyt.Data
         public string? TenChuyen { get; set; } = null!;
         public string? DiemXuatPhat { get; set; } = null!;
         public DateTime ThoiGianDi { get; set; }
-        public DateTime ThoiGianDen { get; set; }
         public string? TuyenXeID { get; set; }
         public string? XeID { get; set; }
-        public virtual  ICollection<VeXe> VeXe { get; } = new List<VeXe>(); 
+        public virtual ObservableCollectionListSource<VeXe> VeXe { get; } = new (); 
         public virtual TuyenXe TuyenXe { get; set; } = null!;
         public virtual Xe Xe { get; set; } = null!;
     }
@@ -30,7 +30,6 @@ namespace QuanLyLoTrinhXeBuyt.Data
         public string? TenChuyen { get; set; } = null!;
         public string? DiemXuatPhat { get; set; } = null!;
         public DateTime ThoiGianDi { get; set; }
-        public DateTime ThoiGianDen { get; set; }
         public string? TuyenXeID { get; set; }
         public string? TenTuyen { get; set; } = null!;
         public string? XeID { get; set; }

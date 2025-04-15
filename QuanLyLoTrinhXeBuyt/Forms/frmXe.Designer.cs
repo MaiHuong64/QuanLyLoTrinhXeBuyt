@@ -87,7 +87,7 @@
             // 
             // btnDoiAnh
             // 
-            btnDoiAnh.Location = new Point(990, 99);
+            btnDoiAnh.Location = new Point(986, 39);
             btnDoiAnh.Name = "btnDoiAnh";
             btnDoiAnh.Size = new Size(148, 43);
             btnDoiAnh.TabIndex = 17;
@@ -163,7 +163,7 @@
             // 
             cboTrangThai.FormattingEnabled = true;
             cboTrangThai.Items.AddRange(new object[] { "Đang hoạt động", "Đang bảo trì" });
-            cboTrangThai.Location = new Point(138, 148);
+            cboTrangThai.Location = new Point(138, 127);
             cboTrangThai.Margin = new Padding(4);
             cboTrangThai.Name = "cboTrangThai";
             cboTrangThai.Size = new Size(186, 33);
@@ -172,7 +172,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(3, 151);
+            label5.Location = new Point(0, 134);
             label5.Margin = new Padding(4, 0, 4, 0);
             label5.Name = "label5";
             label5.Size = new Size(106, 26);
@@ -209,7 +209,7 @@
             // 
             // txtBienSo
             // 
-            txtBienSo.Location = new Point(138, 89);
+            txtBienSo.Location = new Point(138, 79);
             txtBienSo.Margin = new Padding(4);
             txtBienSo.Name = "txtBienSo";
             txtBienSo.Size = new Size(186, 33);
@@ -218,7 +218,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(11, 97);
+            label2.Location = new Point(9, 89);
             label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
             label2.Size = new Size(108, 26);
@@ -302,7 +302,7 @@
             Margin = new Padding(4);
             Name = "frmXe";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "frmXe";
+            Text = "Xe buýt";
             Load += frmXe_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
