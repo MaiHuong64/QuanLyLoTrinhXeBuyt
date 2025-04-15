@@ -13,6 +13,6 @@ namespace QuanLyLoTrinhXeBuyt.Data
         [Key]
         public int TramXeID { get; set; }
         public string? TenTramXe { get; set; }
-        public virtual ObservableCollection<TuyenXe_ChiTiet> TuyenXe_DiemDung { get; } = new();
+        public virtual ObservableCollection<TuyenXe_ChiTiet> TuyenXe_ChiTiet { get; } = new();
     }
 }

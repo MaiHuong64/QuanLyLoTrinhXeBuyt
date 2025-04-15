@@ -35,6 +35,7 @@
             btnXoa = new Button();
             btnXuat = new Button();
             btnSua = new Button();
+            textBox1 = new TextBox();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)gridTuyenXe).BeginInit();
             SuspendLayout();
@@ -66,9 +67,10 @@
             // 
             // btnThem
             // 
+            btnThem.AutoSize = true;
             btnThem.Location = new Point(38, 378);
             btnThem.Name = "btnThem";
-            btnThem.Size = new Size(126, 41);
+            btnThem.Size = new Size(103, 41);
             btnThem.TabIndex = 2;
             btnThem.Text = "Thêm tuyến";
             btnThem.UseVisualStyleBackColor = true;
@@ -76,7 +78,7 @@
             // 
             // btnTimKiem
             // 
-            btnTimKiem.Location = new Point(562, 378);
+            btnTimKiem.Location = new Point(627, 378);
             btnTimKiem.Name = "btnTimKiem";
             btnTimKiem.Size = new Size(146, 41);
             btnTimKiem.TabIndex = 8;
@@ -86,9 +88,9 @@
             // 
             // btnXoa
             // 
-            btnXoa.Location = new Point(330, 378);
+            btnXoa.Location = new Point(258, 378);
             btnXoa.Name = "btnXoa";
-            btnXoa.Size = new Size(121, 41);
+            btnXoa.Size = new Size(109, 41);
             btnXoa.TabIndex = 6;
             btnXoa.Text = "Xoá";
             btnXoa.UseVisualStyleBackColor = true;
@@ -96,7 +98,7 @@
             // 
             // btnXuat
             // 
-            btnXuat.Location = new Point(729, 378);
+            btnXuat.Location = new Point(795, 378);
             btnXuat.Name = "btnXuat";
             btnXuat.Size = new Size(144, 41);
             btnXuat.TabIndex = 9;
@@ -106,19 +108,28 @@
             // 
             // btnSua
             // 
-            btnSua.Location = new Point(184, 378);
+            btnSua.AutoSize = true;
+            btnSua.Location = new Point(147, 378);
             btnSua.Name = "btnSua";
-            btnSua.Size = new Size(113, 41);
+            btnSua.Size = new Size(105, 41);
             btnSua.TabIndex = 5;
             btnSua.Text = "Sửa";
             btnSua.UseVisualStyleBackColor = true;
             btnSua.Click += btnSua_Click;
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(472, 385);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(125, 27);
+            textBox1.TabIndex = 10;
             // 
             // frmTuyenXe
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(979, 435);
+            Controls.Add(textBox1);
             Controls.Add(btnXoa);
             Controls.Add(btnXuat);
             Controls.Add(groupBox1);
@@ -131,6 +142,7 @@
             groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)gridTuyenXe).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -143,5 +155,6 @@
         private Button btnXoa;
         private Button btnXuat;
         private Button btnSua;
+        private TextBox textBox1;
     }
 }

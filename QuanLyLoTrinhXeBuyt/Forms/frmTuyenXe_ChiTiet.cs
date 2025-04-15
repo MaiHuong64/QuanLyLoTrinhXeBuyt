@@ -48,7 +48,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
 
             gridChiTiet.AutoGenerateColumns = false;
 
-          
+
 
             if (gridChiTiet.Columns.Count == 0)
             {
@@ -100,7 +100,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
         }
         private void btnLuu_Click(object sender, EventArgs e)
         {
-            if(id != 0)
+            if (id != 0)
             {
                 TuyenXe tuyenXe = context.TuyenXe.Find(id);
                 if (tuyenXe != null)
@@ -108,7 +108,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                     tuyenXe.TenTuyen = txtTenTuyen.Text;
                     tuyenXe.MoTa = txtGhiChu.Text;
                     context.SaveChanges();
-                    
+
                     id = tuyenXe.TuyenXeID;
 
                     // Xoa tram cu
@@ -116,7 +116,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                     context.TuyenXe_ChiTiet.RemoveRange(tramCu);
 
                     // Them tram moi
-                    foreach(var item in tuyenXeChiTiet)
+                    foreach (var item in tuyenXeChiTiet)
                     {
                         TuyenXe_ChiTiet tuyenXeChiTiet = new TuyenXe_ChiTiet();
                         tuyenXeChiTiet.TuyenXeID = id;
@@ -125,9 +125,6 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                     }
                     context.SaveChanges();
                 }
-                this.Close();
-                new frmTuyenXe().Show();
-              
             }
             else
             {
@@ -154,8 +151,8 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             {
                 MessageBox.Show("Trạm không tồn tại");
             }
-            
-            if(tuyenXeChiTiet.Any(r => r.TramXeID == tramxeID))
+
+            if (tuyenXeChiTiet.Any(r => r.TramXeID == tramxeID))
             {
                 MessageBox.Show("Trạm đã tồn tại trong danh sách");
                 return;
@@ -174,6 +171,15 @@ namespace QuanLyLoTrinhXeBuyt.Forms
         {
             int selected = gridChiTiet.CurrentRow.Index;
             tuyenXeChiTiet.RemoveAt(selected);
+        }
+
+        private void btnThoat_Click(object sender, EventArgs e)
+        {
+            if(MessageBox.Show("Bạn có muốn thoát không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                this.Close();
+                
+            }
         }
     }
 }
