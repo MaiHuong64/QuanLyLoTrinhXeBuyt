@@ -11,8 +11,8 @@ namespace QuanLyLoTrinhXeBuyt.Data
     public class TramXe
     {
         [Key]
-        public string? TramXeID { get; set; }
+        public int TramXeID { get; set; }
         public string? TenTramXe { get; set; }
-        public virtual ObservableCollection<TuyenXe_TramXe> TuyenXe_DiemDung { get; } = new();
+        public virtual ObservableCollection<TuyenXe_ChiTiet> TuyenXe_DiemDung { get; } = new();
     }
 }

@@ -5,10 +5,8 @@ namespace QuanLyLoTrinhXeBuyt.Data
     public class NhanVien
     {
         [Key]
-        public string? NhanVienID { get; set; }
+        public int NhanVienID { get; set; }
         public string? HoTen { get; set; }
-        public string? GioiTinh { get; set; }
-        public DateTime? NgaySinh { get; set; }
         public string? SoDienThoai { get; set; }
         public string? DiaChi { get; set; }
         public string? ChucVu { get; set; }

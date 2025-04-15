@@ -1,13 +1,7 @@
 ﻿using QuanLyLoTrinhXeBuyt.Data;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+using ClosedXML.Excel;
 
 namespace QuanLyLoTrinhXeBuyt.Forms
 {
@@ -18,80 +12,140 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             InitializeComponent();
         }
         QLLTXBContext context = new QLLTXBContext();
-        bool xuLyThem = false;
-        string id = "";
+        int id;
         void BatTatChucNang(bool giaTri)
         {
             btnThem.Enabled = !giaTri;
             btnSua.Enabled = !giaTri;
-            btnLuu.Enabled = giaTri;
-            btnHuyBo.Enabled = giaTri;
-            txtMaTuyenXe.Enabled = giaTri;
-            txtTenTuyenXe.Enabled = giaTri;
-            txtGhiChu.Enabled = giaTri;
+     
         }
         private void frmTuyenXe_Load(object sender, EventArgs e)
         {
+            BatTatChucNang(false);
             gridTuyenXe.AutoGenerateColumns = false;
 
-            List<TuyenXe> tuyenXe = context.TuyenXe.ToList();
+            if(gridTuyenXe.Columns.Count == 0)
+            {
+                gridTuyenXe.Columns.Add(new DataGridViewTextBoxColumn { Name = "TuyenXeID", DataPropertyName = "TuyenXeID", HeaderText = "Mã tuyến xe" });
+                gridTuyenXe.Columns.Add(new DataGridViewTextBoxColumn { Name = "TenTuyen", DataPropertyName = "TenTuyen", HeaderText = "Tên tuyến xe" });
+                gridTuyenXe.Columns.Add(new DataGridViewTextBoxColumn { Name = "MoTa", DataPropertyName = "MoTa", HeaderText = "Mô tả" });
+                gridTuyenXe.Columns.Add(new DataGridViewTextBoxColumn { Name = "XemChiTiet", DataPropertyName = "XemChiTiet", HeaderText = "Xem chi tiết" });
+            }
 
-            BindingSource bindingSource = new BindingSource();
-            bindingSource.DataSource = tuyenXe;
+            List<DanhSachTuyenXe> tuyenXe = new List<DanhSachTuyenXe>();
 
-            txtTenTuyenXe.DataBindings.Clear();
-            txtTenTuyenXe.DataBindings.Add("Text", bindingSource, "TenTuyen", true, DataSourceUpdateMode.Never);
+            tuyenXe = context.TuyenXe.Select(t => new DanhSachTuyenXe
+            {
+                TuyenXeID = t.TuyenXeID,
+                TenTuyen = t.TenTuyen,
+                MoTa = t.MoTa,
+                XemChiTiet = "Xem chi tiết"
+            }).ToList();
 
-            txtMaTuyenXe.DataBindings.Clear();
-            txtMaTuyenXe.DataBindings.Add("Text", bindingSource, "TuyenXeID", true, DataSourceUpdateMode.Never);
-
-            txtGhiChu.DataBindings.Clear();
-            txtGhiChu.DataBindings.Add("Text", bindingSource, "GhiChu", true, DataSourceUpdateMode.Never);
-
-            gridTuyenXe.DataSource = bindingSource;
-
+            gridTuyenXe.DataSource = tuyenXe;
         }
         private void btnThem_Click(object sender, EventArgs e)
         {
-            id = "";
-            //xuLyThem = true;
-            BatTatChucNang(true);
-        }
-
-        private void btnLuu_Click(object sender, EventArgs e)
-        {
-            if (id == "")
+            using (frmTuyenXe_ChiTiet frm = new frmTuyenXe_ChiTiet(id))
             {
-                TuyenXe tuyenXe = new TuyenXe();
-                tuyenXe.TuyenXeID = txtTenTuyenXe.Text;
-                tuyenXe.TenTuyen = txtMaTuyenXe.Text;
-
-                //tuyenXe.GhiChu = txtGhiChu.Text;
-                context.Add(tuyenXe);
-                context.SaveChanges();
+                Console.WriteLine(id);
+                frm.ShowDialog();
+                this.Close();
             }
-            else
-            {
-                TuyenXe tuyenXe = context.TuyenXe.Find(id);
-                if (tuyenXe != null)
-                {
-                    tuyenXe.TenTuyen = txtTenTuyenXe.Text;
-                    //tuyenXe.GhiChu = txtGhiChu.Text;
-                    context.Update(tuyenXe);
-                    context.SaveChanges();
-                }
-            }
-            frmTuyenXe_Load(sender, e);
         }
-
         private void btnSua_Click(object sender, EventArgs e)
         {
-            id = gridTuyenXe.CurrentRow.Cells["TuyenXeID"].Value.ToString();
-            BatTatChucNang(true);
+            id = Convert.ToInt32(gridTuyenXe.CurrentRow.Cells["TuyenXeID"].Value.ToString());
+            using(frmTuyenXe_ChiTiet frm = new frmTuyenXe_ChiTiet(id))
+            {
+                frm.ShowDialog();
+            }
+
         }
 
-        private void btnLap_Click(object sender, EventArgs e)
+        private void btnXuat_Click(object sender, EventArgs e)
         {
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            {
+                saveFileDialog.Filter = "Excel Files|*.xlsx";
+                saveFileDialog.Title = "Xuất file excel";
+                saveFileDialog.FileName = "TuyenXe_" + DateTime.Now.ToShortDateString().Replace("/", "_") + ".xlsx";
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        using(XLWorkbook wb = new XLWorkbook())
+                        {
+                            DataTable tableTuyenXe = new DataTable();
+                            tableTuyenXe.Columns.Add("Mã tuyến xe");
+                            tableTuyenXe.Columns.Add("Tên tuyến xe");
+                            tableTuyenXe.Columns.Add("Ghi chú");
+
+                            var tuyenXe = context.TuyenXe.Select(t => new
+                            {
+                                t.TuyenXeID,
+                                t.TenTuyen,
+                                t.MoTa
+                            }).ToList();
+
+                            foreach (var item in tuyenXe)
+                            {
+                                tableTuyenXe.Rows.Add(item.TuyenXeID, item.TenTuyen, item.MoTa);
+                            }
+
+                            var sheet  = wb.Worksheets.Add(tableTuyenXe, "TuyenXe");
+                            sheet.Columns().AdjustToContents();
+
+                            // Chi tiet tuyen xe 
+                            DataTable tableChiTietTuyenXe = new DataTable();
+                            tableChiTietTuyenXe.Columns.Add("TuyenXe");
+                            tableChiTietTuyenXe.Columns.Add("Tram");
+                            var chiTietTuyenXe = context.TuyenXe_ChiTiet.Select(ct => new
+                            {
+                                TramXe = ct.TramXe.TenTramXe,
+                                TuyenXe = ct.TuyenXe.TenTuyen,
+                            }).ToList();
+
+                            foreach (var ct in chiTietTuyenXe)
+                            {
+                                tableChiTietTuyenXe.Rows.Add(ct.TuyenXe, ct.TramXe);
+                            }
+
+                            var wsChiTiet = wb.Worksheets.Add(tableChiTietTuyenXe, "TuyenXe_TramXe");
+                            wsChiTiet.Columns().AdjustToContents();
+
+                            // Luu file
+                            wb.SaveAs(saveFileDialog.FileName);
+                            MessageBox.Show("Xuất file thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Lỗi khi xuất file: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    }
+                }
+            }
+        }
+
+        private void btnTimKiem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnXoa_Click(object sender, EventArgs e)
+        {
+            int index = gridTuyenXe.CurrentRow.Index;
+            var ten = gridTuyenXe.Rows[index].Cells["TenTuyen"].Value.ToString();
+            if (MessageBox.Show("Xác nhận xóa chuyến " + ten + "?", "Xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                id = Convert.ToInt32(gridTuyenXe.Rows[index].Cells["TuyenXeID"].Value.ToString());
+                TuyenXe tuyenxe = context.TuyenXe.Find(id);
+                context.Remove(tuyenxe);
+
+                context.SaveChanges();
+                frmTuyenXe_Load(sender, e);
+            }
 
         }
     }

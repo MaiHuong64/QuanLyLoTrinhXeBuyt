@@ -12,7 +12,7 @@ using QuanLyLoTrinhXeBuyt.Data;
 namespace QuanLyLoTrinhXeBuyt.Migrations
 {
     [DbContext(typeof(QLLTXBContext))]
-    [Migration("20250408025848_KhoiTaoCSDL")]
+    [Migration("20250415124318_KhoiTaoCSDL")]
     partial class KhoiTaoCSDL
     {
         /// <inheritdoc />
@@ -27,8 +27,11 @@ namespace QuanLyLoTrinhXeBuyt.Migrations
 
             modelBuilder.Entity("QuanLyLoTrinhXeBuyt.Data.ChuyenXe", b =>
                 {
-                    b.Property<string>("ChuyenXeID")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("ChuyenXeID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ChuyenXeID"));
 
                     b.Property<string>("DiemXuatPhat")
                         .HasColumnType("nvarchar(max)");
@@ -36,17 +39,14 @@ namespace QuanLyLoTrinhXeBuyt.Migrations
                     b.Property<string>("TenChuyen")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("ThoiGianDen")
-                        .HasColumnType("datetime2");
-
                     b.Property<DateTime>("ThoiGianDi")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("TuyenXeID")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("TuyenXeID")
+                        .HasColumnType("int");
 
-                    b.Property<string>("XeID")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("XeID")
+                        .HasColumnType("int");
 
                     b.HasKey("ChuyenXeID");
 
@@ -57,28 +57,13 @@ namespace QuanLyLoTrinhXeBuyt.Migrations
                     b.ToTable("ChuyenXe");
                 });
 
-            modelBuilder.Entity("QuanLyLoTrinhXeBuyt.Data.DiemDung", b =>
-                {
-                    b.Property<string>("DiemDungID")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("TuyenXeID")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("tenDiemDung")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("DiemDungID");
-
-                    b.HasIndex("TuyenXeID");
-
-                    b.ToTable("DiemDung");
-                });
-
             modelBuilder.Entity("QuanLyLoTrinhXeBuyt.Data.NhanVien", b =>
                 {
-                    b.Property<string>("NhanVienID")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("NhanVienID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NhanVienID"));
 
                     b.Property<string>("ChucVu")
                         .HasColumnType("nvarchar(max)");
@@ -123,11 +108,11 @@ namespace QuanLyLoTrinhXeBuyt.Migrations
                     b.Property<DateTime>("NgayLamViec")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("NhanVienID")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("NhanVienID")
+                        .HasColumnType("int");
 
-                    b.Property<string>("XeID")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("XeID")
+                        .HasColumnType("int");
 
                     b.HasKey("PhanCongID");
 
@@ -138,13 +123,32 @@ namespace QuanLyLoTrinhXeBuyt.Migrations
                     b.ToTable("PhanCong");
                 });
 
+            modelBuilder.Entity("QuanLyLoTrinhXeBuyt.Data.TramXe", b =>
+                {
+                    b.Property<int>("TramXeID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TramXeID"));
+
+                    b.Property<string>("TenTramXe")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("TramXeID");
+
+                    b.ToTable("TramXe");
+                });
+
             modelBuilder.Entity("QuanLyLoTrinhXeBuyt.Data.TuyenXe", b =>
                 {
-                    b.Property<string>("TuyenXeID")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("SoChuyen")
+                    b.Property<int>("TuyenXeID")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TuyenXeID"));
+
+                    b.Property<string>("MoTa")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TenTuyen")
                         .HasColumnType("nvarchar(max)");
@@ -154,13 +158,39 @@ namespace QuanLyLoTrinhXeBuyt.Migrations
                     b.ToTable("TuyenXe");
                 });
 
+            modelBuilder.Entity("QuanLyLoTrinhXeBuyt.Data.TuyenXe_ChiTiet", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<int>("TramXeID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TuyenXeID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("TramXeID");
+
+                    b.HasIndex("TuyenXeID");
+
+                    b.ToTable("TuyenXe_ChiTiet");
+                });
+
             modelBuilder.Entity("QuanLyLoTrinhXeBuyt.Data.VeXe", b =>
                 {
-                    b.Property<string>("VeID")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("VeID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                    b.Property<string>("ChuyenXeID")
-                        .HasColumnType("nvarchar(450)");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("VeID"));
+
+                    b.Property<int>("ChuyenXeID")
+                        .HasColumnType("int");
 
                     b.Property<float>("GiaVe")
                         .HasColumnType("real");
@@ -180,8 +210,11 @@ namespace QuanLyLoTrinhXeBuyt.Migrations
 
             modelBuilder.Entity("QuanLyLoTrinhXeBuyt.Data.Xe", b =>
                 {
-                    b.Property<string>("XeID")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("XeID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("XeID"));
 
                     b.Property<string>("BienSo")
                         .HasColumnType("nvarchar(max)");
@@ -192,8 +225,8 @@ namespace QuanLyLoTrinhXeBuyt.Migrations
                     b.Property<string>("LoaiXe")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("NhanVienID")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("NhanVienID")
+                        .HasColumnType("int");
 
                     b.Property<int>("SoGhe")
                         .HasColumnType("int");
@@ -212,46 +245,66 @@ namespace QuanLyLoTrinhXeBuyt.Migrations
                 {
                     b.HasOne("QuanLyLoTrinhXeBuyt.Data.TuyenXe", "TuyenXe")
                         .WithMany("ChuyenXe")
-                        .HasForeignKey("TuyenXeID");
+                        .HasForeignKey("TuyenXeID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("QuanLyLoTrinhXeBuyt.Data.Xe", "Xe")
                         .WithMany()
-                        .HasForeignKey("XeID");
+                        .HasForeignKey("XeID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("TuyenXe");
 
                     b.Navigation("Xe");
-                });
-
-            modelBuilder.Entity("QuanLyLoTrinhXeBuyt.Data.DiemDung", b =>
-                {
-                    b.HasOne("QuanLyLoTrinhXeBuyt.Data.TuyenXe", "TuyenXe")
-                        .WithMany("DiemDung")
-                        .HasForeignKey("TuyenXeID");
-
-                    b.Navigation("TuyenXe");
                 });
 
             modelBuilder.Entity("QuanLyLoTrinhXeBuyt.Data.PhanCong", b =>
                 {
                     b.HasOne("QuanLyLoTrinhXeBuyt.Data.NhanVien", "NhanVien")
                         .WithMany()
-                        .HasForeignKey("NhanVienID");
+                        .HasForeignKey("NhanVienID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("QuanLyLoTrinhXeBuyt.Data.Xe", "Xe")
                         .WithMany()
-                        .HasForeignKey("XeID");
+                        .HasForeignKey("XeID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("NhanVien");
 
                     b.Navigation("Xe");
                 });
 
+            modelBuilder.Entity("QuanLyLoTrinhXeBuyt.Data.TuyenXe_ChiTiet", b =>
+                {
+                    b.HasOne("QuanLyLoTrinhXeBuyt.Data.TramXe", "TramXe")
+                        .WithMany("TuyenXe_DiemDung")
+                        .HasForeignKey("TramXeID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("QuanLyLoTrinhXeBuyt.Data.TuyenXe", "TuyenXe")
+                        .WithMany("TuyenXe_DiemDung")
+                        .HasForeignKey("TuyenXeID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("TramXe");
+
+                    b.Navigation("TuyenXe");
+                });
+
             modelBuilder.Entity("QuanLyLoTrinhXeBuyt.Data.VeXe", b =>
                 {
                     b.HasOne("QuanLyLoTrinhXeBuyt.Data.ChuyenXe", null)
                         .WithMany("VeXe")
-                        .HasForeignKey("ChuyenXeID");
+                        .HasForeignKey("ChuyenXeID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("QuanLyLoTrinhXeBuyt.Data.Xe", b =>
@@ -271,11 +324,16 @@ namespace QuanLyLoTrinhXeBuyt.Migrations
                     b.Navigation("Xe");
                 });
 
+            modelBuilder.Entity("QuanLyLoTrinhXeBuyt.Data.TramXe", b =>
+                {
+                    b.Navigation("TuyenXe_DiemDung");
+                });
+
             modelBuilder.Entity("QuanLyLoTrinhXeBuyt.Data.TuyenXe", b =>
                 {
                     b.Navigation("ChuyenXe");
 
-                    b.Navigation("DiemDung");
+                    b.Navigation("TuyenXe_DiemDung");
                 });
 #pragma warning restore 612, 618
         }

@@ -239,7 +239,6 @@
             // cboLoaiXe
             // 
             cboLoaiXe.FormattingEnabled = true;
-            cboLoaiXe.Items.AddRange(new object[] { "Xe 7 chỗ", "Xe 16 chỗ " });
             cboLoaiXe.Location = new Point(477, 29);
             cboLoaiXe.Margin = new Padding(4);
             cboLoaiXe.Name = "cboLoaiXe";

@@ -17,7 +17,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             InitializeComponent();
         }
         QLLTXBContext context = new QLLTXBContext();
-        string id = "";
+        int id;
         string imagesFolder = Application.StartupPath.Replace("bin\\Debug\\net5.0-windows", "Images");
         public void BatTatChucNang(bool giaTri)
         {
@@ -86,7 +86,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
         }
         private void btnThem_Click(object sender, EventArgs e)
         {
-            id = "";
+            id = 0;
             BatTatChucNang(true);
             txtMaXe.Clear();
             txtBienSo.Clear();
@@ -134,7 +134,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
         {
             if (gridXe.CurrentRow != null)
             {
-                id = gridXe.CurrentRow.Cells["XeID"].Value.ToString();
+                id = Convert.ToInt32(gridXe.CurrentRow.Cells["XeID"].Value.ToString());
                 Xe xe = context.Xe.Find(id);
                 if (xe != null)
                 {
@@ -155,7 +155,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             if (gridXe.CurrentRow != null)
             {
                 BatTatChucNang(true);
-                id = gridXe.CurrentRow.Cells["XeID"].Value.ToString();
+                id = Convert.ToInt32(gridXe.CurrentRow.Cells["XeID"].Value.ToString());
                 txtMaXe.Focus();
             }
             else
@@ -166,12 +166,12 @@ namespace QuanLyLoTrinhXeBuyt.Forms
         }
         private void btnLuu_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtMaXe.Text))
-            {
-                MessageBox.Show("Vui lòng nhập mã xe", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtMaXe.Focus();
-            }
-            else if (string.IsNullOrWhiteSpace(txtBienSo.Text))
+            //if (string.IsNullOrWhiteSpace(txtMaXe.Text))
+            //{
+            //    MessageBox.Show("Vui lòng nhập mã xe", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    txtMaXe.Focus();
+            //}
+            if (string.IsNullOrWhiteSpace(txtBienSo.Text))
             {
                 MessageBox.Show("Vui lòng nhập biển số xe", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtBienSo.Focus();
@@ -189,10 +189,10 @@ namespace QuanLyLoTrinhXeBuyt.Forms
 
             else
             {
-                if (id == "")
+                if (id == 0)
                 {
                     Xe xe = new Xe();
-                    xe.XeID = txtMaXe.Text;
+                    //xe.XeID = txtMaXe.Text;
                     xe.BienSo = txtBienSo.Text;
                     xe.SoGhe = Convert.ToInt32(numSoGhe.Value);
                     xe.LoaiXe = cboLoaiXe.SelectedItem.ToString();
@@ -208,7 +208,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                     Xe xe = context.Xe.Find(id)!;
                     if (xe != null)
                     {
-                        xe.XeID = txtMaXe.Text;
+                        //xe.XeID = txtMaXe.Text;
                         xe.BienSo = txtBienSo.Text;
                         xe.SoGhe = Convert.ToInt32(numSoGhe.Value);
                         xe.LoaiXe = cboLoaiXe.SelectedItem.ToString();
@@ -249,11 +249,11 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                 string fileSavePath = Path.Combine(imagesFolder, GenerateSlug(fileName) + ext);
                 File.Copy(openFileDialog.FileName, fileSavePath, true);
 
-                id = gridXe.CurrentRow.Cells["XeID"].Value.ToString();
+                id = Convert.ToInt32(gridXe.CurrentRow.Cells["XeID"].Value.ToString());
                 Xe sp = context.Xe.Find(id);
                 sp.HinhAnh = GenerateSlug(fileName) + ext;
 
-                context.Xe.Update(sp);
+                context.Xe.Update(sp); 
                 context.SaveChanges();
                 frmXe_Load(sender, e);
 

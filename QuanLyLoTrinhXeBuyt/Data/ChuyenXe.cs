@@ -12,12 +12,12 @@ namespace QuanLyLoTrinhXeBuyt.Data
     public class ChuyenXe
     {
         [Key]
-        public string? ChuyenXeID { get; set; }
+        public int ChuyenXeID { get; set; }
         public string? TenChuyen { get; set; } = null!;
         public string? DiemXuatPhat { get; set; } = null!;
         public DateTime ThoiGianDi { get; set; }
-        public string? TuyenXeID { get; set; }
-        public string? XeID { get; set; }
+        public int TuyenXeID { get; set; }
+        public int XeID { get; set; }
         public virtual ObservableCollectionListSource<VeXe> VeXe { get; } = new (); 
         public virtual TuyenXe TuyenXe { get; set; } = null!;
         public virtual Xe Xe { get; set; } = null!;
@@ -26,13 +26,13 @@ namespace QuanLyLoTrinhXeBuyt.Data
     public class DanhSachChuyenXe
     {
         [Key]
-        public string? ChuyenXeID { get; set; }
+        public int ChuyenXeID { get; set; }
         public string? TenChuyen { get; set; } = null!;
         public string? DiemXuatPhat { get; set; } = null!;
         public DateTime ThoiGianDi { get; set; }
-        public string? TuyenXeID { get; set; }
+        public int TuyenXeID { get; set; }
         public string? TenTuyen { get; set; } = null!;
-        public string? XeID { get; set; }
+        public int XeID { get; set; }
         public string? BienSo { get; set; } = null!;
     }
 }

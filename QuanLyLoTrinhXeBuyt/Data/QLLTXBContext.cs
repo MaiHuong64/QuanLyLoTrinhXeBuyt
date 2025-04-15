@@ -12,7 +12,7 @@ namespace QuanLyLoTrinhXeBuyt.Data
         public DbSet<NhanVien> NhanVien { get; set; }
         public DbSet<VeXe> VeXe { get; set; }
         public DbSet<PhanCong> PhanCong { get; set; }
-        public DbSet<TuyenXe_TramXe> TuyenXe_TramXe { get; set; }
+        public DbSet<TuyenXe_ChiTiet> TuyenXe_ChiTiet { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
