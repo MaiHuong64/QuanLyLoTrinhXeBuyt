@@ -157,7 +157,6 @@
             btnThem.TabIndex = 3;
             btnThem.Text = "Thêm";
             btnThem.UseVisualStyleBackColor = true;
-            btnThem.Click += btnThem_Click;
             // 
             // groupBox1
             // 

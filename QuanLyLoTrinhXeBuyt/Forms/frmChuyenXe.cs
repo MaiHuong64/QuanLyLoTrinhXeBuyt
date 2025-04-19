@@ -1,4 +1,5 @@
-﻿using QuanLyLoTrinhXeBuyt.Data;
+﻿using ClosedXML.Excel;
+using QuanLyLoTrinhXeBuyt.Data;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -66,7 +67,6 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                 TenChuyen = r.TenChuyen,
                 DiemXuatPhat = r.DiemXuatPhat,
                 ThoiGianDi = r.ThoiGianDi,
-                //ThoiGianDen = r.ThoiGianDen,
                 TuyenXeID = r.TuyenXeID,
                 TenTuyen = r.TuyenXe.TenTuyen,
                 XeID = r.XeID,
@@ -103,7 +103,6 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             txtTenChuyenXe.Text = "";
             txtDiemXuatPhat.Text = "";
             dtpThoiGianDi.Value = DateTime.Now;
-            //dtpThoiGianDen.Value = DateTime.Now;
             cboTuyenXe.Text = "";
             cboXe.Text = "";
         }
@@ -189,6 +188,68 @@ namespace QuanLyLoTrinhXeBuyt.Forms
         }
 
         private void gridChuyenXe_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+
+        private void btnXuat_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            {
+                saveFileDialog.Filter = "Excel Files|*.xlsx";
+                saveFileDialog.Title = "Xuất file excel";
+                saveFileDialog.FileName = "NhanVien" + DateTime.Now.ToShortDateString().Replace("/", "_") + ".xlsx";
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        using (XLWorkbook wb = new XLWorkbook())
+                        {
+                            DataTable table = new DataTable();
+                            table.Columns.Add("ChuyenXeID");
+                            table.Columns.Add("TenChuyen");
+                            table.Columns.Add("DiemXuatPhat");
+                            table.Columns.Add("ThoiGianDi");
+                            table.Columns.Add("TuyenXeID");
+                            table.Columns.Add("TenTuyen");
+                            table.Columns.Add("XeID");
+
+
+                            var chuyenXe = context.ChuyenXe.Select(cx => new
+                            {
+                                cx.ChuyenXeID,
+                                cx.TenChuyen,
+                                cx.DiemXuatPhat,
+                                cx.ThoiGianDi,
+                                cx.TuyenXeID,
+                                cx.TuyenXe.TenTuyen,
+                                cx.XeID
+                            }).ToList();
+
+                            foreach (var item in chuyenXe)
+                            {
+                                table.Rows.Add(item.ChuyenXeID, item.TenChuyen, item.DiemXuatPhat, item.DiemXuatPhat, item.ThoiGianDi, item.TuyenXeID, item.TenChuyen, item.XeID);    
+                            }
+
+                            var sheet = wb.Worksheets.Add(table, "NhanVien");
+                            sheet.Columns().AdjustToContents();
+
+                            // Luu file
+                            wb.SaveAs(saveFileDialog.FileName);
+                            MessageBox.Show("Xuất file thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Lỗi khi xuất file: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    }
+                }
+            }
+        }
+
+        private void btnNhap_Click(object sender, EventArgs e)
         {
 
         }

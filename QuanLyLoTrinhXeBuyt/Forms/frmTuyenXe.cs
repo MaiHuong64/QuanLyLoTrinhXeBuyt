@@ -48,7 +48,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
         {
             using (frmTuyenXe_ChiTiet frm = new frmTuyenXe_ChiTiet(id))
             {
-                Console.WriteLine(id);
+                //Console.WriteLine(id);
                 frm.ShowDialog();
                 this.Close();
             }

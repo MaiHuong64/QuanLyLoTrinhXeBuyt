@@ -40,19 +40,21 @@
             btnThem = new Button();
             groupBox2 = new GroupBox();
             gridChuyenXe = new DataGridView();
-            groupBox1 = new GroupBox();
-            label4 = new Label();
-            cboXe = new ComboBox();
-            label7 = new Label();
-            dtpThoiGianDi = new DateTimePicker();
-            txtDiemXuatPhat = new TextBox();
-            label6 = new Label();
             ChuyenXeID = new DataGridViewTextBoxColumn();
             TenChuyen = new DataGridViewTextBoxColumn();
             DiemXuatPhat = new DataGridViewTextBoxColumn();
             ThoiGianDi = new DataGridViewTextBoxColumn();
             TenTuyen = new DataGridViewTextBoxColumn();
             BienSo = new DataGridViewTextBoxColumn();
+            groupBox1 = new GroupBox();
+            btnXuat = new Button();
+            label4 = new Label();
+            cboXe = new ComboBox();
+            label7 = new Label();
+            dtpThoiGianDi = new DateTimePicker();
+            txtDiemXuatPhat = new TextBox();
+            label6 = new Label();
+            btnNhap = new Button();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)gridChuyenXe).BeginInit();
             groupBox1.SuspendLayout();
@@ -60,7 +62,7 @@
             // 
             // btnThoat
             // 
-            btnThoat.Location = new Point(1017, 159);
+            btnThoat.Location = new Point(255, 178);
             btnThoat.Margin = new Padding(4);
             btnThoat.Name = "btnThoat";
             btnThoat.Size = new Size(116, 36);
@@ -71,7 +73,7 @@
             // 
             // btnHuyBo
             // 
-            btnHuyBo.Location = new Point(893, 159);
+            btnHuyBo.Location = new Point(130, 178);
             btnHuyBo.Margin = new Padding(4);
             btnHuyBo.Name = "btnHuyBo";
             btnHuyBo.Size = new Size(116, 36);
@@ -82,7 +84,7 @@
             // 
             // btnLuu
             // 
-            btnLuu.Location = new Point(769, 159);
+            btnLuu.Location = new Point(10, 179);
             btnLuu.Margin = new Padding(4);
             btnLuu.Name = "btnLuu";
             btnLuu.Size = new Size(116, 36);
@@ -93,7 +95,7 @@
             // 
             // btnSua
             // 
-            btnSua.Location = new Point(645, 159);
+            btnSua.Location = new Point(254, 136);
             btnSua.Margin = new Padding(4);
             btnSua.Name = "btnSua";
             btnSua.Size = new Size(116, 36);
@@ -104,7 +106,7 @@
             // 
             // btnXoa
             // 
-            btnXoa.Location = new Point(521, 159);
+            btnXoa.Location = new Point(130, 136);
             btnXoa.Margin = new Padding(4);
             btnXoa.Name = "btnXoa";
             btnXoa.Size = new Size(116, 36);
@@ -153,7 +155,7 @@
             // 
             // btnThem
             // 
-            btnThem.Location = new Point(397, 159);
+            btnThem.Location = new Point(10, 135);
             btnThem.Margin = new Padding(4);
             btnThem.Name = "btnThem";
             btnThem.Size = new Size(116, 36);
@@ -193,8 +195,58 @@
             gridChuyenXe.TabIndex = 0;
             gridChuyenXe.CellContentClick += gridChuyenXe_CellContentClick;
             // 
+            // ChuyenXeID
+            // 
+            ChuyenXeID.DataPropertyName = "ChuyenXeID";
+            ChuyenXeID.HeaderText = "Mã chuyến xe";
+            ChuyenXeID.MinimumWidth = 6;
+            ChuyenXeID.Name = "ChuyenXeID";
+            ChuyenXeID.ReadOnly = true;
+            // 
+            // TenChuyen
+            // 
+            TenChuyen.DataPropertyName = "TenChuyen";
+            TenChuyen.HeaderText = "Tên chuyến";
+            TenChuyen.MinimumWidth = 6;
+            TenChuyen.Name = "TenChuyen";
+            TenChuyen.ReadOnly = true;
+            // 
+            // DiemXuatPhat
+            // 
+            DiemXuatPhat.DataPropertyName = "DiemXuatPhat";
+            DiemXuatPhat.HeaderText = "Điểm xuất phát";
+            DiemXuatPhat.MinimumWidth = 6;
+            DiemXuatPhat.Name = "DiemXuatPhat";
+            DiemXuatPhat.ReadOnly = true;
+            // 
+            // ThoiGianDi
+            // 
+            ThoiGianDi.DataPropertyName = "ThoiGianDi";
+            ThoiGianDi.HeaderText = "Thời gian đi";
+            ThoiGianDi.MinimumWidth = 6;
+            ThoiGianDi.Name = "ThoiGianDi";
+            ThoiGianDi.ReadOnly = true;
+            // 
+            // TenTuyen
+            // 
+            TenTuyen.DataPropertyName = "TenTuyen";
+            TenTuyen.HeaderText = "Tên tuyến";
+            TenTuyen.MinimumWidth = 6;
+            TenTuyen.Name = "TenTuyen";
+            TenTuyen.ReadOnly = true;
+            // 
+            // BienSo
+            // 
+            BienSo.DataPropertyName = "BienSo";
+            BienSo.HeaderText = "Biến số";
+            BienSo.MinimumWidth = 6;
+            BienSo.Name = "BienSo";
+            BienSo.ReadOnly = true;
+            // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(btnNhap);
+            groupBox1.Controls.Add(btnXuat);
             groupBox1.Controls.Add(label4);
             groupBox1.Controls.Add(cboXe);
             groupBox1.Controls.Add(label7);
@@ -219,6 +271,16 @@
             groupBox1.TabIndex = 2;
             groupBox1.TabStop = false;
             groupBox1.Text = "Thông tin chuyến xe";
+            // 
+            // btnXuat
+            // 
+            btnXuat.Location = new Point(378, 178);
+            btnXuat.Name = "btnXuat";
+            btnXuat.Size = new Size(94, 36);
+            btnXuat.TabIndex = 25;
+            btnXuat.Text = "Xuất..";
+            btnXuat.UseVisualStyleBackColor = true;
+            btnXuat.Click += btnXuat_Click;
             // 
             // label4
             // 
@@ -275,53 +337,15 @@
             label6.TabIndex = 16;
             label6.Text = "Điểm xuất phát";
             // 
-            // ChuyenXeID
+            // btnNhap
             // 
-            ChuyenXeID.DataPropertyName = "ChuyenXeID";
-            ChuyenXeID.HeaderText = "Mã chuyến xe";
-            ChuyenXeID.MinimumWidth = 6;
-            ChuyenXeID.Name = "ChuyenXeID";
-            ChuyenXeID.ReadOnly = true;
-            // 
-            // TenChuyen
-            // 
-            TenChuyen.DataPropertyName = "TenChuyen";
-            TenChuyen.HeaderText = "Tên chuyến";
-            TenChuyen.MinimumWidth = 6;
-            TenChuyen.Name = "TenChuyen";
-            TenChuyen.ReadOnly = true;
-            // 
-            // DiemXuatPhat
-            // 
-            DiemXuatPhat.DataPropertyName = "DiemXuatPhat";
-            DiemXuatPhat.HeaderText = "Điểm xuất phát";
-            DiemXuatPhat.MinimumWidth = 6;
-            DiemXuatPhat.Name = "DiemXuatPhat";
-            DiemXuatPhat.ReadOnly = true;
-            // 
-            // ThoiGianDi
-            // 
-            ThoiGianDi.DataPropertyName = "ThoiGianDi";
-            ThoiGianDi.HeaderText = "Thời gian đi";
-            ThoiGianDi.MinimumWidth = 6;
-            ThoiGianDi.Name = "ThoiGianDi";
-            ThoiGianDi.ReadOnly = true;
-            // 
-            // TenTuyen
-            // 
-            TenTuyen.DataPropertyName = "TenTuyen";
-            TenTuyen.HeaderText = "Tên tuyến";
-            TenTuyen.MinimumWidth = 6;
-            TenTuyen.Name = "TenTuyen";
-            TenTuyen.ReadOnly = true;
-            // 
-            // BienSo
-            // 
-            BienSo.DataPropertyName = "BienSo";
-            BienSo.HeaderText = "Biến số";
-            BienSo.MinimumWidth = 6;
-            BienSo.Name = "BienSo";
-            BienSo.ReadOnly = true;
+            btnNhap.Location = new Point(379, 135);
+            btnNhap.Name = "btnNhap";
+            btnNhap.Size = new Size(93, 37);
+            btnNhap.TabIndex = 26;
+            btnNhap.Text = "Nhập..";
+            btnNhap.UseVisualStyleBackColor = true;
+            btnNhap.Click += btnNhap_Click;
             // 
             // frmChuyenXe
             // 
@@ -367,5 +391,7 @@
         private DataGridViewTextBoxColumn ThoiGianDi;
         private DataGridViewTextBoxColumn TenTuyen;
         private DataGridViewTextBoxColumn BienSo;
+        private Button btnXuat;
+        private Button btnNhap;
     }
 }
