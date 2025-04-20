@@ -33,7 +33,7 @@ namespace QuanLyLoTrinhXeBuyt.Data
         public string? TenTuyen { get; set; } = null!;
         public int XeID { get; set; }
         public string? BienSo { get; set; } = null!;
-        public int SoVe { get; set; }
-        public decimal TongGiaVe { get; set; }
+        public int SoLuongVe { get; set; }
+        public decimal TongTienVe { get; set; }
     }
 }

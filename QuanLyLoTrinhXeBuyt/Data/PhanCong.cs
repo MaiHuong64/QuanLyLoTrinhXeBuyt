@@ -24,6 +24,6 @@ namespace QuanLyLoTrinhXeBuyt.Data
         public DateTime NgayLamViec { get; set; }
         public string? HoTen { get; set; }
         public string? BienSo { get; set; }
-        public string? ChucVu { get; set; }
+        public string? VaiTro { get; set; }
     }
 }

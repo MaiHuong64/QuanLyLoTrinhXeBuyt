@@ -10,18 +10,22 @@ namespace QuanLyLoTrinhXeBuyt.Data
         public int VeXeID { get; set; }
         public string? TenVe { get; set; } = null!;
         public float GiaVe { get; set; }
-        public string? LoaiVe { get; set; } = null!;
+         [ForeignKey("LoaiVe")]
+        public int MaLoaiVe { get; set; }
+        [ForeignKey("ChuyenXe")]
         public int ChuyenXeID { get; set; }
+        public virtual LoaiVe LoaiVe { get; set; } = null!;
         public virtual ChuyenXe ChuyenXe { get; set; } = null!;
     }
     [NotMapped]
     public class DanhSachVeXe
     {
-        public int VeID { get; set; }
+        public int VeXeID { get; set; }
         public string? TenVe { get; set; } = null!;
-        public float GiaVe { get; set; }
-        public string? LoaiVe { get; set; } = null!;
-        public int ChuyenXeID { get; set; }
-        public string TenChuyen { get; set; } = null!;
+        public float GiaVe { get; set; } = null!
+        public int MaLoaiVe { get; set; } = null!
+        public string TenLoaiVe {get; set;} = null!
+        public int ChuyenXeID { get; set; } = null!
+        public string TenChuyen { get; set; } = null!
     }
 }
