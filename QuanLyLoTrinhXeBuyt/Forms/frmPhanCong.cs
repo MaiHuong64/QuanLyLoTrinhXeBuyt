@@ -130,6 +130,33 @@ namespace QuanLyLoTrinhXeBuyt.Forms
         }
         private void btnHuybo_Click(object sender, EventArgs e)
         {
+            frmPhanCong_Load(sender, e);
+        }
+        private void btnThoat_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Bạn có muốn thoát ?", "Thông báo", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                this.Close();
+        }
+        private void btnNhap_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Title = "Xuất dữ liệu ra file Excel",
+                Filter = "Tập tin Excel|*.xls;*.xlsx",
+                Multiselect = false,
+            })
+            {
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        DataTable dataTable = new DataTable();
+                        using (XLWorkbook wb = new XLWorkbook(openFileDialog.FileName))
+                        {
+                            // Lấy dữ liệu sheet đầu tiên
+                            var sheet = wb.Worksheet(1);
+                            bool firstRow = false;
+                            string readRange = "1:1";
 
         }
 
