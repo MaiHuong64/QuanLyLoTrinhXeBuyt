@@ -18,8 +18,6 @@ namespace QuanLyLoTrinhXeBuyt.Migrations
                     NhanVienID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     HoTen = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    GioiTinh = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    NgaySinh = table.Column<DateTime>(type: "datetime2", nullable: true),
                     SoDienThoai = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DiaChi = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ChucVu = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -168,7 +166,7 @@ namespace QuanLyLoTrinhXeBuyt.Migrations
                 name: "VeXe",
                 columns: table => new
                 {
-                    VeID = table.Column<int>(type: "int", nullable: false)
+                    VeXeID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TenVe = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     GiaVe = table.Column<float>(type: "real", nullable: false),
@@ -177,7 +175,7 @@ namespace QuanLyLoTrinhXeBuyt.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_VeXe", x => x.VeID);
+                    table.PrimaryKey("PK_VeXe", x => x.VeXeID);
                     table.ForeignKey(
                         name: "FK_VeXe_ChuyenXe_ChuyenXeID",
                         column: x => x.ChuyenXeID,

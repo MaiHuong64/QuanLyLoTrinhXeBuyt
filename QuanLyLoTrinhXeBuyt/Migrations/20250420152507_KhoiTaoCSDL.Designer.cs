@@ -12,7 +12,7 @@ using QuanLyLoTrinhXeBuyt.Data;
 namespace QuanLyLoTrinhXeBuyt.Migrations
 {
     [DbContext(typeof(QLLTXBContext))]
-    [Migration("20250415124318_KhoiTaoCSDL")]
+    [Migration("20250420152507_KhoiTaoCSDL")]
     partial class KhoiTaoCSDL
     {
         /// <inheritdoc />
@@ -71,17 +71,11 @@ namespace QuanLyLoTrinhXeBuyt.Migrations
                     b.Property<string>("DiaChi")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("GioiTinh")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("HoTen")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MatKhau")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("NgaySinh")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("QuyenHan")
                         .HasColumnType("nvarchar(max)");
@@ -183,11 +177,11 @@ namespace QuanLyLoTrinhXeBuyt.Migrations
 
             modelBuilder.Entity("QuanLyLoTrinhXeBuyt.Data.VeXe", b =>
                 {
-                    b.Property<int>("VeID")
+                    b.Property<int>("VeXeID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("VeID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("VeXeID"));
 
                     b.Property<int>("ChuyenXeID")
                         .HasColumnType("int");
@@ -201,7 +195,7 @@ namespace QuanLyLoTrinhXeBuyt.Migrations
                     b.Property<string>("TenVe")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("VeID");
+                    b.HasKey("VeXeID");
 
                     b.HasIndex("ChuyenXeID");
 
@@ -282,7 +276,7 @@ namespace QuanLyLoTrinhXeBuyt.Migrations
             modelBuilder.Entity("QuanLyLoTrinhXeBuyt.Data.TuyenXe_ChiTiet", b =>
                 {
                     b.HasOne("QuanLyLoTrinhXeBuyt.Data.TramXe", "TramXe")
-                        .WithMany("TuyenXe_DiemDung")
+                        .WithMany("TuyenXe_ChiTiet")
                         .HasForeignKey("TramXeID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -300,11 +294,13 @@ namespace QuanLyLoTrinhXeBuyt.Migrations
 
             modelBuilder.Entity("QuanLyLoTrinhXeBuyt.Data.VeXe", b =>
                 {
-                    b.HasOne("QuanLyLoTrinhXeBuyt.Data.ChuyenXe", null)
+                    b.HasOne("QuanLyLoTrinhXeBuyt.Data.ChuyenXe", "ChuyenXe")
                         .WithMany("VeXe")
                         .HasForeignKey("ChuyenXeID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("ChuyenXe");
                 });
 
             modelBuilder.Entity("QuanLyLoTrinhXeBuyt.Data.Xe", b =>
@@ -326,7 +322,7 @@ namespace QuanLyLoTrinhXeBuyt.Migrations
 
             modelBuilder.Entity("QuanLyLoTrinhXeBuyt.Data.TramXe", b =>
                 {
-                    b.Navigation("TuyenXe_DiemDung");
+                    b.Navigation("TuyenXe_ChiTiet");
                 });
 
             modelBuilder.Entity("QuanLyLoTrinhXeBuyt.Data.TuyenXe", b =>

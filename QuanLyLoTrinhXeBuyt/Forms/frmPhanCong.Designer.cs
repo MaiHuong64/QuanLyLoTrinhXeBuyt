@@ -48,8 +48,8 @@
             txtTuKhoa = new ToolStripTextBox();
             btnTimKiem = new ToolStripButton();
             toolStripSeparator1 = new ToolStripSeparator();
-            btnNhap = new ToolStripButton();
-            btnXuat = new ToolStripButton();
+            btnNhapFileExcel = new ToolStripButton();
+            btnXuatFileExcel = new ToolStripButton();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)gridPhanCong).BeginInit();
@@ -219,11 +219,12 @@
             gridPhanCong.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             gridPhanCong.Size = new Size(1011, 209);
             gridPhanCong.TabIndex = 3;
+            gridPhanCong.KeyDown += gridPhanCong_KeyDown;
             // 
             // toolStrip
             // 
             toolStrip.ImageScalingSize = new Size(20, 20);
-            toolStrip.Items.AddRange(new ToolStripItem[] { toolStripLabel1, txtTuKhoa, btnTimKiem, toolStripSeparator1, btnNhap, btnXuat });
+            toolStrip.Items.AddRange(new ToolStripItem[] { toolStripLabel1, txtTuKhoa, btnTimKiem, toolStripSeparator1, btnNhapFileExcel, btnXuatFileExcel });
             toolStrip.Location = new Point(3, 23);
             toolStrip.Name = "toolStrip";
             toolStrip.Size = new Size(1011, 27);
@@ -254,23 +255,23 @@
             toolStripSeparator1.Name = "toolStripSeparator1";
             toolStripSeparator1.Size = new Size(6, 27);
             // 
-            // btnNhap
+            // btnNhapFileExcel
             // 
-            btnNhap.ImageTransparentColor = Color.Magenta;
-            btnNhap.Name = "btnNhap";
-            btnNhap.Size = new Size(58, 24);
-            btnNhap.Text = "Nhập...";
-            btnNhap.ToolTipText = "Nhập dữ liệu từ Excel";
-            btnNhap.Click += btnNhap_Click;
+            btnNhapFileExcel.ImageTransparentColor = Color.Magenta;
+            btnNhapFileExcel.Name = "btnNhapFileExcel";
+            btnNhapFileExcel.Size = new Size(58, 24);
+            btnNhapFileExcel.Text = "Nhập...";
+            btnNhapFileExcel.ToolTipText = "Nhập dữ liệu từ Excel";
+            btnNhapFileExcel.Click += btnNhapFileExcel_Click;
             // 
-            // btnXuat
+            // btnXuatFileExcel
             // 
-            btnXuat.ImageTransparentColor = Color.Magenta;
-            btnXuat.Name = "btnXuat";
-            btnXuat.Size = new Size(52, 24);
-            btnXuat.Text = "Xuất...";
-            btnXuat.ToolTipText = "Xuất ra tập tin Excel";
-            btnXuat.Click += btnXuat_Click;
+            btnXuatFileExcel.ImageTransparentColor = Color.Magenta;
+            btnXuatFileExcel.Name = "btnXuatFileExcel";
+            btnXuatFileExcel.Size = new Size(52, 24);
+            btnXuatFileExcel.Text = "Xuất...";
+            btnXuatFileExcel.ToolTipText = "Xuất ra tập tin Excel";
+            btnXuatFileExcel.Click += btnXuatFileExcel_Click;
             // 
             // frmPhanCong
             // 
@@ -304,8 +305,8 @@
         private ToolStripTextBox txtTuKhoa;
         private ToolStripButton btnTimKiem;
         private ToolStripSeparator toolStripSeparator1;
-        private ToolStripButton btnNhap;
-        private ToolStripButton btnXuat;
+        private ToolStripButton btnNhapFileExcel;
+        private ToolStripButton btnXuatFileExcel;
         private DataGridView gridPhanCong;
         private ComboBox cboNhanVien;
         private Label label2;

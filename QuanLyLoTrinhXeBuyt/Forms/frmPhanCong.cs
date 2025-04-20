@@ -1,7 +1,6 @@
-﻿using QuanLyLoTrinhXeBuyt.Data;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using ClosedXML.Excel;
+using Microsoft.EntityFrameworkCore;
+using QuanLyLoTrinhXeBuyt.Data;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -21,7 +20,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
         QLLTXBContext context = new QLLTXBContext();
         int id;
         bool xuLyThem = false;
-        
+
         public void BatTatChucNang(bool giaTri)
         {
             btnThem.Enabled = !giaTri;
@@ -30,8 +29,8 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             btnLuu.Enabled = giaTri;
             btnHuybo.Enabled = giaTri;
             btnThoat.Enabled = giaTri;
-            btnNhap.Enabled = giaTri;
-            btnXuat.Enabled = giaTri;
+            btnNhapFileExcel.Enabled = true;
+            btnXuatFileExcel.Enabled = true;
 
             btnTimKiem.Enabled = true;
             txtTuKhoa.Enabled = true;
@@ -39,7 +38,6 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             cboXeBuyt.Enabled = giaTri;
             dtNgayLam.Enabled = giaTri;
         }
-
         public void LayDuLieuNhanVienVaoComboBox()
         {
             cboNhanVien.DataSource = context.NhanVien.ToList();
@@ -52,14 +50,12 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             cboXeBuyt.ValueMember = "XeID";
             cboXeBuyt.DisplayMember = "BienSo";
         }
-
-        public void ClearField() 
-        { 
+        public void ClearField()
+        {
             cboXeBuyt.SelectedIndex = -1;
             cboNhanVien.SelectedIndex = -1;
             dtNgayLam.Value = DateTime.Now;
         }
-
         private void frmPhanCong_Load(object sender, EventArgs e)
         {
             LayDuLieuNhanVienVaoComboBox();
@@ -79,11 +75,11 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                 gridPhanCong.Columns.Add(new DataGridViewTextBoxColumn { Name = "ChucVu", DataPropertyName = "ChucVu", HeaderText = "Vai trò" });
             }
 
-            
+
             List<DanhSachPhanCong> phanCong = new List<DanhSachPhanCong>();
             phanCong = context.PhanCong.Select(t => new DanhSachPhanCong
             {
-                PhanCongID = t.PhanCongID, 
+                PhanCongID = t.PhanCongID,
                 XeID = t.XeID,
                 BienSo = t.Xe.BienSo,
                 NhanVienID = t.NhanVienID,
@@ -93,7 +89,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             }).ToList();
 
             BindingSource bindingSource = new BindingSource();
-            bindingSource.DataSource  = phanCong;
+            bindingSource.DataSource = phanCong;
 
             cboXeBuyt.DataBindings.Clear();
             cboXeBuyt.DataBindings.Add("SelectedValue", bindingSource, "XeID", false, DataSourceUpdateMode.Never);
@@ -113,20 +109,45 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             BatTatChucNang(true);
             ClearField();
         }
-
         private void btnXoa_Click(object sender, EventArgs e)
         {
-
+            id = Convert.ToInt32(gridPhanCong.CurrentRow.Cells["PhanCongID"].Value.ToString());
+            PhanCong pc = context.PhanCong.Find(id);
+            if (pc != null)
+            {
+                context.PhanCong.Remove(pc);
+                context.SaveChanges();
+            }
+            frmPhanCong_Load(sender, e);
         }
-
         private void btnSua_Click(object sender, EventArgs e)
         {
-
+            id = Convert.ToInt32(gridPhanCong.CurrentRow.Cells["PhanCongID"].Value.ToString());
+            xuLyThem = false;
+            BatTatChucNang(true);
         }
-
         private void btnLuu_Click(object sender, EventArgs e)
         {
+            if (xuLyThem)
+            {
+                PhanCong pc = new PhanCong();
+                pc.NhanVienID = (int)cboNhanVien.SelectedValue;
+                pc.XeID = (int)cboXeBuyt.SelectedValue;
+                pc.NgayLamViec = dtNgayLam.Value;
 
+                context.PhanCong.Add(pc);
+            }
+            else
+            {
+                PhanCong pc = context.PhanCong.Find(id);
+                pc.NhanVienID = (int)cboNhanVien.SelectedValue;
+                pc.XeID = (int)cboXeBuyt.SelectedValue;
+                pc.NgayLamViec = dtNgayLam.Value;
+
+                context.PhanCong.Update(pc);
+            }
+            context.SaveChanges();
+            frmPhanCong_Load(sender, e);
         }
         private void btnHuybo_Click(object sender, EventArgs e)
         {
@@ -137,13 +158,49 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             if (MessageBox.Show("Bạn có muốn thoát ?", "Thông báo", MessageBoxButtons.OKCancel) == DialogResult.OK)
                 this.Close();
         }
-        private void btnNhap_Click(object sender, EventArgs e)
+        private void btnTimKiem_Click(object sender, EventArgs e)
+        {
+            var tukhoa = txtTuKhoa.Text.Trim();
+            try
+            {
+                var phancong = context.PhanCong.Select(r => new DanhSachPhanCong
+                {
+                    HoTen = r.NhanVien.HoTen,
+                    BienSo = r.Xe.BienSo,
+                    NgayLamViec = r.NgayLamViec,
+                    ChucVu = r.NhanVien.ChucVu
+                }).Where(r => r.HoTen.Contains(tukhoa) || r.BienSo.Contains(tukhoa) || r.ChucVu.Contains(tukhoa)).ToList();
+                BindingSource bindingSource = new BindingSource();
+                bindingSource.DataSource = phancong;
+                gridPhanCong.DataSource = bindingSource;
+
+                if (gridPhanCong.Rows.Count == 0)
+                {
+                    MessageBox.Show("Không có dữ liệu cần tìm");
+                    frmPhanCong_Load(sender, e);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void gridPhanCong_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnTimKiem_Click((Control)sender, e);
+            }
+        }
+
+        private void btnNhapFileExcel_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog openFileDialog = new OpenFileDialog
             {
-                Title = "Xuất dữ liệu ra file Excel",
+                Title = "Nhập dữ liệu từ tập tin Excel",
                 Filter = "Tập tin Excel|*.xls;*.xlsx",
-                Multiselect = false,
+                Multiselect = false
             })
             {
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -153,32 +210,152 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                         DataTable dataTable = new DataTable();
                         using (XLWorkbook wb = new XLWorkbook(openFileDialog.FileName))
                         {
-                            // Lấy dữ liệu sheet đầu tiên
                             var sheet = wb.Worksheet(1);
-                            bool firstRow = false;
+                            bool firstRow = true;
                             string readRange = "1:1";
 
+                            foreach (IXLRow row in sheet.RowsUsed())
+                            {
+                                if (firstRow)
+                                {
+                                    readRange = $"1:{row.LastCellUsed().Address.ColumnNumber}";
+                                    foreach (IXLCell cell in row.CellsUsed())
+                                        dataTable.Columns.Add(cell.Value.ToString().Trim());
+                                    firstRow = false;
+                                }
+                                else
+                                {
+                                    dataTable.Rows.Add();
+                                    int cellIndex = 0;
+                                    foreach (IXLCell cell in row.Cells(readRange))
+                                        dataTable.Rows[dataTable.Rows.Count - 1][cellIndex++] = cell.Value.ToString().Trim();
+                                }
+                            }
+                        }
+
+                        if (dataTable.Rows.Count > 0)
+                        {
+                            int soLuongCapNhat = 0, soLuongThemMoi = 0;
+                            // Tải trước danh sách Xe và NhanVien để tối ưu
+                            var xeList = context.Xe.ToDictionary(x => x.BienSo, x => x, StringComparer.OrdinalIgnoreCase);
+                            var nhanVienList = context.NhanVien.ToDictionary(nv => nv.HoTen, nv => nv, StringComparer.OrdinalIgnoreCase);
+
+                            foreach (DataRow row in dataTable.Rows)
+                            {
+                                // Lấy dữ liệu từ Excel
+                                string phanCongID = row["PhanCongID"].ToString().Trim();
+                                string bienSo = row["BienSo"].ToString().Trim();
+                                string hoTen = row["HoTen"].ToString().Trim();
+                                string ngayLamViec = row["NgayLamViec"].ToString().Trim();
+
+                                // Kiểm tra PhanCongID hợp lệ
+                                if (!int.TryParse(phanCongID, out int phanCongIdParsed))
+                                {
+                                    MessageBox.Show($"PhanCongID '{phanCongID}' không hợp lệ, bỏ qua dòng.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    continue;
+                                }
+
+                                // Kiểm tra ngày hợp lệ
+                                if (!DateTime.TryParse(ngayLamViec, out DateTime ngayLamViecParsed))
+                                {
+                                    MessageBox.Show($"Ngày làm việc '{ngayLamViec}' không hợp lệ, bỏ qua dòng.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    continue;
+                                }
+
+                                // Kiểm tra Xe và NhanVien
+                                if (!xeList.TryGetValue(bienSo, out var xe) || !nhanVienList.TryGetValue(hoTen, out var nhanVien))
+                                {
+                                    MessageBox.Show($"Không tìm thấy xe '{bienSo}' hoặc nhân viên '{hoTen}', bỏ qua dòng.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    continue;
+                                }
+
+                                // Kiểm tra bản ghi PhanCong đã tồn tại
+                                var existPC = context.PhanCong.FirstOrDefault(pc =>
+                                    pc.PhanCongID == phanCongIdParsed &&
+                                    pc.NhanVienID == nhanVien.NhanVienID &&
+                                    pc.XeID == xe.XeID &&
+                                    pc.NgayLamViec == dtNgayLam.Value);
+
+                                if (existPC != null)
+                                {
+                                    // Cập nhật bản ghi
+                                    existPC.NhanVienID = nhanVien.NhanVienID;
+                                    existPC.XeID = xe.XeID;
+                                    existPC.NgayLamViec = dtNgayLam.Value;
+                                    soLuongCapNhat++;
+                                }
+                                else
+                                {
+                                    // Thêm bản ghi mới
+                                    var newPC = new PhanCong
+                                    {
+                                        // Chỉ gán PhanCongID nếu không phải tự động tăng
+                                        // PhanCongID = phanCongIdParsed,
+                                        XeID = xe.XeID,
+                                        NhanVienID = nhanVien.NhanVienID,
+                                        NgayLamViec = dtNgayLam.Value
+                                    };
+                                    context.PhanCong.Add(newPC);
+                                    soLuongThemMoi++;
+                                }
+                            }
+
+                            context.SaveChanges();
+                            MessageBox.Show($"Cập nhật: {soLuongCapNhat}\nThêm mới: {soLuongThemMoi}", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            frmPhanCong_Load(sender, e);
+                            gridPhanCong.Refresh();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Tập tin Excel không có dữ liệu.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Lỗi khi nhập Excel: {ex.Message}\nChi tiết: {ex.InnerException?.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Console.WriteLine(ex.ToString());
+                    }
+                }
+            }
         }
 
-        private void btnThoat_Click(object sender, EventArgs e)
+        private void btnXuatFileExcel_Click(object sender, EventArgs e)
         {
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog
+            {
+                Title = "Xuất File Excel",
+                Filter = "File Excel|*.xls;*.xlsx",
+                FileName = "PhanCong_" + DateTime.Now.ToShortDateString().Replace("/", "_") + ".xlsx",
+            })
+            {
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    using (XLWorkbook wb = new XLWorkbook())
+                    {
+                        DataTable dt = new DataTable();
+                        dt.Columns.Add("PhanCongID");
+                        dt.Columns.Add("BienSo");
+                        dt.Columns.Add("HoTen");
+                        //dt.Columns.Add("ChucVu");
+                        dt.Columns.Add("NgayLamViec");
 
+                        var phanCong = context.PhanCong.Select(pc => new
+                        {
+                            pc.PhanCongID,
+                            pc.Xe.BienSo,
+                            pc.NhanVien.HoTen,
+                            pc.NgayLamViec
+                        }).ToList();
+                        foreach (var pc in phanCong)
+                            dt.Rows.Add(pc.PhanCongID, pc.BienSo, pc.HoTen, pc.NgayLamViec);
+                        var sheet = wb.Worksheets.Add(dt, "PhanCong");
+                        sheet.Columns().AdjustToContents();
+                        wb.SaveAs(saveFileDialog.FileName);
+                    }
+
+                    MessageBox.Show("Xuất Excel thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
         }
-        private void btnNhap_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnXuat_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnTimKiem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        
     }
 }
