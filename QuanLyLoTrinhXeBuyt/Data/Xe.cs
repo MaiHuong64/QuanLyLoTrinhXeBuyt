@@ -8,10 +8,8 @@ namespace QuanLyLoTrinhXeBuyt.Data
         [Key]
         public int XeID { get; set; }
         public string? BienSo { get; set; }
-        public int SoGhe { get; set; }
         public string? LoaiXe { get; set; }
         public string? TrangThai { get; set; }
         public string? HinhAnh { get; set; }
-
     }
 }
