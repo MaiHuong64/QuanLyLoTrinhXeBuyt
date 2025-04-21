@@ -152,7 +152,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                     chuyenXe.XeID = (int)cboXe.SelectedValue;
 
                     context.ChuyenXe.Add(chuyenXe);
-                    context.SaveChanges();
+
                 }
                 else
                 {
@@ -167,9 +167,9 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                         chuyenXe.XeID = (int)cboXe.SelectedValue;
 
                         context.Update(chuyenXe);
-                        context.SaveChanges();
                     }
                 }
+                context.SaveChanges();
                 frmChuyenXe_Load(sender, e);
             }
         }
@@ -186,20 +186,81 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                 this.Close();
             }
         }
-
-        private void gridChuyenXe_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void btnNhapFileExcel_Click(object sender, EventArgs e)
         {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Title = "Nhập dữ liệu từ tập tin Excel";
+            openFileDialog.Filter = "Tập tin Excel|*.xls;*.xlsx";
+            openFileDialog.Multiselect = false;
 
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    using (XLWorkbook workbook = new XLWorkbook(openFileDialog.FileName))
+                    {
+                        IXLWorksheet worksheet = workbook.Worksheet(1);
+                        bool firstRow = true;
+                        string readRange = "1:1";
+                        DataTable table = new DataTable();
+
+                        foreach (IXLRow row in worksheet.RowsUsed())
+                        {
+                            if (firstRow)
+                            {
+                                readRange = string.Format("{0}:{1}", 1, row.LastCellUsed().Address.ColumnNumber);
+                                foreach (IXLCell cell in row.Cells(readRange))
+                                    table.Columns.Add(cell.Value.ToString());
+                                firstRow = false;
+                            }
+                            else
+                            {
+                                table.Rows.Add();
+                                int cellIndex = 0;
+                                foreach (IXLCell cell in row.Cells(readRange))
+                                {
+                                    table.Rows[table.Rows.Count - 1][cellIndex] = cell.Value.ToString();
+                                    cellIndex++;
+                                }
+                            }
+                        }
+                        if (table.Rows.Count > 0)
+                        {
+                            foreach (DataRow row in table.Rows)
+                            {
+                                ChuyenXe chuyenXe = new ChuyenXe();
+                                chuyenXe.TenChuyen = row["TenChuyen"].ToString() ?? "N/A";
+                                chuyenXe.DiemXuatPhat = row["DiemXuatPhat"].ToString() ?? "N/A";
+                                chuyenXe.ThoiGianDi = Convert.ToDateTime(row["ThoiGianDi"].ToString());
+                                chuyenXe.TuyenXeID = Convert.ToInt32(row["TuyenXeID"].ToString());
+                                chuyenXe.XeID = Convert.ToInt32(row["XeID"].ToString());
+                                context.ChuyenXe.Add(chuyenXe);
+                            }
+                            context.SaveChanges();
+                            MessageBox.Show("Đã nhập thành công " + table.Rows.Count + " dòng.", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            frmChuyenXe_Load(sender, e);
+                        }
+                        if (firstRow)
+                            MessageBox.Show("Tập tin Excel rỗng.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+            }
         }
 
-
-        private void btnXuat_Click(object sender, EventArgs e)
+        private void btnXuatFileExcel_Click(object sender, EventArgs e)
         {
             using (SaveFileDialog saveFileDialog = new SaveFileDialog())
             {
                 saveFileDialog.Filter = "Excel Files|*.xlsx";
                 saveFileDialog.Title = "Xuất file excel";
-                saveFileDialog.FileName = "NhanVien" + DateTime.Now.ToShortDateString().Replace("/", "_") + ".xlsx";
+                saveFileDialog.FileName = "ChuyenXe_" + DateTime.Now.ToShortDateString().Replace("/", "_") + ".xlsx";
+
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     try
@@ -214,28 +275,35 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                             table.Columns.Add("TuyenXeID");
                             table.Columns.Add("TenTuyen");
                             table.Columns.Add("XeID");
+                            table.Columns.Add("BienSo");
+                            table.Columns.Add("SoLuongVe");
+                            table.Columns.Add("TongTienVe");
 
-
-                            var chuyenXe = context.ChuyenXe.Select(cx => new
+                            var chuyenXe = context.ChuyenXe.Select(cx => new DanhSachChuyenXe
                             {
-                                cx.ChuyenXeID,
-                                cx.TenChuyen,
-                                cx.DiemXuatPhat,
-                                cx.ThoiGianDi,
-                                cx.TuyenXeID,
-                                cx.TuyenXe.TenTuyen,
-                                cx.XeID
+                                ChuyenXeID = cx.ChuyenXeID,
+                                TenChuyen = cx.TenChuyen,
+                                DiemXuatPhat = cx.DiemXuatPhat,
+                                ThoiGianDi = cx.ThoiGianDi,
+                                TuyenXeID = cx.TuyenXeID,
+                                TenTuyen = cx.TuyenXe.TenTuyen,
+                                XeID = cx.XeID,
+                                BienSo = cx.Xe.BienSo,
+                                SoLuongVe = cx.VeXe.Count(),
+                                TongTienVe = cx.VeXe.Sum(v => (decimal)v.GiaVe)
+
                             }).ToList();
 
                             foreach (var item in chuyenXe)
                             {
-                                table.Rows.Add(item.ChuyenXeID, item.TenChuyen, item.DiemXuatPhat, item.DiemXuatPhat, item.ThoiGianDi, item.TuyenXeID, item.TenChuyen, item.XeID);    
+                                table.Rows.Add(item.ChuyenXeID, item.TenChuyen, item.DiemXuatPhat, item.ThoiGianDi,
+                                               item.TuyenXeID, item.TenTuyen, item.XeID, item.BienSo,
+                                               item.SoLuongVe, item.TongTienVe);
                             }
 
-                            var sheet = wb.Worksheets.Add(table, "NhanVien");
+                            var sheet = wb.Worksheets.Add(table, "ChuyenXe");
                             sheet.Columns().AdjustToContents();
 
-                            // Luu file
                             wb.SaveAs(saveFileDialog.FileName);
                             MessageBox.Show("Xuất file thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
@@ -243,15 +311,10 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                     catch (Exception ex)
                     {
                         MessageBox.Show("Lỗi khi xuất file: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
                     }
                 }
             }
         }
-
-        private void btnNhap_Click(object sender, EventArgs e)
-        {
-
-        }
+    
     }
 }

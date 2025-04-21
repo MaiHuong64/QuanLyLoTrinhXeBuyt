@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            groupBox2 = new GroupBox();
-            gridNhanVien = new DataGridView();
             cboQuyenHan = new ComboBox();
             label5 = new Label();
             txtDiaChi = new TextBox();
@@ -52,38 +50,29 @@
             label1 = new Label();
             txtHoVaTen = new TextBox();
             groupBox1 = new GroupBox();
+            txtTimKiem = new TextBox();
             cboChucVu = new ComboBox();
             label7 = new Label();
-            txtTimKiem = new TextBox();
-            groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)gridNhanVien).BeginInit();
+            groupBox2 = new GroupBox();
+            toolStrip = new ToolStrip();
+            toolStripLabel1 = new ToolStripLabel();
+            txtTuKhoa = new ToolStripTextBox();
+            toolStripButton1 = new ToolStripButton();
+            toolStripSeparator1 = new ToolStripSeparator();
+            btnNhapFileExcel = new ToolStripButton();
+            btnXuatFileExcel = new ToolStripButton();
+            gridChuyenXe = new DataGridView();
+            ChuyenXeID = new DataGridViewTextBoxColumn();
+            TenChuyen = new DataGridViewTextBoxColumn();
+            DiemXuatPhat = new DataGridViewTextBoxColumn();
+            ThoiGianDi = new DataGridViewTextBoxColumn();
+            TenTuyen = new DataGridViewTextBoxColumn();
+            BienSo = new DataGridViewTextBoxColumn();
             groupBox1.SuspendLayout();
+            groupBox2.SuspendLayout();
+            toolStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)gridChuyenXe).BeginInit();
             SuspendLayout();
-            // 
-            // groupBox2
-            // 
-            groupBox2.Controls.Add(gridNhanVien);
-            groupBox2.Location = new Point(18, 199);
-            groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(930, 361);
-            groupBox2.TabIndex = 3;
-            groupBox2.TabStop = false;
-            groupBox2.Text = "Danh sách nhân viên";
-            // 
-            // gridNhanVien
-            // 
-            gridNhanVien.AllowUserToAddRows = false;
-            gridNhanVien.AllowUserToDeleteRows = false;
-            gridNhanVien.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            gridNhanVien.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            gridNhanVien.Dock = DockStyle.Fill;
-            gridNhanVien.Location = new Point(3, 23);
-            gridNhanVien.MultiSelect = false;
-            gridNhanVien.Name = "gridNhanVien";
-            gridNhanVien.RowHeadersWidth = 51;
-            gridNhanVien.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            gridNhanVien.Size = new Size(924, 335);
-            gridNhanVien.TabIndex = 0;
             // 
             // cboQuyenHan
             // 
@@ -306,6 +295,13 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Thông tin nhân viên:";
             // 
+            // txtTimKiem
+            // 
+            txtTimKiem.Location = new Point(111, 95);
+            txtTimKiem.Name = "txtTimKiem";
+            txtTimKiem.Size = new Size(185, 27);
+            txtTimKiem.TabIndex = 25;
+            // 
             // cboChucVu
             // 
             cboChucVu.FormattingEnabled = true;
@@ -324,34 +320,155 @@
             label7.TabIndex = 23;
             label7.Text = "Chức vụ (*):";
             // 
-            // txtTimKiem
+            // groupBox2
             // 
-            txtTimKiem.Location = new Point(111, 95);
-            txtTimKiem.Name = "txtTimKiem";
-            txtTimKiem.Size = new Size(185, 27);
-            txtTimKiem.TabIndex = 25;
+            groupBox2.Controls.Add(toolStrip);
+            groupBox2.Controls.Add(gridChuyenXe);
+            groupBox2.Location = new Point(13, 227);
+            groupBox2.Margin = new Padding(4);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Padding = new Padding(4);
+            groupBox2.Size = new Size(1164, 379);
+            groupBox2.TabIndex = 4;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "Danh sách nhân viên";
+            // 
+            // toolStrip
+            // 
+            toolStrip.ImageScalingSize = new Size(20, 20);
+            toolStrip.Items.AddRange(new ToolStripItem[] { toolStripLabel1, txtTuKhoa, toolStripButton1, toolStripSeparator1, btnNhapFileExcel, btnXuatFileExcel });
+            toolStrip.Location = new Point(4, 24);
+            toolStrip.Name = "toolStrip";
+            toolStrip.Size = new Size(1156, 27);
+            toolStrip.TabIndex = 3;
+            // 
+            // toolStripLabel1
+            // 
+            toolStripLabel1.Name = "toolStripLabel1";
+            toolStripLabel1.Size = new Size(73, 24);
+            toolStripLabel1.Text = "Tìm kiếm:";
+            // 
+            // txtTuKhoa
+            // 
+            txtTuKhoa.BorderStyle = BorderStyle.FixedSingle;
+            txtTuKhoa.Name = "txtTuKhoa";
+            txtTuKhoa.Size = new Size(150, 27);
+            // 
+            // toolStripButton1
+            // 
+            toolStripButton1.ImageTransparentColor = Color.Magenta;
+            toolStripButton1.Name = "toolStripButton1";
+            toolStripButton1.Size = new Size(38, 24);
+            toolStripButton1.Text = "Tìm";
+            // 
+            // toolStripSeparator1
+            // 
+            toolStripSeparator1.Name = "toolStripSeparator1";
+            toolStripSeparator1.Size = new Size(6, 27);
+            // 
+            // btnNhapFileExcel
+            // 
+            btnNhapFileExcel.ImageTransparentColor = Color.Magenta;
+            btnNhapFileExcel.Name = "btnNhapFileExcel";
+            btnNhapFileExcel.Size = new Size(58, 24);
+            btnNhapFileExcel.Text = "Nhập...";
+            btnNhapFileExcel.ToolTipText = "Nhập dữ liệu từ Excel";
+            // 
+            // btnXuatFileExcel
+            // 
+            btnXuatFileExcel.ImageTransparentColor = Color.Magenta;
+            btnXuatFileExcel.Name = "btnXuatFileExcel";
+            btnXuatFileExcel.Size = new Size(52, 24);
+            btnXuatFileExcel.Text = "Xuất...";
+            btnXuatFileExcel.ToolTipText = "Xuất ra tập tin Excel";
+            // 
+            // gridChuyenXe
+            // 
+            gridChuyenXe.AllowUserToAddRows = false;
+            gridChuyenXe.AllowUserToDeleteRows = false;
+            gridChuyenXe.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            gridChuyenXe.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            gridChuyenXe.Columns.AddRange(new DataGridViewColumn[] { ChuyenXeID, TenChuyen, DiemXuatPhat, ThoiGianDi, TenTuyen, BienSo });
+            gridChuyenXe.Dock = DockStyle.Fill;
+            gridChuyenXe.Location = new Point(4, 24);
+            gridChuyenXe.MultiSelect = false;
+            gridChuyenXe.Name = "gridChuyenXe";
+            gridChuyenXe.ReadOnly = true;
+            gridChuyenXe.RowHeadersVisible = false;
+            gridChuyenXe.RowHeadersWidth = 51;
+            gridChuyenXe.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            gridChuyenXe.Size = new Size(1156, 351);
+            gridChuyenXe.TabIndex = 0;
+            // 
+            // ChuyenXeID
+            // 
+            ChuyenXeID.DataPropertyName = "ChuyenXeID";
+            ChuyenXeID.HeaderText = "Mã chuyến xe";
+            ChuyenXeID.MinimumWidth = 6;
+            ChuyenXeID.Name = "ChuyenXeID";
+            ChuyenXeID.ReadOnly = true;
+            // 
+            // TenChuyen
+            // 
+            TenChuyen.DataPropertyName = "TenChuyen";
+            TenChuyen.HeaderText = "Tên chuyến";
+            TenChuyen.MinimumWidth = 6;
+            TenChuyen.Name = "TenChuyen";
+            TenChuyen.ReadOnly = true;
+            // 
+            // DiemXuatPhat
+            // 
+            DiemXuatPhat.DataPropertyName = "DiemXuatPhat";
+            DiemXuatPhat.HeaderText = "Điểm xuất phát";
+            DiemXuatPhat.MinimumWidth = 6;
+            DiemXuatPhat.Name = "DiemXuatPhat";
+            DiemXuatPhat.ReadOnly = true;
+            // 
+            // ThoiGianDi
+            // 
+            ThoiGianDi.DataPropertyName = "ThoiGianDi";
+            ThoiGianDi.HeaderText = "Thời gian đi";
+            ThoiGianDi.MinimumWidth = 6;
+            ThoiGianDi.Name = "ThoiGianDi";
+            ThoiGianDi.ReadOnly = true;
+            // 
+            // TenTuyen
+            // 
+            TenTuyen.DataPropertyName = "TenTuyen";
+            TenTuyen.HeaderText = "Tên tuyến";
+            TenTuyen.MinimumWidth = 6;
+            TenTuyen.Name = "TenTuyen";
+            TenTuyen.ReadOnly = true;
+            // 
+            // BienSo
+            // 
+            BienSo.DataPropertyName = "BienSo";
+            BienSo.HeaderText = "Biến số";
+            BienSo.MinimumWidth = 6;
+            BienSo.Name = "BienSo";
+            BienSo.ReadOnly = true;
             // 
             // frmNhanVien
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(960, 572);
+            ClientSize = new Size(1385, 699);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Name = "frmNhanVien";
             Text = "Nhân viên";
             Load += frmNhanVien_Load;
-            groupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)gridNhanVien).EndInit();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
+            groupBox2.ResumeLayout(false);
+            groupBox2.PerformLayout();
+            toolStrip.ResumeLayout(false);
+            toolStrip.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)gridChuyenXe).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
-
-        private GroupBox groupBox2;
-        private DataGridView gridNhanVien;
         private ComboBox cboQuyenHan;
         private Label label5;
         private TextBox txtDiaChi;
@@ -377,5 +494,20 @@
         private Label label7;
         private ComboBox cboChucVu;
         private TextBox txtTimKiem;
+        private GroupBox groupBox2;
+        private ToolStrip toolStrip;
+        private ToolStripLabel toolStripLabel1;
+        private ToolStripTextBox txtTuKhoa;
+        private ToolStripButton toolStripButton1;
+        private ToolStripSeparator toolStripSeparator1;
+        private ToolStripButton btnNhapFileExcel;
+        private ToolStripButton btnXuatFileExcel;
+        private DataGridView gridChuyenXe;
+        private DataGridViewTextBoxColumn ChuyenXeID;
+        private DataGridViewTextBoxColumn TenChuyen;
+        private DataGridViewTextBoxColumn DiemXuatPhat;
+        private DataGridViewTextBoxColumn ThoiGianDi;
+        private DataGridViewTextBoxColumn TenTuyen;
+        private DataGridViewTextBoxColumn BienSo;
     }
 }

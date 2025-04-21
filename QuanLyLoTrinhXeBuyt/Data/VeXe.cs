@@ -1,11 +1,15 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace QuanLyLoTrinhXeBuyt.Data
 {
-    public class VeXe
-    {
+   public class VeXe
+   {
         [Key]
         public int VeXeID { get; set; }
         public string? TenVe { get; set; } = null!;
@@ -24,7 +28,7 @@ namespace QuanLyLoTrinhXeBuyt.Data
         public string? TenVe { get; set; } = null!;
         public float GiaVe { get; set; }
         public int LoaiVeID { get; set; }
-        public string? TenLoaiVe {get; set;}
+        public string? TenLoaiVe { get; set; }
         public int ChuyenXeID { get; set; }
         public string? TenChuyen { get; set; }
     }

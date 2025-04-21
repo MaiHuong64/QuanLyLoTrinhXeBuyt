@@ -39,6 +39,13 @@
             label2 = new Label();
             btnThem = new Button();
             groupBox2 = new GroupBox();
+            toolStrip = new ToolStrip();
+            toolStripLabel1 = new ToolStripLabel();
+            txtTuKhoa = new ToolStripTextBox();
+            btnTimKiem = new ToolStripButton();
+            toolStripSeparator1 = new ToolStripSeparator();
+            btnNhapFileExcel = new ToolStripButton();
+            btnXuatFileExcel = new ToolStripButton();
             gridChuyenXe = new DataGridView();
             ChuyenXeID = new DataGridViewTextBoxColumn();
             TenChuyen = new DataGridViewTextBoxColumn();
@@ -47,15 +54,14 @@
             TenTuyen = new DataGridViewTextBoxColumn();
             BienSo = new DataGridViewTextBoxColumn();
             groupBox1 = new GroupBox();
-            btnXuat = new Button();
             label4 = new Label();
             cboXe = new ComboBox();
             label7 = new Label();
             dtpThoiGianDi = new DateTimePicker();
             txtDiemXuatPhat = new TextBox();
             label6 = new Label();
-            btnNhap = new Button();
             groupBox2.SuspendLayout();
+            toolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)gridChuyenXe).BeginInit();
             groupBox1.SuspendLayout();
             SuspendLayout();
@@ -166,6 +172,7 @@
             // 
             // groupBox2
             // 
+            groupBox2.Controls.Add(toolStrip);
             groupBox2.Controls.Add(gridChuyenXe);
             groupBox2.Location = new Point(3, 244);
             groupBox2.Margin = new Padding(4);
@@ -175,6 +182,57 @@
             groupBox2.TabIndex = 3;
             groupBox2.TabStop = false;
             groupBox2.Text = "Danh sách các chuyến xe";
+            // 
+            // toolStrip
+            // 
+            toolStrip.ImageScalingSize = new Size(20, 20);
+            toolStrip.Items.AddRange(new ToolStripItem[] { toolStripLabel1, txtTuKhoa, btnTimKiem, toolStripSeparator1, btnNhapFileExcel, btnXuatFileExcel });
+            toolStrip.Location = new Point(4, 24);
+            toolStrip.Name = "toolStrip";
+            toolStrip.Size = new Size(1156, 27);
+            toolStrip.TabIndex = 3;
+            // 
+            // toolStripLabel1
+            // 
+            toolStripLabel1.Name = "toolStripLabel1";
+            toolStripLabel1.Size = new Size(73, 24);
+            toolStripLabel1.Text = "Tìm kiếm:";
+            // 
+            // txtTuKhoa
+            // 
+            txtTuKhoa.BorderStyle = BorderStyle.FixedSingle;
+            txtTuKhoa.Name = "txtTuKhoa";
+            txtTuKhoa.Size = new Size(150, 27);
+            // 
+            // btnTimKiem
+            // 
+            btnTimKiem.ImageTransparentColor = Color.Magenta;
+            btnTimKiem.Name = "btnTimKiem";
+            btnTimKiem.Size = new Size(38, 24);
+            btnTimKiem.Text = "Tìm";
+            // 
+            // toolStripSeparator1
+            // 
+            toolStripSeparator1.Name = "toolStripSeparator1";
+            toolStripSeparator1.Size = new Size(6, 27);
+            // 
+            // btnNhapFileExcel
+            // 
+            btnNhapFileExcel.ImageTransparentColor = Color.Magenta;
+            btnNhapFileExcel.Name = "btnNhapFileExcel";
+            btnNhapFileExcel.Size = new Size(58, 24);
+            btnNhapFileExcel.Text = "Nhập...";
+            btnNhapFileExcel.ToolTipText = "Nhập dữ liệu từ Excel";
+            btnNhapFileExcel.Click += btnNhapFileExcel_Click;
+            // 
+            // btnXuatFileExcel
+            // 
+            btnXuatFileExcel.ImageTransparentColor = Color.Magenta;
+            btnXuatFileExcel.Name = "btnXuatFileExcel";
+            btnXuatFileExcel.Size = new Size(52, 24);
+            btnXuatFileExcel.Text = "Xuất...";
+            btnXuatFileExcel.ToolTipText = "Xuất ra tập tin Excel";
+            btnXuatFileExcel.Click += btnXuatFileExcel_Click;
             // 
             // gridChuyenXe
             // 
@@ -193,7 +251,6 @@
             gridChuyenXe.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             gridChuyenXe.Size = new Size(1156, 351);
             gridChuyenXe.TabIndex = 0;
-            gridChuyenXe.CellContentClick += gridChuyenXe_CellContentClick;
             // 
             // ChuyenXeID
             // 
@@ -245,8 +302,6 @@
             // 
             // groupBox1
             // 
-            groupBox1.Controls.Add(btnNhap);
-            groupBox1.Controls.Add(btnXuat);
             groupBox1.Controls.Add(label4);
             groupBox1.Controls.Add(cboXe);
             groupBox1.Controls.Add(label7);
@@ -271,16 +326,6 @@
             groupBox1.TabIndex = 2;
             groupBox1.TabStop = false;
             groupBox1.Text = "Thông tin chuyến xe";
-            // 
-            // btnXuat
-            // 
-            btnXuat.Location = new Point(378, 178);
-            btnXuat.Name = "btnXuat";
-            btnXuat.Size = new Size(94, 36);
-            btnXuat.TabIndex = 25;
-            btnXuat.Text = "Xuất..";
-            btnXuat.UseVisualStyleBackColor = true;
-            btnXuat.Click += btnXuat_Click;
             // 
             // label4
             // 
@@ -337,16 +382,6 @@
             label6.TabIndex = 16;
             label6.Text = "Điểm xuất phát";
             // 
-            // btnNhap
-            // 
-            btnNhap.Location = new Point(379, 135);
-            btnNhap.Name = "btnNhap";
-            btnNhap.Size = new Size(93, 37);
-            btnNhap.TabIndex = 26;
-            btnNhap.Text = "Nhập..";
-            btnNhap.UseVisualStyleBackColor = true;
-            btnNhap.Click += btnNhap_Click;
-            // 
             // frmChuyenXe
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -359,6 +394,9 @@
             Text = "Chuyến xe";
             Load += frmChuyenXe_Load;
             groupBox2.ResumeLayout(false);
+            groupBox2.PerformLayout();
+            toolStrip.ResumeLayout(false);
+            toolStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)gridChuyenXe).EndInit();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
@@ -391,7 +429,12 @@
         private DataGridViewTextBoxColumn ThoiGianDi;
         private DataGridViewTextBoxColumn TenTuyen;
         private DataGridViewTextBoxColumn BienSo;
-        private Button btnXuat;
-        private Button btnNhap;
+        private ToolStrip toolStrip;
+        private ToolStripLabel toolStripLabel1;
+        private ToolStripTextBox txtTuKhoa;
+        private ToolStripButton btnTimKiem;
+        private ToolStripSeparator toolStripSeparator1;
+        private ToolStripButton btnNhapFileExcel;
+        private ToolStripButton btnXuatFileExcel;
     }
 }
