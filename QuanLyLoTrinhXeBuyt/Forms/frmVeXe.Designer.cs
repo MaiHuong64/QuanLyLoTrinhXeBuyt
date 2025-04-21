@@ -48,9 +48,9 @@
             groupBox1 = new GroupBox();
             label5 = new Label();
             cboChuyenXe = new ComboBox();
-            label3 = new Label();
-            label4 = new Label();
             nudGiaVe = new NumericUpDown();
+            label4 = new Label();
+            label3 = new Label();
             txtTenVe = new TextBox();
             toolStrip.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -76,6 +76,7 @@
             btnThoat.TabIndex = 21;
             btnThoat.Text = "Thoát";
             btnThoat.UseVisualStyleBackColor = true;
+            btnThoat.Click += btnThoat_Click;
             // 
             // btnHuybo
             // 
@@ -86,6 +87,7 @@
             btnHuybo.TabIndex = 20;
             btnHuybo.Text = "Hủy bỏ";
             btnHuybo.UseVisualStyleBackColor = true;
+            btnHuybo.Click += btnHuybo_Click;
             // 
             // btnLuu
             // 
@@ -96,6 +98,7 @@
             btnLuu.TabIndex = 19;
             btnLuu.Text = "Lưu";
             btnLuu.UseVisualStyleBackColor = true;
+            btnLuu.Click += btnLuu_Click;
             // 
             // btnSua
             // 
@@ -106,6 +109,7 @@
             btnSua.TabIndex = 18;
             btnSua.Text = "Sửa";
             btnSua.UseVisualStyleBackColor = true;
+            btnSua.Click += btnSua_Click;
             // 
             // btnXoa
             // 
@@ -116,6 +120,7 @@
             btnXoa.TabIndex = 17;
             btnXoa.Text = "Xóa";
             btnXoa.UseVisualStyleBackColor = true;
+            btnXoa.Click += btnXoa_Click;
             // 
             // btnThem
             // 
@@ -126,6 +131,7 @@
             btnThem.TabIndex = 16;
             btnThem.Text = "Thêm";
             btnThem.UseVisualStyleBackColor = true;
+            btnThem.Click += btnThem_Click;
             // 
             // cboLoaiVe
             // 
@@ -251,14 +257,13 @@
             cboChuyenXe.Size = new Size(151, 28);
             cboChuyenXe.TabIndex = 25;
             // 
-            // label3
+            // nudGiaVe
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(221, 33);
-            label3.Name = "label3";
-            label3.Size = new Size(56, 20);
-            label3.TabIndex = 24;
-            label3.Text = "Loại vé";
+            nudGiaVe.Location = new Point(527, 30);
+            nudGiaVe.Maximum = new decimal(new int[] { 200000, 0, 0, 0 });
+            nudGiaVe.Name = "nudGiaVe";
+            nudGiaVe.Size = new Size(150, 27);
+            nudGiaVe.TabIndex = 22;
             // 
             // label4
             // 
@@ -269,13 +274,14 @@
             label4.TabIndex = 23;
             label4.Text = "Giá vé";
             // 
-            // nudGiaVe
+            // label3
             // 
-            nudGiaVe.Location = new Point(527, 30);
-            nudGiaVe.Maximum = new decimal(new int[] { 200000, 0, 0, 0 });
-            nudGiaVe.Name = "nudGiaVe";
-            nudGiaVe.Size = new Size(150, 27);
-            nudGiaVe.TabIndex = 22;
+            label3.AutoSize = true;
+            label3.Location = new Point(221, 33);
+            label3.Name = "label3";
+            label3.Size = new Size(56, 20);
+            label3.TabIndex = 24;
+            label3.Text = "Loại vé";
             // 
             // txtTenVe
             // 
