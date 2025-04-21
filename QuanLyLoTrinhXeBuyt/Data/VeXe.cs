@@ -11,7 +11,7 @@ namespace QuanLyLoTrinhXeBuyt.Data
         public string? TenVe { get; set; } = null!;
         public float GiaVe { get; set; }
         [ForeignKey("LoaiVe")]
-        public int MaLoaiVe { get; set; }
+        public int LoaiVeID { get; set; }
         [ForeignKey("ChuyenXe")]
         public int ChuyenXeID { get; set; }
         public virtual LoaiVe LoaiVe { get; set; } = null!;
@@ -23,9 +23,9 @@ namespace QuanLyLoTrinhXeBuyt.Data
         public int VeXeID { get; set; }
         public string? TenVe { get; set; } = null!;
         public float GiaVe { get; set; }
-        public int MaLoaiVe { get; set; } = null!;
-        public string TenLoaiVe {get; set;}
-        public int ChuyenXeID { get; set; } = null!;
-        public string TenChuyen { get; set; }
+        public int LoaiVeID { get; set; }
+        public string? TenLoaiVe {get; set;}
+        public int ChuyenXeID { get; set; }
+        public string? TenChuyen { get; set; }
     }
 }

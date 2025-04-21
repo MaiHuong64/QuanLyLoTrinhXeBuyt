@@ -85,7 +85,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                 NhanVienID = t.NhanVienID,
                 HoTen = t.NhanVien.HoTen,
                 NgayLamViec = t.NgayLamViec,
-                ChucVu = t.NhanVien.ChucVu
+                VaiTro = t.NhanVien.VaiTro
             }).ToList();
 
             BindingSource bindingSource = new BindingSource();
@@ -168,8 +168,8 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                     HoTen = r.NhanVien.HoTen,
                     BienSo = r.Xe.BienSo,
                     NgayLamViec = r.NgayLamViec,
-                    ChucVu = r.NhanVien.ChucVu
-                }).Where(r => r.HoTen.Contains(tukhoa) || r.BienSo.Contains(tukhoa) || r.ChucVu.Contains(tukhoa)).ToList();
+                    VaiTro = r.NhanVien.VaiTro
+                }).Where(r => r.HoTen.Contains(tukhoa) || r.BienSo.Contains(tukhoa) || r.VaiTro.Contains(tukhoa)).ToList();
                 BindingSource bindingSource = new BindingSource();
                 bindingSource.DataSource = phancong;
                 gridPhanCong.DataSource = bindingSource;

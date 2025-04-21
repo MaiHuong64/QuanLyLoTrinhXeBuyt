@@ -84,10 +84,10 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             }
             veXe = context.VeXe.Select(v => new DanhSachVeXe
             {
-                VeID = v.VeXeID,
+                VeXeID = v.VeXeID,
                 TenVe = v.TenVe,
                 GiaVe = v.GiaVe,
-                LoaiVe = v.LoaiVe,
+                TenLoaiVe = v.LoaiVe.TenLoaiVe,
                 ChuyenXeID = v.ChuyenXeID,
                 TenChuyen = v.ChuyenXe.TenChuyen
             }).ToList();

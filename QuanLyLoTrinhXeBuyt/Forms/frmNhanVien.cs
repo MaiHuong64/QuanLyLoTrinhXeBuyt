@@ -30,7 +30,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                 gridNhanVien.Columns.Add(new DataGridViewTextBoxColumn { Name = "HoTen", DataPropertyName = "HoTen", HeaderText = "Họ tên" });
                 gridNhanVien.Columns.Add(new DataGridViewTextBoxColumn { Name = "SoDienThoai", DataPropertyName = "SoDienThoai", HeaderText = "Số điện thoại" });
                 gridNhanVien.Columns.Add(new DataGridViewTextBoxColumn { Name = "DiaChi", DataPropertyName = "DiaChi", HeaderText = "Địa chỉ" });
-                gridNhanVien.Columns.Add(new DataGridViewTextBoxColumn { Name = "ChucVu", DataPropertyName = "ChucVu", HeaderText = "Chức vụ" });
+                gridNhanVien.Columns.Add(new DataGridViewTextBoxColumn { Name = "VaiTro", DataPropertyName = "VaiTro", HeaderText = "Chức vụ" });
                 gridNhanVien.Columns.Add(new DataGridViewTextBoxColumn { Name = "TenDangNhap", DataPropertyName = "TenDangNhap", HeaderText = "Tên đăng nhập" });
                 gridNhanVien.Columns.Add(new DataGridViewTextBoxColumn { Name = "QuyenHan", DataPropertyName = "QuyenHan", HeaderText = "Quyền hạn" });
             }
@@ -88,7 +88,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             txtDiaChi.DataBindings.Add("Text", bindingSource, "DiaChi", false, DataSourceUpdateMode.Never);
 
             cboChucVu.DataBindings.Clear();
-            cboChucVu.DataBindings.Add("Text", bindingSource, "ChucVu", false, DataSourceUpdateMode.Never);    
+            cboChucVu.DataBindings.Add("Text", bindingSource, "VaiTro", false, DataSourceUpdateMode.Never);    
 
             txtTenDangNhap.DataBindings.Clear();
             txtTenDangNhap.DataBindings.Add("Text", bindingSource, "TenDangNhap", false, DataSourceUpdateMode.Never);
@@ -148,7 +148,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                     nv.HoTen = txtHoVaTen.Text;
                     nv.SoDienThoai = txtDienThoai.Text;
                     nv.DiaChi = txtDiaChi.Text;
-                    nv.ChucVu = cboChucVu.Text;
+                    nv.VaiTro = cboChucVu.Text;
                     nv.TenDangNhap = txtTenDangNhap.Text;
                     nv.MatKhau = BCrypt.Net.BCrypt.HashPassword(txtMatKhau.Text);
                     nv.QuyenHan = cboQuyenHan.Text;
@@ -164,7 +164,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                         nv.HoTen = txtHoVaTen.Text;
                         nv.SoDienThoai = txtDienThoai.Text;
                         nv.DiaChi = txtDiaChi.Text;
-                        nv.ChucVu = cboChucVu.Text;
+                        nv.VaiTro = cboChucVu.Text;
                         nv.TenDangNhap = txtTenDangNhap.Text;
 
                         nv.QuyenHan = cboQuyenHan.Text;
@@ -245,7 +245,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                                 nv.HoTen = row["HoTen"].ToString();
                                 nv.SoDienThoai = row["SoDienThoai"].ToString();
                                 nv.DiaChi = row["DiaChi"].ToString();
-                                nv.ChucVu = row["ChucVu"].ToString();
+                                nv.VaiTro = row["VaiTro"].ToString();
                                 nv.TenDangNhap = row["TenDangNhap"].ToString();
                                 nv.MatKhau = BCrypt.Net.BCrypt.HashPassword(row["MatKhau"].ToString());
                                 nv.QuyenHan = row["QuyenHan"].ToString();
@@ -286,7 +286,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                             table.Columns.Add("HoTen");
                             table.Columns.Add("SoDienThoai");
                             table.Columns.Add("DiaChi");
-                            table.Columns.Add("ChucVu");
+                            table.Columns.Add("VaiTro");
                             table.Columns.Add("TenDangNhap");
                             table.Columns.Add("QuyenHan");
                             var nhanVien = context.NhanVien.Select(nv => new
@@ -295,14 +295,14 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                                 nv.HoTen,
                                 nv.SoDienThoai,
                                 nv.DiaChi,
-                                nv.ChucVu,
+                                nv.VaiTro,
                                 nv.TenDangNhap,
                                 nv.QuyenHan
                             }).ToList();
 
                             foreach(var item in nhanVien)
                             {
-                                table.Rows.Add(item.NhanVienID, item.HoTen, item.SoDienThoai, item.DiaChi, item.ChucVu, item.TenDangNhap, item.QuyenHan);
+                                table.Rows.Add(item.NhanVienID, item.HoTen, item.SoDienThoai, item.DiaChi, item.VaiTro, item.TenDangNhap, item.QuyenHan);
                             }
 
                             var sheet = wb.Worksheets.Add(table, "NhanVien");
