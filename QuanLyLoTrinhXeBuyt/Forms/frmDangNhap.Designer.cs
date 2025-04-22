@@ -35,22 +35,26 @@
             txtTenDangNhap = new TextBox();
             label1 = new Label();
             pictureBox1 = new PictureBox();
-            btnHienThi = new CheckBox();
+            picDisplay = new PictureBox();
+            picHide = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picDisplay).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picHide).BeginInit();
             SuspendLayout();
             // 
             // btnHuyBo
             // 
-            btnHuyBo.Location = new Point(181, 233);
+            btnHuyBo.Location = new Point(189, 218);
             btnHuyBo.Name = "btnHuyBo";
             btnHuyBo.Size = new Size(94, 29);
             btnHuyBo.TabIndex = 14;
             btnHuyBo.Text = "Huỷ bỏ";
             btnHuyBo.UseVisualStyleBackColor = true;
+            btnHuyBo.Click += btnHuyBo_Click;
             // 
             // btnDangNhap
             // 
-            btnDangNhap.Location = new Point(29, 233);
+            btnDangNhap.Location = new Point(29, 218);
             btnDangNhap.Name = "btnDangNhap";
             btnDangNhap.Size = new Size(94, 29);
             btnDangNhap.TabIndex = 13;
@@ -60,12 +64,12 @@
             // 
             // txtMatKhau
             // 
-            txtMatKhau.Location = new Point(29, 143);
+            txtMatKhau.Location = new Point(29, 154);
             txtMatKhau.Multiline = true;
             txtMatKhau.Name = "txtMatKhau";
             txtMatKhau.PasswordChar = '*';
             txtMatKhau.PlaceholderText = "Mật khẩu";
-            txtMatKhau.Size = new Size(254, 36);
+            txtMatKhau.Size = new Size(219, 43);
             txtMatKhau.TabIndex = 12;
             // 
             // txtTenDangNhap
@@ -74,7 +78,7 @@
             txtTenDangNhap.Multiline = true;
             txtTenDangNhap.Name = "txtTenDangNhap";
             txtTenDangNhap.PlaceholderText = "Tên đăng nhập";
-            txtTenDangNhap.Size = new Size(254, 34);
+            txtTenDangNhap.Size = new Size(254, 45);
             txtTenDangNhap.TabIndex = 10;
             // 
             // label1
@@ -97,23 +101,35 @@
             pictureBox1.TabIndex = 15;
             pictureBox1.TabStop = false;
             // 
-            // btnHienThi
+            // picDisplay
             // 
-            btnHienThi.AutoSize = true;
-            btnHienThi.Location = new Point(29, 194);
-            btnHienThi.Name = "btnHienThi";
-            btnHienThi.Size = new Size(148, 24);
-            btnHienThi.TabIndex = 17;
-            btnHienThi.Text = "Hiển thị mật khẩu";
-            btnHienThi.UseVisualStyleBackColor = true;
-            btnHienThi.CheckedChanged += btnHienThi_CheckedChanged;
+            picDisplay.Image = (Image)resources.GetObject("picDisplay.Image");
+            picDisplay.Location = new Point(254, 166);
+            picDisplay.Name = "picDisplay";
+            picDisplay.Size = new Size(29, 22);
+            picDisplay.SizeMode = PictureBoxSizeMode.Zoom;
+            picDisplay.TabIndex = 18;
+            picDisplay.TabStop = false;
+            picDisplay.Click += picDisplay_Click;
+            // 
+            // picHide
+            // 
+            picHide.Image = (Image)resources.GetObject("picHide.Image");
+            picHide.Location = new Point(254, 163);
+            picHide.Name = "picHide";
+            picHide.Size = new Size(29, 25);
+            picHide.SizeMode = PictureBoxSizeMode.Zoom;
+            picHide.TabIndex = 19;
+            picHide.TabStop = false;
+            picHide.Click += picHide_Click;
             // 
             // frmDangNhap
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(552, 282);
-            Controls.Add(btnHienThi);
+            Controls.Add(picHide);
+            Controls.Add(picDisplay);
             Controls.Add(pictureBox1);
             Controls.Add(btnHuyBo);
             Controls.Add(btnDangNhap);
@@ -122,7 +138,10 @@
             Controls.Add(label1);
             Name = "frmDangNhap";
             Text = "frmDangNhap";
+            Load += frmDangNhap_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picDisplay).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picHide).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -134,6 +153,7 @@
         public TextBox txtTenDangNhap;
         private Label label1;
         private PictureBox pictureBox1;
-        private CheckBox btnHienThi;
+        private PictureBox picDisplay;
+        private PictureBox picHide;
     }
 }

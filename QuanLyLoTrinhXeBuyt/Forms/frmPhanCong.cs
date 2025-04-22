@@ -46,7 +46,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
         }
         public void LayDuLieuXeVaoComboBox()
         {
-            cboXeBuyt.DataSource = context.Xe.ToList();
+            cboXeBuyt.DataSource = context.XeBuyt.ToList();
             cboXeBuyt.ValueMember = "XeID";
             cboXeBuyt.DisplayMember = "BienSo";
         }
@@ -72,7 +72,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                 //gridPhanCong.Columns.Add(new DataGridViewTextBoxColumn { Name = "NhanVienID", DataPropertyName = "NhanVienID", HeaderText = "Mã phân công" });
                 gridPhanCong.Columns.Add(new DataGridViewTextBoxColumn { Name = "NgayLamViec", DataPropertyName = "NgayLamViec", HeaderText = "Ngày làm việc" });
                 gridPhanCong.Columns.Add(new DataGridViewTextBoxColumn { Name = "BienSo", DataPropertyName = "BienSo", HeaderText = "Biển số" });
-                gridPhanCong.Columns.Add(new DataGridViewTextBoxColumn { Name = "ChucVu", DataPropertyName = "ChucVu", HeaderText = "Vai trò" });
+                gridPhanCong.Columns.Add(new DataGridViewTextBoxColumn { Name = "Vaitro", DataPropertyName = "VaiTro", HeaderText = "Vai trò" });
             }
 
 
@@ -236,51 +236,34 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                         if (dataTable.Rows.Count > 0)
                         {
                             int soLuongCapNhat = 0, soLuongThemMoi = 0;
-                            // Tải trước danh sách Xe và NhanVien để tối ưu
-                            var xeList = context.Xe.ToDictionary(x => x.BienSo, x => x, StringComparer.OrdinalIgnoreCase);
-                            var nhanVienList = context.NhanVien.ToDictionary(nv => nv.HoTen, nv => nv, StringComparer.OrdinalIgnoreCase);
+                            //var xeList = context.Xe.ToDictionary(x => x.BienSo, x => x, StringComparer.OrdinalIgnoreCase);
+                            //var nhanVienList = context.NhanVien.ToDictionary(nv => nv.HoTen, nv => nv, StringComparer.OrdinalIgnoreCase);
 
                             foreach (DataRow row in dataTable.Rows)
                             {
-                                // Lấy dữ liệu từ Excel
                                 string phanCongID = row["PhanCongID"].ToString().Trim();
                                 string bienSo = row["BienSo"].ToString().Trim();
                                 string hoTen = row["HoTen"].ToString().Trim();
                                 string ngayLamViec = row["NgayLamViec"].ToString().Trim();
 
-                                // Kiểm tra PhanCongID hợp lệ
-                                if (!int.TryParse(phanCongID, out int phanCongIdParsed))
-                                {
-                                    MessageBox.Show($"PhanCongID '{phanCongID}' không hợp lệ, bỏ qua dòng.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                    continue;
-                                }
+                            
+                             
 
-                                // Kiểm tra ngày hợp lệ
-                                if (!DateTime.TryParse(ngayLamViec, out DateTime ngayLamViecParsed))
-                                {
-                                    MessageBox.Show($"Ngày làm việc '{ngayLamViec}' không hợp lệ, bỏ qua dòng.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                    continue;
-                                }
-
-                                // Kiểm tra Xe và NhanVien
-                                if (!xeList.TryGetValue(bienSo, out var xe) || !nhanVienList.TryGetValue(hoTen, out var nhanVien))
-                                {
-                                    MessageBox.Show($"Không tìm thấy xe '{bienSo}' hoặc nhân viên '{hoTen}', bỏ qua dòng.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                    continue;
-                                }
-
+                                var nhanVienID = context.NhanVien.Where(n=> n.HoTen == hoTen).Select(n=> n.NhanVienID).FirstOrDefault();
+                                var xeID = context.XeBuyt.Where(x => x.BienSo == bienSo).Select(x => x.XeID).FirstOrDefault();
+                               
                                 // Kiểm tra bản ghi PhanCong đã tồn tại
                                 var existPC = context.PhanCong.FirstOrDefault(pc =>
-                                    pc.PhanCongID == phanCongIdParsed &&
-                                    pc.NhanVienID == nhanVien.NhanVienID &&
-                                    pc.XeID == xe.XeID &&
+                                    pc.PhanCongID == Convert.ToInt32(phanCongID) &&
+                                    pc.NhanVienID == nhanVienID &&
+                                    pc.XeID == xeID &&
                                     pc.NgayLamViec == dtNgayLam.Value);
 
                                 if (existPC != null)
                                 {
                                     // Cập nhật bản ghi
-                                    existPC.NhanVienID = nhanVien.NhanVienID;
-                                    existPC.XeID = xe.XeID;
+                                    existPC.NhanVienID = nhanVienID;
+                                    existPC.XeID = xeID;
                                     existPC.NgayLamViec = dtNgayLam.Value;
                                     soLuongCapNhat++;
                                 }
@@ -291,8 +274,8 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                                     {
                                         // Chỉ gán PhanCongID nếu không phải tự động tăng
                                         // PhanCongID = phanCongIdParsed,
-                                        XeID = xe.XeID,
-                                        NhanVienID = nhanVien.NhanVienID,
+                                        XeID = xeID,
+                                        NhanVienID = nhanVienID,
                                         NgayLamViec = dtNgayLam.Value
                                     };
                                     context.PhanCong.Add(newPC);
@@ -336,7 +319,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                         dt.Columns.Add("PhanCongID");
                         dt.Columns.Add("BienSo");
                         dt.Columns.Add("HoTen");
-                        //dt.Columns.Add("ChucVu");
+                        dt.Columns.Add("VaiTro");
                         dt.Columns.Add("NgayLamViec");
 
                         var phanCong = context.PhanCong.Select(pc => new

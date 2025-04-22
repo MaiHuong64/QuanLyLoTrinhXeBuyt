@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
+﻿    using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
 using System.ComponentModel.DataAnnotations;
 namespace QuanLyLoTrinhXeBuyt.Data
@@ -14,9 +14,10 @@ namespace QuanLyLoTrinhXeBuyt.Data
         public string? Email { get; set; }
         public string? DiaChi { get; set; }
         public string? VaiTro { get; set; }
-        public string? TenDangNhap { get; set; } = null!;
-        public string? MatKhau { get; set; } = null!;
-        public string? QuyenHan { get; set; } = null!;
-        public virtual ObservableCollectionListSource<Xe> Xe { get; } = new ();
+        public virtual ObservableCollectionListSource<XeBuyt> XeBuyt { get; } = new ();
     }
+    //public class DanhSachNhanVien
+    //{
+
+    //}
 }

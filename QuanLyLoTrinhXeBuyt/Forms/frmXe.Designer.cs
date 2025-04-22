@@ -1,6 +1,6 @@
 ﻿namespace QuanLyLoTrinhXeBuyt.Forms
 {
-    partial class frmXe
+    partial class frmXeBuyt
     {
         /// <summary>
         /// Required designer variable.
@@ -38,22 +38,17 @@
             btnXoa = new Button();
             cboTrangThai = new ComboBox();
             label5 = new Label();
-            label4 = new Label();
-            numSoGhe = new NumericUpDown();
-            label3 = new Label();
             txtBienSo = new TextBox();
             label2 = new Label();
             btnThem = new Button();
-            cboLoaiXe = new ComboBox();
             txtMaXe = new TextBox();
             label1 = new Label();
             groupBox2 = new GroupBox();
-            gridXe = new DataGridView();
+            dvgXeBuyt = new DataGridView();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picHinhAnh).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numSoGhe).BeginInit();
             groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)gridXe).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dvgXeBuyt).BeginInit();
             SuspendLayout();
             // 
             // groupBox1
@@ -67,13 +62,9 @@
             groupBox1.Controls.Add(btnXoa);
             groupBox1.Controls.Add(cboTrangThai);
             groupBox1.Controls.Add(label5);
-            groupBox1.Controls.Add(label4);
-            groupBox1.Controls.Add(numSoGhe);
-            groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(txtBienSo);
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(btnThem);
-            groupBox1.Controls.Add(cboLoaiXe);
             groupBox1.Controls.Add(txtMaXe);
             groupBox1.Controls.Add(label1);
             groupBox1.Location = new Point(18, 15);
@@ -163,7 +154,7 @@
             // 
             cboTrangThai.FormattingEnabled = true;
             cboTrangThai.Items.AddRange(new object[] { "Đang hoạt động", "Đang bảo trì" });
-            cboTrangThai.Location = new Point(138, 127);
+            cboTrangThai.Location = new Point(513, 31);
             cboTrangThai.Margin = new Padding(4);
             cboTrangThai.Name = "cboTrangThai";
             cboTrangThai.Size = new Size(186, 33);
@@ -172,40 +163,12 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(0, 134);
+            label5.Location = new Point(375, 38);
             label5.Margin = new Padding(4, 0, 4, 0);
             label5.Name = "label5";
             label5.Size = new Size(106, 26);
             label5.TabIndex = 9;
             label5.Text = "Trạng thái";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(373, 97);
-            label4.Margin = new Padding(4, 0, 4, 0);
-            label4.Name = "label4";
-            label4.Size = new Size(76, 26);
-            label4.TabIndex = 8;
-            label4.Text = "Số ghế";
-            // 
-            // numSoGhe
-            // 
-            numSoGhe.Location = new Point(477, 89);
-            numSoGhe.Margin = new Padding(4);
-            numSoGhe.Name = "numSoGhe";
-            numSoGhe.Size = new Size(224, 33);
-            numSoGhe.TabIndex = 7;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(370, 39);
-            label3.Margin = new Padding(4, 0, 4, 0);
-            label3.Name = "label3";
-            label3.Size = new Size(80, 26);
-            label3.TabIndex = 6;
-            label3.Text = "Loại xe";
             // 
             // txtBienSo
             // 
@@ -218,7 +181,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(9, 89);
+            label2.Location = new Point(8, 79);
             label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
             label2.Size = new Size(108, 26);
@@ -235,15 +198,6 @@
             btnThem.Text = "Thêm";
             btnThem.UseVisualStyleBackColor = true;
             btnThem.Click += btnThem_Click;
-            // 
-            // cboLoaiXe
-            // 
-            cboLoaiXe.FormattingEnabled = true;
-            cboLoaiXe.Location = new Point(477, 29);
-            cboLoaiXe.Margin = new Padding(4);
-            cboLoaiXe.Name = "cboLoaiXe";
-            cboLoaiXe.Size = new Size(224, 33);
-            cboLoaiXe.TabIndex = 2;
             // 
             // txtMaXe
             // 
@@ -265,7 +219,7 @@
             // 
             // groupBox2
             // 
-            groupBox2.Controls.Add(gridXe);
+            groupBox2.Controls.Add(dvgXeBuyt);
             groupBox2.Location = new Point(18, 286);
             groupBox2.Margin = new Padding(4);
             groupBox2.Name = "groupBox2";
@@ -275,40 +229,39 @@
             groupBox2.TabStop = false;
             groupBox2.Text = "Danh sách xe buýt";
             // 
-            // gridXe
+            // dvgXeBuyt
             // 
-            gridXe.AllowUserToAddRows = false;
-            gridXe.AllowUserToDeleteRows = false;
-            gridXe.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            gridXe.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            gridXe.Dock = DockStyle.Fill;
-            gridXe.Location = new Point(4, 30);
-            gridXe.MultiSelect = false;
-            gridXe.Name = "gridXe";
-            gridXe.RowHeadersWidth = 51;
-            gridXe.Size = new Size(1156, 303);
-            gridXe.TabIndex = 0;
-            gridXe.CellFormatting += gridXe_CellFormatting;
+            dvgXeBuyt.AllowUserToAddRows = false;
+            dvgXeBuyt.AllowUserToDeleteRows = false;
+            dvgXeBuyt.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dvgXeBuyt.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dvgXeBuyt.Dock = DockStyle.Fill;
+            dvgXeBuyt.Location = new Point(4, 30);
+            dvgXeBuyt.MultiSelect = false;
+            dvgXeBuyt.Name = "dvgXeBuyt";
+            dvgXeBuyt.RowHeadersWidth = 51;
+            dvgXeBuyt.Size = new Size(1156, 303);
+            dvgXeBuyt.TabIndex = 0;
+            dvgXeBuyt.CellFormatting += gridXe_CellFormatting;
             // 
-            // frmXe
+            // frmXeBuyt
             // 
             AutoScaleDimensions = new SizeF(12F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1200, 622);
+            ClientSize = new Size(1198, 635);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Font = new Font("Times New Roman", 13.2000008F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Margin = new Padding(4);
-            Name = "frmXe";
+            Name = "frmXeBuyt";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Xe buýt";
             Load += frmXe_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picHinhAnh).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numSoGhe).EndInit();
             groupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)gridXe).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dvgXeBuyt).EndInit();
             ResumeLayout(false);
         }
 
@@ -316,13 +269,9 @@
 
         private GroupBox groupBox1;
         private GroupBox groupBox2;
-        private Label label4;
-        private NumericUpDown numSoGhe;
-        private Label label3;
         private TextBox txtBienSo;
         private Label label2;
         private Button btnThem;
-        private ComboBox cboLoaiXe;
         private TextBox txtMaXe;
         private Label label1;
         private Label label5;
@@ -332,7 +281,7 @@
         private Button btnThoat;
         private Button btnHuyBo;
         private Button btnLuu;
-        private DataGridView gridXe;
+        private DataGridView dvgXeBuyt;
         private Button btnDoiAnh;
         private PictureBox picHinhAnh;
     }

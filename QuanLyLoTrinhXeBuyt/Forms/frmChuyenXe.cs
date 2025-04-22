@@ -46,7 +46,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
 
         public void LayXeVaoComboBox()
         {
-            cboXe.DataSource = context.Xe.ToList();
+            cboXe.DataSource = context.XeBuyt.ToList();
             cboXe.DisplayMember = "BienSo";
             cboXe.ValueMember = "XeID";
         }
@@ -276,8 +276,6 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                             table.Columns.Add("TenTuyen");
                             table.Columns.Add("XeID");
                             table.Columns.Add("BienSo");
-                            table.Columns.Add("SoLuongVe");
-                            table.Columns.Add("TongTienVe");
 
                             var chuyenXe = context.ChuyenXe.Select(cx => new DanhSachChuyenXe
                             {
@@ -289,16 +287,13 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                                 TenTuyen = cx.TuyenXe.TenTuyen,
                                 XeID = cx.XeID,
                                 BienSo = cx.Xe.BienSo,
-                                SoLuongVe = cx.VeXe.Count(),
-                                TongTienVe = cx.VeXe.Sum(v => (decimal)v.GiaVe)
 
                             }).ToList();
 
                             foreach (var item in chuyenXe)
                             {
                                 table.Rows.Add(item.ChuyenXeID, item.TenChuyen, item.DiemXuatPhat, item.ThoiGianDi,
-                                               item.TuyenXeID, item.TenTuyen, item.XeID, item.BienSo,
-                                               item.SoLuongVe, item.TongTienVe);
+                                               item.TuyenXeID, item.TenTuyen, item.XeID, item.BienSo);
                             }
 
                             var sheet = wb.Worksheets.Add(table, "ChuyenXe");

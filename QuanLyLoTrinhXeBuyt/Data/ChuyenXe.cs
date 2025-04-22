@@ -1,11 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace QuanLyLoTrinhXeBuyt.Data
 {
@@ -18,9 +14,8 @@ namespace QuanLyLoTrinhXeBuyt.Data
         public DateTime ThoiGianDi { get; set; }
         public int TuyenXeID { get; set; }
         public int XeID { get; set; }
-        public virtual ObservableCollectionListSource<VeXe> VeXe { get; } = new (); 
         public virtual TuyenXe TuyenXe { get; set; } = null!;
-        public virtual Xe Xe { get; set; } = null!;
+        public virtual XeBuyt Xe { get; set; } = null!;
     }
     [NotMapped]
     public class DanhSachChuyenXe
@@ -33,7 +28,5 @@ namespace QuanLyLoTrinhXeBuyt.Data
         public string? TenTuyen { get; set; } = null!;
         public int XeID { get; set; }
         public string? BienSo { get; set; } = null!;
-        public int SoLuongVe { get; set; }
-        public decimal TongTienVe { get; set; }
     }
 }

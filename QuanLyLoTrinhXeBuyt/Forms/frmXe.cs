@@ -10,9 +10,9 @@ using System.Text.RegularExpressions;
 
 namespace QuanLyLoTrinhXeBuyt.Forms
 {
-    public partial class frmXe : Form
+    public partial class frmXeBuyt : Form
     {
-        public frmXe()
+        public frmXeBuyt()
         {
             InitializeComponent();
         }
@@ -29,8 +29,6 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             btnHuyBo.Enabled = giaTri;
             txtBienSo.Enabled = giaTri;
             txtMaXe.Enabled = giaTri;
-            numSoGhe.Enabled = giaTri;
-            cboLoaiXe.Enabled = giaTri;
             picHinhAnh.Enabled = giaTri;
             cboTrangThai.Enabled = giaTri;
         }
@@ -38,8 +36,8 @@ namespace QuanLyLoTrinhXeBuyt.Forms
         private void frmXe_Load(object sender, EventArgs e)
         {
             BatTatChucNang(false);
-            List<Xe> xe = new List<Xe>();
-            xe = context.Xe.ToList();
+            List<XeBuyt> xe = new List<XeBuyt>();
+            xe = context.XeBuyt.ToList();
 
             BindingSource bindingSource = new BindingSource();
             bindingSource.DataSource = xe;
@@ -49,12 +47,6 @@ namespace QuanLyLoTrinhXeBuyt.Forms
 
             txtBienSo.DataBindings.Clear();
             txtBienSo.DataBindings.Add("Text", bindingSource, "BienSo", true, DataSourceUpdateMode.Never);
-
-            numSoGhe.DataBindings.Clear();
-            numSoGhe.DataBindings.Add("Value", bindingSource, "SoGhe", true, DataSourceUpdateMode.Never);
-
-            cboLoaiXe.DataBindings.Clear();
-            cboLoaiXe.DataBindings.Add("Text", bindingSource, "LoaiXe", true, DataSourceUpdateMode.Never);
 
             cboTrangThai.DataBindings.Clear();
             cboTrangThai.DataBindings.Add("Text", bindingSource, "TrangThai", true, DataSourceUpdateMode.Never);
@@ -67,7 +59,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             };
             picHinhAnh.DataBindings.Add(hinhAnh);
 
-            gridXe.DataSource = bindingSource;
+            dvgXeBuyt.DataSource = bindingSource;
         }
         private string GenerateSlug(string input)
         {
@@ -90,15 +82,13 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             BatTatChucNang(true);
             txtMaXe.Clear();
             txtBienSo.Clear();
-            numSoGhe.Value = 0;
-            cboLoaiXe.SelectedIndex = -1;
             cboTrangThai.SelectedValue = -1;
 
             txtMaXe.Focus();
         }
         private void gridXe_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (gridXe.Columns[e.ColumnIndex].Name == "HinhAnh")
+            if (dvgXeBuyt.Columns[e.ColumnIndex].Name == "HinhAnh")
             {
                 if (e.Value != null && !string.IsNullOrEmpty(e.Value.ToString()))
                 {
@@ -132,13 +122,13 @@ namespace QuanLyLoTrinhXeBuyt.Forms
         }
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            if (gridXe.CurrentRow != null)
+            if (dvgXeBuyt.CurrentRow != null)
             {
-                id = Convert.ToInt32(gridXe.CurrentRow.Cells["XeID"].Value.ToString());
-                Xe xe = context.Xe.Find(id);
+                id = Convert.ToInt32(dvgXeBuyt.CurrentRow.Cells["XeID"].Value.ToString());
+                XeBuyt xe = context.XeBuyt.Find(id);
                 if (xe != null)
                 {
-                    context.Xe.Remove(xe);
+                    context.XeBuyt.Remove(xe);
                     context.SaveChanges();
                 }
                 frmXe_Load(sender, e);
@@ -152,10 +142,10 @@ namespace QuanLyLoTrinhXeBuyt.Forms
 
         private void btnSua_Click(object sender, EventArgs e)
         {
-            if (gridXe.CurrentRow != null)
+            if (dvgXeBuyt.CurrentRow != null)
             {
                 BatTatChucNang(true);
-                id = Convert.ToInt32(gridXe.CurrentRow.Cells["XeID"].Value.ToString());
+                id = Convert.ToInt32(dvgXeBuyt.CurrentRow.Cells["XeID"].Value.ToString());
                 txtMaXe.Focus();
             }
             else
@@ -176,26 +166,16 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                 MessageBox.Show("Vui lòng nhập biển số xe", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtBienSo.Focus();
             }
-            else if (numSoGhe.Value == 0)
-            {
-                MessageBox.Show("Vui lòng nhập số ghế", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                numSoGhe.Focus();
-            }
-            else if (cboLoaiXe.SelectedIndex == -1)
-            {
-                MessageBox.Show("Vui lòng chọn loại xe", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                cboLoaiXe.Focus();
-            }
+          
 
             else
             {
                 if (id == 0)
                 {
-                    Xe xe = new Xe();
+                    XeBuyt xe = new XeBuyt();
                     //xe.XeID = txtMaXe.Text;
                     xe.BienSo = txtBienSo.Text;
-                    xe.SoGhe = Convert.ToInt32(numSoGhe.Value);
-                    xe.LoaiXe = cboLoaiXe.SelectedItem.ToString();
+                 
                     xe.TrangThai = cboTrangThai.SelectedItem.ToString();
                     xe.HinhAnh = string.IsNullOrEmpty(picHinhAnh.ImageLocation) ? "" : Path.GetFileName(picHinhAnh.ImageLocation);
 
@@ -205,13 +185,12 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                 }
                 else
                 {
-                    Xe xe = context.Xe.Find(id)!;
+                    XeBuyt xe = context.XeBuyt.Find(id)!;
                     if (xe != null)
                     {
                         //xe.XeID = txtMaXe.Text;
                         xe.BienSo = txtBienSo.Text;
-                        xe.SoGhe = Convert.ToInt32(numSoGhe.Value);
-                        xe.LoaiXe = cboLoaiXe.SelectedItem.ToString();
+                     
                         xe.TrangThai = cboTrangThai.SelectedItem.ToString();
                         xe.HinhAnh = string.IsNullOrEmpty(picHinhAnh.ImageLocation) ? "" : Path.GetFileName(picHinhAnh.ImageLocation);
 
@@ -249,11 +228,11 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                 string fileSavePath = Path.Combine(imagesFolder, GenerateSlug(fileName) + ext);
                 File.Copy(openFileDialog.FileName, fileSavePath, true);
 
-                id = Convert.ToInt32(gridXe.CurrentRow.Cells["XeID"].Value.ToString());
-                Xe sp = context.Xe.Find(id);
+                id = Convert.ToInt32(dvgXeBuyt.CurrentRow.Cells["XeID"].Value.ToString());
+                XeBuyt sp = context.XeBuyt.Find(id);
                 sp.HinhAnh = GenerateSlug(fileName) + ext;
 
-                context.Xe.Update(sp); 
+                context.XeBuyt.Update(sp); 
                 context.SaveChanges();
                 frmXe_Load(sender, e);
 
