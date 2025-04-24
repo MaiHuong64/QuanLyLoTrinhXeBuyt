@@ -8,16 +8,10 @@ namespace QuanLyLoTrinhXeBuyt.Data
         [Key]
         public int NhanVienID { get; set; }
         public string? HoTen { get; set; }
-        public DateTime NgaySinh { get; set; }
-        public bool GioiTinh { get; set; }
         public string? SoDienThoai { get; set; }
         public string? Email { get; set; }
         public string? DiaChi { get; set; }
         public string? VaiTro { get; set; }
         public virtual ObservableCollectionListSource<XeBuyt> XeBuyt { get; } = new ();
     }
-    //public class DanhSachNhanVien
-    //{
-
-    //}
 }

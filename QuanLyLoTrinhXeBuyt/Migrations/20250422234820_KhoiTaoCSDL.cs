@@ -18,8 +18,6 @@ namespace QuanLyLoTrinhXeBuyt.Migrations
                     NhanVienID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     HoTen = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    NgaySinh = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    GioiTinh = table.Column<bool>(type: "bit", nullable: false),
                     SoDienThoai = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DiaChi = table.Column<string>(type: "nvarchar(max)", nullable: true),

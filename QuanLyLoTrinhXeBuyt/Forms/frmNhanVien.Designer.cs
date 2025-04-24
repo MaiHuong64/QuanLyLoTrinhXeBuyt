@@ -43,15 +43,10 @@
             groupBox1 = new GroupBox();
             label8 = new Label();
             cboVaiTro = new ComboBox();
-            label5 = new Label();
-            label3 = new Label();
-            groupBox3 = new GroupBox();
-            radNu = new RadioButton();
-            radNam = new RadioButton();
-            dtNgaySinh = new DateTimePicker();
             txtEmail = new TextBox();
             label2 = new Label();
             groupBox2 = new GroupBox();
+            dvgNhanVien = new DataGridView();
             toolStrip = new ToolStrip();
             toolStripLabel1 = new ToolStripLabel();
             txtTimKiem = new ToolStripTextBox();
@@ -59,23 +54,15 @@
             toolStripSeparator1 = new ToolStripSeparator();
             btnNhapFileExcel = new ToolStripButton();
             btnXuatFileExcel = new ToolStripButton();
-            dvgNhanVien = new DataGridView();
-            ChuyenXeID = new DataGridViewTextBoxColumn();
-            TenChuyen = new DataGridViewTextBoxColumn();
-            DiemXuatPhat = new DataGridViewTextBoxColumn();
-            ThoiGianDi = new DataGridViewTextBoxColumn();
-            TenTuyen = new DataGridViewTextBoxColumn();
-            BienSo = new DataGridViewTextBoxColumn();
             groupBox1.SuspendLayout();
-            groupBox3.SuspendLayout();
             groupBox2.SuspendLayout();
-            toolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dvgNhanVien).BeginInit();
+            toolStrip.SuspendLayout();
             SuspendLayout();
             // 
             // txtDiaChi
             // 
-            txtDiaChi.Location = new Point(704, 92);
+            txtDiaChi.Location = new Point(267, 92);
             txtDiaChi.Name = "txtDiaChi";
             txtDiaChi.Size = new Size(185, 27);
             txtDiaChi.TabIndex = 20;
@@ -83,7 +70,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(633, 94);
+            label6.Location = new Point(196, 94);
             label6.Name = "label6";
             label6.Size = new Size(58, 20);
             label6.TabIndex = 19;
@@ -91,7 +78,7 @@
             // 
             // txtDienThoai
             // 
-            txtDienThoai.Location = new Point(125, 82);
+            txtDienThoai.Location = new Point(454, 40);
             txtDienThoai.Name = "txtDienThoai";
             txtDienThoai.Size = new Size(185, 27);
             txtDienThoai.TabIndex = 16;
@@ -99,7 +86,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(25, 92);
+            label4.Location = new Point(354, 50);
             label4.Name = "label4";
             label4.Size = new Size(81, 20);
             label4.TabIndex = 15;
@@ -185,10 +172,6 @@
             // 
             groupBox1.Controls.Add(label8);
             groupBox1.Controls.Add(cboVaiTro);
-            groupBox1.Controls.Add(label5);
-            groupBox1.Controls.Add(label3);
-            groupBox1.Controls.Add(groupBox3);
-            groupBox1.Controls.Add(dtNgaySinh);
             groupBox1.Controls.Add(txtEmail);
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(txtDiaChi);
@@ -213,7 +196,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(931, 95);
+            label8.Location = new Point(623, 98);
             label8.Name = "label8";
             label8.Size = new Size(55, 20);
             label8.TabIndex = 29;
@@ -222,73 +205,14 @@
             // cboVaiTro
             // 
             cboVaiTro.FormattingEnabled = true;
-            cboVaiTro.Location = new Point(995, 91);
+            cboVaiTro.Location = new Point(687, 94);
             cboVaiTro.Name = "cboVaiTro";
             cboVaiTro.Size = new Size(151, 28);
             cboVaiTro.TabIndex = 27;
             // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(633, 53);
-            label5.Name = "label5";
-            label5.Size = new Size(68, 20);
-            label5.TabIndex = 26;
-            label5.Text = "Giới tính:";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(342, 47);
-            label3.Name = "label3";
-            label3.Size = new Size(77, 20);
-            label3.TabIndex = 25;
-            label3.Text = "Ngày sinh:";
-            // 
-            // groupBox3
-            // 
-            groupBox3.Controls.Add(radNu);
-            groupBox3.Controls.Add(radNam);
-            groupBox3.Location = new Point(704, 26);
-            groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(185, 62);
-            groupBox3.TabIndex = 24;
-            groupBox3.TabStop = false;
-            groupBox3.Text = "groupBox3";
-            // 
-            // radNu
-            // 
-            radNu.AutoSize = true;
-            radNu.Location = new Point(129, 25);
-            radNu.Name = "radNu";
-            radNu.Size = new Size(50, 24);
-            radNu.TabIndex = 0;
-            radNu.TabStop = true;
-            radNu.Text = "Nữ";
-            radNu.UseVisualStyleBackColor = true;
-            // 
-            // radNam
-            // 
-            radNam.AutoSize = true;
-            radNam.Location = new Point(15, 25);
-            radNam.Name = "radNam";
-            radNam.Size = new Size(62, 24);
-            radNam.TabIndex = 0;
-            radNam.TabStop = true;
-            radNam.Text = "Nam";
-            radNam.UseVisualStyleBackColor = true;
-            // 
-            // dtNgaySinh
-            // 
-            dtNgaySinh.Format = DateTimePickerFormat.Short;
-            dtNgaySinh.Location = new Point(425, 40);
-            dtNgaySinh.Name = "dtNgaySinh";
-            dtNgaySinh.Size = new Size(185, 27);
-            dtNgaySinh.TabIndex = 23;
-            // 
             // txtEmail
             // 
-            txtEmail.Location = new Point(425, 84);
+            txtEmail.Location = new Point(781, 36);
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(185, 27);
             txtEmail.TabIndex = 22;
@@ -296,7 +220,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(347, 94);
+            label2.Location = new Point(703, 46);
             label2.Name = "label2";
             label2.Size = new Size(49, 20);
             label2.TabIndex = 21;
@@ -304,8 +228,8 @@
             // 
             // groupBox2
             // 
-            groupBox2.Controls.Add(toolStrip);
             groupBox2.Controls.Add(dvgNhanVien);
+            groupBox2.Controls.Add(toolStrip);
             groupBox2.Location = new Point(13, 227);
             groupBox2.Margin = new Padding(4);
             groupBox2.Name = "groupBox2";
@@ -314,6 +238,22 @@
             groupBox2.TabIndex = 4;
             groupBox2.TabStop = false;
             groupBox2.Text = "Danh sách nhân viên";
+            // 
+            // dvgNhanVien
+            // 
+            dvgNhanVien.AllowUserToAddRows = false;
+            dvgNhanVien.AllowUserToDeleteRows = false;
+            dvgNhanVien.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dvgNhanVien.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dvgNhanVien.Dock = DockStyle.Fill;
+            dvgNhanVien.Location = new Point(4, 51);
+            dvgNhanVien.MultiSelect = false;
+            dvgNhanVien.Name = "dvgNhanVien";
+            dvgNhanVien.ReadOnly = true;
+            dvgNhanVien.RowHeadersWidth = 51;
+            dvgNhanVien.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dvgNhanVien.Size = new Size(1156, 324);
+            dvgNhanVien.TabIndex = 4;
             // 
             // toolStrip
             // 
@@ -367,72 +307,6 @@
             btnXuatFileExcel.ToolTipText = "Xuất ra tập tin Excel";
             btnXuatFileExcel.Click += btnXuatFileExcel_Click;
             // 
-            // dvgNhanVien
-            // 
-            dvgNhanVien.AllowUserToAddRows = false;
-            dvgNhanVien.AllowUserToDeleteRows = false;
-            dvgNhanVien.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dvgNhanVien.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dvgNhanVien.Columns.AddRange(new DataGridViewColumn[] { ChuyenXeID, TenChuyen, DiemXuatPhat, ThoiGianDi, TenTuyen, BienSo });
-            dvgNhanVien.Dock = DockStyle.Fill;
-            dvgNhanVien.Location = new Point(4, 24);
-            dvgNhanVien.MultiSelect = false;
-            dvgNhanVien.Name = "dvgNhanVien";
-            dvgNhanVien.ReadOnly = true;
-            dvgNhanVien.RowHeadersVisible = false;
-            dvgNhanVien.RowHeadersWidth = 51;
-            dvgNhanVien.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dvgNhanVien.Size = new Size(1156, 351);
-            dvgNhanVien.TabIndex = 0;
-            // 
-            // ChuyenXeID
-            // 
-            ChuyenXeID.DataPropertyName = "ChuyenXeID";
-            ChuyenXeID.HeaderText = "Mã chuyến xe";
-            ChuyenXeID.MinimumWidth = 6;
-            ChuyenXeID.Name = "ChuyenXeID";
-            ChuyenXeID.ReadOnly = true;
-            // 
-            // TenChuyen
-            // 
-            TenChuyen.DataPropertyName = "TenChuyen";
-            TenChuyen.HeaderText = "Tên chuyến";
-            TenChuyen.MinimumWidth = 6;
-            TenChuyen.Name = "TenChuyen";
-            TenChuyen.ReadOnly = true;
-            // 
-            // DiemXuatPhat
-            // 
-            DiemXuatPhat.DataPropertyName = "DiemXuatPhat";
-            DiemXuatPhat.HeaderText = "Điểm xuất phát";
-            DiemXuatPhat.MinimumWidth = 6;
-            DiemXuatPhat.Name = "DiemXuatPhat";
-            DiemXuatPhat.ReadOnly = true;
-            // 
-            // ThoiGianDi
-            // 
-            ThoiGianDi.DataPropertyName = "ThoiGianDi";
-            ThoiGianDi.HeaderText = "Thời gian đi";
-            ThoiGianDi.MinimumWidth = 6;
-            ThoiGianDi.Name = "ThoiGianDi";
-            ThoiGianDi.ReadOnly = true;
-            // 
-            // TenTuyen
-            // 
-            TenTuyen.DataPropertyName = "TenTuyen";
-            TenTuyen.HeaderText = "Tên tuyến";
-            TenTuyen.MinimumWidth = 6;
-            TenTuyen.Name = "TenTuyen";
-            TenTuyen.ReadOnly = true;
-            // 
-            // BienSo
-            // 
-            BienSo.DataPropertyName = "BienSo";
-            BienSo.HeaderText = "Biến số";
-            BienSo.MinimumWidth = 6;
-            BienSo.Name = "BienSo";
-            BienSo.ReadOnly = true;
-            // 
             // frmNhanVien
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -445,13 +319,11 @@
             Load += frmNhanVien_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
-            groupBox3.ResumeLayout(false);
-            groupBox3.PerformLayout();
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dvgNhanVien).EndInit();
             toolStrip.ResumeLayout(false);
             toolStrip.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dvgNhanVien).EndInit();
             ResumeLayout(false);
         }
 
@@ -477,21 +349,9 @@
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripButton btnNhapFileExcel;
         private ToolStripButton btnXuatFileExcel;
-        private DataGridView dvgNhanVien;
-        private DataGridViewTextBoxColumn ChuyenXeID;
-        private DataGridViewTextBoxColumn TenChuyen;
-        private DataGridViewTextBoxColumn DiemXuatPhat;
-        private DataGridViewTextBoxColumn ThoiGianDi;
-        private DataGridViewTextBoxColumn TenTuyen;
-        private DataGridViewTextBoxColumn BienSo;
-        private Label label3;
-        private GroupBox groupBox3;
-        private RadioButton radNam;
-        private DateTimePicker dtNgaySinh;
         private TextBox txtEmail;
         private Label label2;
-        private Label label5;
-        private RadioButton radNu;
+        private DataGridView dvgNhanVien;
         private Label label8;
         private ComboBox cboVaiTro;
     }

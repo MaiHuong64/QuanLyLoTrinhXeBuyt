@@ -12,11 +12,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             InitializeComponent();
         }
         QLLTXBContext context = new QLLTXBContext();
-        private void btnHienThi_CheckedChanged(object sender, EventArgs e)
-        {
-            var pass = txtMatKhau.Text.Trim();
-
-        }
+        public static string tennv = "";
 
         private void btnDangNhap_Click(object sender, EventArgs e)
         {
@@ -43,11 +39,8 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                 }
                 else
                 {
-                    MessageBox.Show($"Hash lưu trữ: {taikhoan.MatKhau}", "Debug", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    bool isValid = BCrypt.Net.BCrypt.Verify(pass, taikhoan.MatKhau);
-                    MessageBox.Show($"Kết quả kiểm tra: {isValid}", "Debug", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                     string role = taikhoan.QuyenHan == "admin" ? "admin" : "user";
+                    tennv = context.NhanVien.Where(t => t.NhanVienID == taikhoan.NhanVienID).Select(t => t.HoTen).SingleOrDefault();
                     var mainForm = new frmMain(role);
                     mainForm.FormClosed += (s, args) => this.Close();
                     mainForm.Show();
@@ -62,26 +55,23 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                 Application.Exit();
         }
 
-            private void picHide_Click(object sender, EventArgs e)
+        private void picHide_Click(object sender, EventArgs e)
+        {
+            if (txtMatKhau.PasswordChar == '*')
             {
-                if (txtMatKhau.PasswordChar == '*')
-                {
-                    picDisplay.BringToFront();
-                    txtMatKhau.PasswordChar = '\0';
-                }
+                picDisplay.BringToFront();
+                txtMatKhau.PasswordChar = '\0';
             }
+        }
 
-            private void picDisplay_Click(object sender, EventArgs e)
+        private void picDisplay_Click(object sender, EventArgs e)
+        {
+            if (txtMatKhau.PasswordChar == '\0')
             {
-                if (txtMatKhau.PasswordChar == '\0')
-                {
-                    picHide.BringToFront();
-                    txtMatKhau.PasswordChar = '*';
-                }
+                picHide.BringToFront();
+                txtMatKhau.PasswordChar = '*';
             }
-
-
-      
+        }
         private void frmDangNhap_Load(object sender, EventArgs e)
         {
           

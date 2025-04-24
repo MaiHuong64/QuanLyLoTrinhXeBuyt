@@ -44,22 +44,26 @@
             // 
             // btnHuyBo
             // 
-            btnHuyBo.Location = new Point(189, 218);
+            btnHuyBo.BackColor = Color.DodgerBlue;
+            btnHuyBo.ForeColor = SystemColors.ButtonHighlight;
+            btnHuyBo.Location = new Point(168, 218);
             btnHuyBo.Name = "btnHuyBo";
-            btnHuyBo.Size = new Size(94, 29);
+            btnHuyBo.Size = new Size(94, 44);
             btnHuyBo.TabIndex = 14;
             btnHuyBo.Text = "Huỷ bỏ";
-            btnHuyBo.UseVisualStyleBackColor = true;
+            btnHuyBo.UseVisualStyleBackColor = false;
             btnHuyBo.Click += btnHuyBo_Click;
             // 
             // btnDangNhap
             // 
+            btnDangNhap.BackColor = Color.DodgerBlue;
+            btnDangNhap.ForeColor = SystemColors.ButtonHighlight;
             btnDangNhap.Location = new Point(29, 218);
             btnDangNhap.Name = "btnDangNhap";
-            btnDangNhap.Size = new Size(94, 29);
+            btnDangNhap.Size = new Size(94, 44);
             btnDangNhap.TabIndex = 13;
             btnDangNhap.Text = "Đăng nhập";
-            btnDangNhap.UseVisualStyleBackColor = true;
+            btnDangNhap.UseVisualStyleBackColor = false;
             btnDangNhap.Click += btnDangNhap_Click;
             // 
             // txtMatKhau
@@ -85,6 +89,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 22.2F, FontStyle.Bold, GraphicsUnit.Point, 163);
+            label1.ForeColor = Color.DodgerBlue;
             label1.Location = new Point(29, 31);
             label1.Name = "label1";
             label1.Size = new Size(246, 50);
@@ -137,7 +142,8 @@
             Controls.Add(txtTenDangNhap);
             Controls.Add(label1);
             Name = "frmDangNhap";
-            Text = "frmDangNhap";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Đăng nhập";
             Load += frmDangNhap_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)picDisplay).EndInit();
