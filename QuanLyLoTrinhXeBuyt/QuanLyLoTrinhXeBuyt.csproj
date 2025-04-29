@@ -17,6 +17,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="ReportViewerCore.WinForms" Version="15.1.26" />
   </ItemGroup>
 
   <ItemGroup>
@@ -25,6 +26,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Update="Reports\QLLTXBDataSet.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>QLLTXBDataSet.xsd</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -32,6 +38,13 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Reports\QLLTXBDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QLLTXBDataSet.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
 
 </Project>

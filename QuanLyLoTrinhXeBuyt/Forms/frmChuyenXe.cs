@@ -30,11 +30,11 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             btnLuu.Enabled = giaTri;
             btnHuyBo.Enabled = giaTri;
             txtTenChuyenXe.Enabled = giaTri;
-            txtDiemXuatPhat.Enabled = giaTri;
+            cboDiemXuatPhat.Enabled = giaTri;
             cboTuyenXe.Enabled = giaTri;
             cboXe.Enabled = giaTri;
             dtpThoiGianDi.Enabled = giaTri;
-            //dtpThoiGianDen.Enabled = giaTri;
+            dtpThoiGianDen.Enabled = giaTri;
 
         }
         public void LayTuyenXeVaoComboBox()
@@ -50,6 +50,12 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             cboXe.DisplayMember = "BienSo";
             cboXe.ValueMember = "XeID";
         }
+        public void LayDiemXuatPhat()
+        {
+            cboDiemXuatPhat.DataSource = context.TramXe.ToList();
+            cboDiemXuatPhat.DisplayMember = "TenTram";
+            cboDiemXuatPhat.ValueMember = "TramXeID";
+        }
         private void frmChuyenXe_Load(object sender, EventArgs e)
         {
 
@@ -57,7 +63,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             LayTuyenXeVaoComboBox();
             LayXeVaoComboBox();
 
-            gridChuyenXe.AutoGenerateColumns = false;
+            dvgChuyenXe.AutoGenerateColumns = false;
 
             List<DanhSachChuyenXe> chuyenXe = new List<DanhSachChuyenXe>();
 
@@ -67,6 +73,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                 TenChuyen = r.TenChuyen,
                 DiemXuatPhat = r.DiemXuatPhat,
                 ThoiGianDi = r.ThoiGianDi,
+                ThoiGianDen = r.ThoiGianDen,
                 TuyenXeID = r.TuyenXeID,
                 TenTuyen = r.TuyenXe.TenTuyen,
                 XeID = r.XeID,
@@ -80,11 +87,14 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             txtTenChuyenXe.DataBindings.Clear();
             txtTenChuyenXe.DataBindings.Add("Text", bindingSource, "TenChuyen", true, DataSourceUpdateMode.Never);
 
-            txtDiemXuatPhat.DataBindings.Clear();
-            txtDiemXuatPhat.DataBindings.Add("Text", bindingSource, "DiemXuatPhat", true, DataSourceUpdateMode.Never);
+            cboDiemXuatPhat.DataBindings.Clear();
+            cboDiemXuatPhat.DataBindings.Add("Text", bindingSource, "DiemXuatPhat", true, DataSourceUpdateMode.Never);
 
             dtpThoiGianDi.DataBindings.Clear();
             dtpThoiGianDi.DataBindings.Add("Value", bindingSource, "ThoiGianDi", true, DataSourceUpdateMode.Never);
+
+            dtpThoiGianDen.DataBindings.Clear();
+            dtpThoiGianDen.DataBindings.Add("Value", bindingSource, "ThoiGianDen", true, DataSourceUpdateMode.Never);
 
             cboTuyenXe.DataBindings.Clear();
             cboTuyenXe.DataBindings.Add("SelectedValue", bindingSource, "TuyenXeID", true, DataSourceUpdateMode.Never);
@@ -92,7 +102,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             cboXe.DataBindings.Clear();
             cboXe.DataBindings.Add("SelectedValue", bindingSource, "XeID", true, DataSourceUpdateMode.Never);
 
-            gridChuyenXe.DataSource = bindingSource;
+            dvgChuyenXe.DataSource = bindingSource;
 
         }
 
@@ -101,7 +111,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             BatTatChucNang(true);
             xuLyThem = true;
             txtTenChuyenXe.Text = "";
-            txtDiemXuatPhat.Text = "";
+            cboDiemXuatPhat.Text = "";
             dtpThoiGianDi.Value = DateTime.Now;
             cboTuyenXe.Text = "";
             cboXe.Text = "";
@@ -111,7 +121,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
         {
             if (MessageBox.Show("Xác nhận xóa chuyến " + txtTenChuyenXe.Text + "?", "Xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                id = Convert.ToInt32(gridChuyenXe.CurrentRow.Cells["ChuyenXeID"].Value.ToString());
+                id = Convert.ToInt32(dvgChuyenXe.CurrentRow.Cells["ChuyenXeID"].Value.ToString());
                 ChuyenXe chuyenXe = context.ChuyenXe.Find(id);
                 if (chuyenXe != null)
                 {
@@ -126,14 +136,14 @@ namespace QuanLyLoTrinhXeBuyt.Forms
         {
             xuLyThem = false;
             BatTatChucNang(true);
-            id = Convert.ToInt32(gridChuyenXe.CurrentRow.Cells["ChuyenXeID"].Value.ToString());
+            id = Convert.ToInt32(dvgChuyenXe.CurrentRow.Cells["ChuyenXeID"].Value.ToString());
         }
 
         private void btnLuu_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtDiemXuatPhat.Text) || string.IsNullOrWhiteSpace(txtTenChuyenXe.Text))
+            if (string.IsNullOrWhiteSpace(cboDiemXuatPhat.Text) || string.IsNullOrWhiteSpace(txtTenChuyenXe.Text))
                 MessageBox.Show("Vui lòng nhập đầy đủ thông tin", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            else if (string.IsNullOrWhiteSpace(txtDiemXuatPhat.Text))
+            else if (string.IsNullOrWhiteSpace(cboDiemXuatPhat.Text))
                 MessageBox.Show("Vui lòng nhập đầy đủ thông tin", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             else if (string.IsNullOrWhiteSpace(cboTuyenXe.Text))
                 MessageBox.Show("Vui lòng nhập đầy đủ thông tin", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -145,9 +155,9 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                 {
                     ChuyenXe chuyenXe = new ChuyenXe();
                     chuyenXe.TenChuyen = txtTenChuyenXe.Text;
-                    chuyenXe.DiemXuatPhat = txtDiemXuatPhat.Text;
+                    chuyenXe.DiemXuatPhat = cboDiemXuatPhat.Text;
                     chuyenXe.ThoiGianDi = dtpThoiGianDi.Value;
-                    //chuyenXe.ThoiGianDen = dtpThoiGianDen.Value;
+                    chuyenXe.ThoiGianDen = dtpThoiGianDen.Value;
                     chuyenXe.TuyenXeID = (int)cboTuyenXe.SelectedValue;
                     chuyenXe.XeID = (int)cboXe.SelectedValue;
 
@@ -160,9 +170,9 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                     if (chuyenXe != null)
                     {
                         chuyenXe.TenChuyen = txtTenChuyenXe.Text;
-                        chuyenXe.DiemXuatPhat = txtDiemXuatPhat.Text;
+                        chuyenXe.DiemXuatPhat = cboDiemXuatPhat.Text;
                         chuyenXe.ThoiGianDi = dtpThoiGianDi.Value;
-                        //chuyenXe.ThoiGianDen = dtpThoiGianDen.Value;
+                        chuyenXe.ThoiGianDen = dtpThoiGianDen.Value;
                         chuyenXe.TuyenXeID = (int)cboTuyenXe.SelectedValue;
                         chuyenXe.XeID = (int)cboXe.SelectedValue;
 
@@ -232,6 +242,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                                 chuyenXe.TenChuyen = row["TenChuyen"].ToString() ?? "N/A";
                                 chuyenXe.DiemXuatPhat = row["DiemXuatPhat"].ToString() ?? "N/A";
                                 chuyenXe.ThoiGianDi = Convert.ToDateTime(row["ThoiGianDi"].ToString());
+                                chuyenXe.ThoiGianDen = Convert.ToDateTime(row["ThoiGianDen"].ToString());
                                 chuyenXe.TuyenXeID = Convert.ToInt32(row["TuyenXeID"].ToString());
                                 chuyenXe.XeID = Convert.ToInt32(row["XeID"].ToString());
                                 context.ChuyenXe.Add(chuyenXe);
@@ -272,6 +283,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                             table.Columns.Add("TenChuyen");
                             table.Columns.Add("DiemXuatPhat");
                             table.Columns.Add("ThoiGianDi");
+                            table.Columns.Add("ThoiGianDen");
                             table.Columns.Add("TuyenXeID");
                             table.Columns.Add("TenTuyen");
                             table.Columns.Add("XeID");
@@ -283,6 +295,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                                 TenChuyen = cx.TenChuyen,
                                 DiemXuatPhat = cx.DiemXuatPhat,
                                 ThoiGianDi = cx.ThoiGianDi,
+                                ThoiGianDen = cx.ThoiGianDen,
                                 TuyenXeID = cx.TuyenXeID,
                                 TenTuyen = cx.TuyenXe.TenTuyen,
                                 XeID = cx.XeID,
@@ -293,7 +306,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                             foreach (var item in chuyenXe)
                             {
                                 table.Rows.Add(item.ChuyenXeID, item.TenChuyen, item.DiemXuatPhat, item.ThoiGianDi,
-                                               item.TuyenXeID, item.TenTuyen, item.XeID, item.BienSo);
+                                               item.ThoiGianDen, item.TuyenXeID, item.TenTuyen, item.XeID, item.BienSo);
                             }
 
                             var sheet = wb.Worksheets.Add(table, "ChuyenXe");
@@ -310,6 +323,5 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                 }
             }
         }
-    
     }
 }

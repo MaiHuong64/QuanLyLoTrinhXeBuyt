@@ -36,6 +36,9 @@ namespace QuanLyLoTrinhXeBuyt.Migrations
                     b.Property<string>("TenChuyen")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("ThoiGianDen")
+                        .HasColumnType("datetime2");
+
                     b.Property<DateTime>("ThoiGianDi")
                         .HasColumnType("datetime2");
 

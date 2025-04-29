@@ -38,32 +38,28 @@
             txtTenChuyenXe = new TextBox();
             label2 = new Label();
             btnThem = new Button();
-            groupBox2 = new GroupBox();
-            toolStrip = new ToolStrip();
-            toolStripLabel1 = new ToolStripLabel();
-            txtTuKhoa = new ToolStripTextBox();
-            btnTimKiem = new ToolStripButton();
-            toolStripSeparator1 = new ToolStripSeparator();
-            btnNhapFileExcel = new ToolStripButton();
-            btnXuatFileExcel = new ToolStripButton();
-            gridChuyenXe = new DataGridView();
-            ChuyenXeID = new DataGridViewTextBoxColumn();
-            TenChuyen = new DataGridViewTextBoxColumn();
-            DiemXuatPhat = new DataGridViewTextBoxColumn();
-            ThoiGianDi = new DataGridViewTextBoxColumn();
-            TenTuyen = new DataGridViewTextBoxColumn();
-            BienSo = new DataGridViewTextBoxColumn();
             groupBox1 = new GroupBox();
+            cboDiemXuatPhat = new ComboBox();
+            label1 = new Label();
+            dtpThoiGianDen = new DateTimePicker();
             label4 = new Label();
             cboXe = new ComboBox();
             label7 = new Label();
             dtpThoiGianDi = new DateTimePicker();
-            txtDiemXuatPhat = new TextBox();
             label6 = new Label();
-            groupBox2.SuspendLayout();
-            toolStrip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)gridChuyenXe).BeginInit();
+            groupBox2 = new GroupBox();
+            dvgChuyenXe = new DataGridView();
+            toolStrip = new ToolStrip();
+            toolStripLabel1 = new ToolStripLabel();
+            txtTimKiem = new ToolStripTextBox();
+            btnTimKiem = new ToolStripButton();
+            toolStripSeparator1 = new ToolStripSeparator();
+            btnNhapFileExcel = new ToolStripButton();
+            btnXuatFileExcel = new ToolStripButton();
             groupBox1.SuspendLayout();
+            groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dvgChuyenXe).BeginInit();
+            toolStrip.SuspendLayout();
             SuspendLayout();
             // 
             // btnThoat
@@ -125,7 +121,7 @@
             // 
             cboTuyenXe.FormattingEnabled = true;
             cboTuyenXe.Items.AddRange(new object[] { "Đang hoạt động", "Đang bảo trì" });
-            cboTuyenXe.Location = new Point(702, 83);
+            cboTuyenXe.Location = new Point(843, 83);
             cboTuyenXe.Margin = new Padding(4);
             cboTuyenXe.Name = "cboTuyenXe";
             cboTuyenXe.Size = new Size(203, 28);
@@ -134,7 +130,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(616, 89);
+            label5.Location = new Point(757, 89);
             label5.Margin = new Padding(4, 0, 4, 0);
             label5.Name = "label5";
             label5.Size = new Size(67, 20);
@@ -143,10 +139,10 @@
             // 
             // txtTenChuyenXe
             // 
-            txtTenChuyenXe.Location = new Point(140, 37);
+            txtTenChuyenXe.Location = new Point(119, 37);
             txtTenChuyenXe.Margin = new Padding(4);
             txtTenChuyenXe.Name = "txtTenChuyenXe";
-            txtTenChuyenXe.Size = new Size(186, 27);
+            txtTenChuyenXe.Size = new Size(207, 27);
             txtTenChuyenXe.TabIndex = 5;
             // 
             // label2
@@ -170,26 +166,146 @@
             btnThem.UseVisualStyleBackColor = true;
             btnThem.Click += btnThem_Click;
             // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(cboDiemXuatPhat);
+            groupBox1.Controls.Add(label1);
+            groupBox1.Controls.Add(dtpThoiGianDen);
+            groupBox1.Controls.Add(label4);
+            groupBox1.Controls.Add(cboXe);
+            groupBox1.Controls.Add(label7);
+            groupBox1.Controls.Add(dtpThoiGianDi);
+            groupBox1.Controls.Add(label6);
+            groupBox1.Controls.Add(btnThoat);
+            groupBox1.Controls.Add(btnHuyBo);
+            groupBox1.Controls.Add(btnLuu);
+            groupBox1.Controls.Add(btnSua);
+            groupBox1.Controls.Add(btnXoa);
+            groupBox1.Controls.Add(cboTuyenXe);
+            groupBox1.Controls.Add(label5);
+            groupBox1.Controls.Add(txtTenChuyenXe);
+            groupBox1.Controls.Add(label2);
+            groupBox1.Controls.Add(btnThem);
+            groupBox1.Location = new Point(3, 15);
+            groupBox1.Margin = new Padding(4);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Padding = new Padding(4);
+            groupBox1.Size = new Size(1164, 221);
+            groupBox1.TabIndex = 2;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Thông tin chuyến xe";
+            // 
+            // cboDiemXuatPhat
+            // 
+            cboDiemXuatPhat.FormattingEnabled = true;
+            cboDiemXuatPhat.Location = new Point(476, 81);
+            cboDiemXuatPhat.Name = "cboDiemXuatPhat";
+            cboDiemXuatPhat.Size = new Size(203, 28);
+            cboDiemXuatPhat.TabIndex = 26;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(755, 35);
+            label1.Margin = new Padding(4, 0, 4, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(100, 20);
+            label1.TabIndex = 25;
+            label1.Text = "Thời gian đến";
+            // 
+            // dtpThoiGianDen
+            // 
+            dtpThoiGianDen.CustomFormat = "dd/MM/yyyy HH:mm";
+            dtpThoiGianDen.Location = new Point(862, 33);
+            dtpThoiGianDen.Name = "dtpThoiGianDen";
+            dtpThoiGianDen.ShowUpDown = true;
+            dtpThoiGianDen.Size = new Size(237, 27);
+            dtpThoiGianDen.TabIndex = 24;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(16, 84);
+            label4.Margin = new Padding(4, 0, 4, 0);
+            label4.Name = "label4";
+            label4.Size = new Size(26, 20);
+            label4.TabIndex = 23;
+            label4.Text = "Xe";
+            // 
+            // cboXe
+            // 
+            cboXe.FormattingEnabled = true;
+            cboXe.Location = new Point(123, 76);
+            cboXe.Name = "cboXe";
+            cboXe.Size = new Size(203, 28);
+            cboXe.TabIndex = 22;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(355, 40);
+            label7.Margin = new Padding(4, 0, 4, 0);
+            label7.Name = "label7";
+            label7.Size = new Size(88, 20);
+            label7.TabIndex = 19;
+            label7.Text = "Thời gian đi";
+            // 
+            // dtpThoiGianDi
+            // 
+            dtpThoiGianDi.CustomFormat = "dd/MM/yyyy HH:mm";
+            dtpThoiGianDi.Format = DateTimePickerFormat.Time;
+            dtpThoiGianDi.Location = new Point(493, 37);
+            dtpThoiGianDi.Name = "dtpThoiGianDi";
+            dtpThoiGianDi.ShowUpDown = true;
+            dtpThoiGianDi.Size = new Size(186, 27);
+            dtpThoiGianDi.TabIndex = 18;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(355, 89);
+            label6.Margin = new Padding(4, 0, 4, 0);
+            label6.Name = "label6";
+            label6.Size = new Size(111, 20);
+            label6.TabIndex = 16;
+            label6.Text = "Điểm xuất phát";
+            // 
             // groupBox2
             // 
+            groupBox2.Controls.Add(dvgChuyenXe);
             groupBox2.Controls.Add(toolStrip);
-            groupBox2.Controls.Add(gridChuyenXe);
             groupBox2.Location = new Point(3, 244);
             groupBox2.Margin = new Padding(4);
             groupBox2.Name = "groupBox2";
             groupBox2.Padding = new Padding(4);
-            groupBox2.Size = new Size(1164, 379);
-            groupBox2.TabIndex = 3;
+            groupBox2.Size = new Size(1159, 348);
+            groupBox2.TabIndex = 27;
             groupBox2.TabStop = false;
-            groupBox2.Text = "Danh sách các chuyến xe";
+            groupBox2.Text = "Danh sách nhân viên";
+            // 
+            // dvgChuyenXe
+            // 
+            dvgChuyenXe.AllowUserToAddRows = false;
+            dvgChuyenXe.AllowUserToDeleteRows = false;
+            dvgChuyenXe.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dvgChuyenXe.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dvgChuyenXe.Dock = DockStyle.Fill;
+            dvgChuyenXe.Location = new Point(4, 51);
+            dvgChuyenXe.MultiSelect = false;
+            dvgChuyenXe.Name = "dvgChuyenXe";
+            dvgChuyenXe.ReadOnly = true;
+            dvgChuyenXe.RowHeadersWidth = 51;
+            dvgChuyenXe.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dvgChuyenXe.Size = new Size(1151, 293);
+            dvgChuyenXe.TabIndex = 4;
             // 
             // toolStrip
             // 
             toolStrip.ImageScalingSize = new Size(20, 20);
-            toolStrip.Items.AddRange(new ToolStripItem[] { toolStripLabel1, txtTuKhoa, btnTimKiem, toolStripSeparator1, btnNhapFileExcel, btnXuatFileExcel });
+            toolStrip.Items.AddRange(new ToolStripItem[] { toolStripLabel1, txtTimKiem, btnTimKiem, toolStripSeparator1, btnNhapFileExcel, btnXuatFileExcel });
             toolStrip.Location = new Point(4, 24);
             toolStrip.Name = "toolStrip";
-            toolStrip.Size = new Size(1156, 27);
+            toolStrip.Size = new Size(1151, 27);
             toolStrip.TabIndex = 3;
             // 
             // toolStripLabel1
@@ -198,11 +314,11 @@
             toolStripLabel1.Size = new Size(73, 24);
             toolStripLabel1.Text = "Tìm kiếm:";
             // 
-            // txtTuKhoa
+            // txtTimKiem
             // 
-            txtTuKhoa.BorderStyle = BorderStyle.FixedSingle;
-            txtTuKhoa.Name = "txtTuKhoa";
-            txtTuKhoa.Size = new Size(150, 27);
+            txtTimKiem.BorderStyle = BorderStyle.FixedSingle;
+            txtTimKiem.Name = "txtTimKiem";
+            txtTimKiem.Size = new Size(150, 27);
             // 
             // btnTimKiem
             // 
@@ -210,6 +326,7 @@
             btnTimKiem.Name = "btnTimKiem";
             btnTimKiem.Size = new Size(38, 24);
             btnTimKiem.Text = "Tìm";
+            //btnTimKiem.Click += btnTimKiem_Click;
             // 
             // toolStripSeparator1
             // 
@@ -234,154 +351,6 @@
             btnXuatFileExcel.ToolTipText = "Xuất ra tập tin Excel";
             btnXuatFileExcel.Click += btnXuatFileExcel_Click;
             // 
-            // gridChuyenXe
-            // 
-            gridChuyenXe.AllowUserToAddRows = false;
-            gridChuyenXe.AllowUserToDeleteRows = false;
-            gridChuyenXe.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            gridChuyenXe.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            gridChuyenXe.Columns.AddRange(new DataGridViewColumn[] { ChuyenXeID, TenChuyen, DiemXuatPhat, ThoiGianDi, TenTuyen, BienSo });
-            gridChuyenXe.Dock = DockStyle.Fill;
-            gridChuyenXe.Location = new Point(4, 24);
-            gridChuyenXe.MultiSelect = false;
-            gridChuyenXe.Name = "gridChuyenXe";
-            gridChuyenXe.ReadOnly = true;
-            gridChuyenXe.RowHeadersVisible = false;
-            gridChuyenXe.RowHeadersWidth = 51;
-            gridChuyenXe.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            gridChuyenXe.Size = new Size(1156, 351);
-            gridChuyenXe.TabIndex = 0;
-            // 
-            // ChuyenXeID
-            // 
-            ChuyenXeID.DataPropertyName = "ChuyenXeID";
-            ChuyenXeID.HeaderText = "Mã chuyến xe";
-            ChuyenXeID.MinimumWidth = 6;
-            ChuyenXeID.Name = "ChuyenXeID";
-            ChuyenXeID.ReadOnly = true;
-            // 
-            // TenChuyen
-            // 
-            TenChuyen.DataPropertyName = "TenChuyen";
-            TenChuyen.HeaderText = "Tên chuyến";
-            TenChuyen.MinimumWidth = 6;
-            TenChuyen.Name = "TenChuyen";
-            TenChuyen.ReadOnly = true;
-            // 
-            // DiemXuatPhat
-            // 
-            DiemXuatPhat.DataPropertyName = "DiemXuatPhat";
-            DiemXuatPhat.HeaderText = "Điểm xuất phát";
-            DiemXuatPhat.MinimumWidth = 6;
-            DiemXuatPhat.Name = "DiemXuatPhat";
-            DiemXuatPhat.ReadOnly = true;
-            // 
-            // ThoiGianDi
-            // 
-            ThoiGianDi.DataPropertyName = "ThoiGianDi";
-            ThoiGianDi.HeaderText = "Thời gian đi";
-            ThoiGianDi.MinimumWidth = 6;
-            ThoiGianDi.Name = "ThoiGianDi";
-            ThoiGianDi.ReadOnly = true;
-            // 
-            // TenTuyen
-            // 
-            TenTuyen.DataPropertyName = "TenTuyen";
-            TenTuyen.HeaderText = "Tên tuyến";
-            TenTuyen.MinimumWidth = 6;
-            TenTuyen.Name = "TenTuyen";
-            TenTuyen.ReadOnly = true;
-            // 
-            // BienSo
-            // 
-            BienSo.DataPropertyName = "BienSo";
-            BienSo.HeaderText = "Biến số";
-            BienSo.MinimumWidth = 6;
-            BienSo.Name = "BienSo";
-            BienSo.ReadOnly = true;
-            // 
-            // groupBox1
-            // 
-            groupBox1.Controls.Add(label4);
-            groupBox1.Controls.Add(cboXe);
-            groupBox1.Controls.Add(label7);
-            groupBox1.Controls.Add(dtpThoiGianDi);
-            groupBox1.Controls.Add(txtDiemXuatPhat);
-            groupBox1.Controls.Add(label6);
-            groupBox1.Controls.Add(btnThoat);
-            groupBox1.Controls.Add(btnHuyBo);
-            groupBox1.Controls.Add(btnLuu);
-            groupBox1.Controls.Add(btnSua);
-            groupBox1.Controls.Add(btnXoa);
-            groupBox1.Controls.Add(cboTuyenXe);
-            groupBox1.Controls.Add(label5);
-            groupBox1.Controls.Add(txtTenChuyenXe);
-            groupBox1.Controls.Add(label2);
-            groupBox1.Controls.Add(btnThem);
-            groupBox1.Location = new Point(3, 15);
-            groupBox1.Margin = new Padding(4);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Padding = new Padding(4);
-            groupBox1.Size = new Size(1164, 221);
-            groupBox1.TabIndex = 2;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "Thông tin chuyến xe";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(234, 91);
-            label4.Margin = new Padding(4, 0, 4, 0);
-            label4.Name = "label4";
-            label4.Size = new Size(26, 20);
-            label4.TabIndex = 23;
-            label4.Text = "Xe";
-            // 
-            // cboXe
-            // 
-            cboXe.FormattingEnabled = true;
-            cboXe.Location = new Point(280, 88);
-            cboXe.Name = "cboXe";
-            cboXe.Size = new Size(203, 28);
-            cboXe.TabIndex = 22;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(365, 45);
-            label7.Margin = new Padding(4, 0, 4, 0);
-            label7.Name = "label7";
-            label7.Size = new Size(88, 20);
-            label7.TabIndex = 19;
-            label7.Text = "Thời gian đi";
-            // 
-            // dtpThoiGianDi
-            // 
-            dtpThoiGianDi.Format = DateTimePickerFormat.Time;
-            dtpThoiGianDi.Location = new Point(493, 37);
-            dtpThoiGianDi.Name = "dtpThoiGianDi";
-            dtpThoiGianDi.ShowUpDown = true;
-            dtpThoiGianDi.Size = new Size(186, 27);
-            dtpThoiGianDi.TabIndex = 18;
-            // 
-            // txtDiemXuatPhat
-            // 
-            txtDiemXuatPhat.Location = new Point(893, 28);
-            txtDiemXuatPhat.Margin = new Padding(4);
-            txtDiemXuatPhat.Name = "txtDiemXuatPhat";
-            txtDiemXuatPhat.Size = new Size(186, 27);
-            txtDiemXuatPhat.TabIndex = 17;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(765, 35);
-            label6.Margin = new Padding(4, 0, 4, 0);
-            label6.Name = "label6";
-            label6.Size = new Size(111, 20);
-            label6.TabIndex = 16;
-            label6.Text = "Điểm xuất phát";
-            // 
             // frmChuyenXe
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -391,15 +360,16 @@
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Name = "frmChuyenXe";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Chuyến xe";
             Load += frmChuyenXe_Load;
-            groupBox2.ResumeLayout(false);
-            groupBox2.PerformLayout();
-            toolStrip.ResumeLayout(false);
-            toolStrip.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)gridChuyenXe).EndInit();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
+            groupBox2.ResumeLayout(false);
+            groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dvgChuyenXe).EndInit();
+            toolStrip.ResumeLayout(false);
+            toolStrip.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -414,24 +384,20 @@
         private TextBox txtTenChuyenXe;
         private Label label2;
         private Button btnThem;
-        private GroupBox groupBox2;
         private GroupBox groupBox1;
-        private TextBox txtDiemXuatPhat;
         private Label label6;
         private DateTimePicker dtpThoiGianDi;
         private Label label7;
         private ComboBox cboXe;
         private Label label4;
-        private DataGridView gridChuyenXe;
-        private DataGridViewTextBoxColumn ChuyenXeID;
-        private DataGridViewTextBoxColumn TenChuyen;
-        private DataGridViewTextBoxColumn DiemXuatPhat;
-        private DataGridViewTextBoxColumn ThoiGianDi;
-        private DataGridViewTextBoxColumn TenTuyen;
-        private DataGridViewTextBoxColumn BienSo;
+        private Label label1;
+        private DateTimePicker dtpThoiGianDen;
+        private ComboBox cboDiemXuatPhat;
+        private GroupBox groupBox2;
+        private DataGridView dvgChuyenXe;
         private ToolStrip toolStrip;
         private ToolStripLabel toolStripLabel1;
-        private ToolStripTextBox txtTuKhoa;
+        private ToolStripTextBox txtTimKiem;
         private ToolStripButton btnTimKiem;
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripButton btnNhapFileExcel;

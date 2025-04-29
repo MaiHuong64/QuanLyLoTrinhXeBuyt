@@ -44,7 +44,6 @@
             mnThoat = new ToolStripMenuItem();
             mnQuanLy = new ToolStripMenuItem();
             mnTuyenXe = new ToolStripMenuItem();
-            mnChiTiet = new ToolStripMenuItem();
             toolStripSeparator5 = new ToolStripSeparator();
             mnThemTram = new ToolStripMenuItem();
             toolStripSeparator2 = new ToolStripSeparator();
@@ -58,14 +57,9 @@
             mnTroGiup = new ToolStripMenuItem();
             hướngDẫnSửDụngPhầnMềmToolStripMenuItem = new ToolStripMenuItem();
             mnThongTin = new ToolStripMenuItem();
-            pnSideBar = new Panel();
-            label1 = new Label();
-            pictureBox1 = new PictureBox();
-            pnContent = new Panel();
+            mnThongKeChuyenXe = new ToolStripMenuItem();
             statusStrip1.SuspendLayout();
             menuStrip1.SuspendLayout();
-            pnSideBar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // đăngNhậpToolStripMenuItem
@@ -152,15 +146,16 @@
             mnAccount.BackColor = SystemColors.ControlDarkDark;
             mnAccount.ForeColor = SystemColors.Control;
             mnAccount.Name = "mnAccount";
-            mnAccount.Size = new Size(224, 28);
+            mnAccount.Size = new Size(205, 28);
             mnAccount.Text = "Tài khoản";
+            mnAccount.Click += mnAccount_Click;
             // 
             // mnDangXuat
             // 
             mnDangXuat.BackColor = SystemColors.ControlDarkDark;
             mnDangXuat.ForeColor = SystemColors.Control;
             mnDangXuat.Name = "mnDangXuat";
-            mnDangXuat.Size = new Size(224, 28);
+            mnDangXuat.Size = new Size(205, 28);
             mnDangXuat.Text = "Đăng xuất";
             mnDangXuat.Click += mnDangXuat_Click;
             // 
@@ -170,7 +165,7 @@
             mnThoat.ForeColor = SystemColors.Control;
             mnThoat.Name = "mnThoat";
             mnThoat.ShortcutKeys = Keys.Alt | Keys.F4;
-            mnThoat.Size = new Size(224, 28);
+            mnThoat.Size = new Size(205, 28);
             mnThoat.Text = "Thoát";
             mnThoat.Click += mnThoat_Click;
             // 
@@ -184,28 +179,21 @@
             // 
             // mnTuyenXe
             // 
-            mnTuyenXe.DropDownItems.AddRange(new ToolStripItem[] { mnChiTiet, toolStripSeparator5, mnThemTram });
+            mnTuyenXe.DropDownItems.AddRange(new ToolStripItem[] { toolStripSeparator5, mnThemTram });
             mnTuyenXe.Name = "mnTuyenXe";
             mnTuyenXe.Size = new Size(176, 28);
             mnTuyenXe.Text = "Tuyến xe";
             mnTuyenXe.Click += mnTuyenXe_Click;
             // 
-            // mnChiTiet
-            // 
-            mnChiTiet.Name = "mnChiTiet";
-            mnChiTiet.Size = new Size(226, 28);
-            mnChiTiet.Text = "Chi tiết tuyến xe";
-            mnChiTiet.Click += mnChiTiet_Click;
-            // 
             // toolStripSeparator5
             // 
             toolStripSeparator5.Name = "toolStripSeparator5";
-            toolStripSeparator5.Size = new Size(223, 6);
+            toolStripSeparator5.Size = new Size(203, 6);
             // 
             // mnThemTram
             // 
             mnThemTram.Name = "mnThemTram";
-            mnThemTram.Size = new Size(226, 28);
+            mnThemTram.Size = new Size(206, 28);
             mnThemTram.Text = "Thêm trạm xe";
             mnThemTram.Click += mnThemTram_Click;
             // 
@@ -255,6 +243,7 @@
             // 
             // mnThongKeBaoCao
             // 
+            mnThongKeBaoCao.DropDownItems.AddRange(new ToolStripItem[] { mnThongKeChuyenXe });
             mnThongKeBaoCao.ForeColor = SystemColors.ButtonHighlight;
             mnThongKeBaoCao.Name = "mnThongKeBaoCao";
             mnThongKeBaoCao.Size = new Size(178, 27);
@@ -285,61 +274,30 @@
             mnThongTin.Size = new Size(326, 28);
             mnThongTin.Text = "Thông tin phần mềm";
             // 
-            // pnSideBar
+            // mnThongKeChuyenXe
             // 
-            pnSideBar.Controls.Add(label1);
-            pnSideBar.Controls.Add(pictureBox1);
-            pnSideBar.Dock = DockStyle.Left;
-            pnSideBar.Location = new Point(0, 31);
-            pnSideBar.Name = "pnSideBar";
-            pnSideBar.Size = new Size(158, 446);
-            pnSideBar.TabIndex = 2;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(24, 155);
-            label1.Name = "label1";
-            label1.Size = new Size(50, 20);
-            label1.TabIndex = 0;
-            label1.Text = "label1";
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.Location = new Point(12, 0);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(141, 126);
-            pictureBox1.TabIndex = 0;
-            pictureBox1.TabStop = false;
-            // 
-            // pnContent
-            // 
-            pnContent.Dock = DockStyle.Fill;
-            pnContent.Location = new Point(158, 31);
-            pnContent.Name = "pnContent";
-            pnContent.Size = new Size(1008, 446);
-            pnContent.TabIndex = 3;
+            mnThongKeChuyenXe.Name = "mnThongKeChuyenXe";
+            mnThongKeChuyenXe.Size = new Size(253, 28);
+            mnThongKeChuyenXe.Text = "Thống kê chuyến xe";
+            mnThongKeChuyenXe.Click += mnThongKeChuyenXe_Click;
             // 
             // frmMain
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1166, 503);
-            Controls.Add(pnContent);
-            Controls.Add(pnSideBar);
             Controls.Add(statusStrip1);
             Controls.Add(menuStrip1);
+            IsMdiContainer = true;
             Name = "frmMain";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Main";
+            WindowState = FormWindowState.Maximized;
             Load += frmMain_Load;
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
-            pnSideBar.ResumeLayout(false);
-            pnSideBar.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -357,7 +315,6 @@
         private ToolStripMenuItem mnQuanLy;
         private ToolStripMenuItem mnThongKeBaoCao;
         private ToolStripMenuItem mnTroGiup;
-        private Panel pnSideBar;
         private ToolStripStatusLabel lbHienThi;
         private ToolStripMenuItem mnAccount;
         private ToolStripMenuItem mnDangXuat;
@@ -365,7 +322,6 @@
         private ToolStripMenuItem hướngDẫnSửDụngPhầnMềmToolStripMenuItem;
         private ToolStripMenuItem mnThongTin;
         private ToolStripMenuItem mnTuyenXe;
-        private ToolStripMenuItem mnChiTiet;
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripSeparator toolStripSeparator5;
         private ToolStripMenuItem mnThemTram;
@@ -375,9 +331,7 @@
         private ToolStripSeparator toolStripSeparator4;
         private ToolStripMenuItem mnNhanVien;
         private ToolStripMenuItem mnPhanCong;
-        private Panel pnContent;
-        private PictureBox pictureBox1;
-        private Label label1;
         private ToolStripStatusLabel lbRole;
+        private ToolStripMenuItem mnThongKeChuyenXe;
     }
 }

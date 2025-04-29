@@ -57,7 +57,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
 
         private void picHide_Click(object sender, EventArgs e)
         {
-            if (txtMatKhau.PasswordChar == '*')
+            if (txtMatKhau.PasswordChar == '•')
             {
                 picDisplay.BringToFront();
                 txtMatKhau.PasswordChar = '\0';
@@ -69,12 +69,16 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             if (txtMatKhau.PasswordChar == '\0')
             {
                 picHide.BringToFront();
-                txtMatKhau.PasswordChar = '*';
+                txtMatKhau.PasswordChar = '•';
             }
         }
-        private void frmDangNhap_Load(object sender, EventArgs e)
+
+        private void txtMatKhau_KeyDown(object sender, KeyEventArgs e)
         {
-          
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnDangNhap_Click(sender, e);
+            }
         }
     }
 }

@@ -33,7 +33,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             btnXuatFileExcel.Enabled = true;
 
             btnTimKiem.Enabled = true;
-            txtTuKhoa.Enabled = true;
+            txtTimKiem.Enabled = true;
             cboNhanVien.Enabled = giaTri;
             cboXeBuyt.Enabled = giaTri;
             dtNgayLam.Enabled = giaTri;
@@ -62,17 +62,17 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             LayDuLieuXeVaoComboBox();
 
             BatTatChucNang(false);
-            gridPhanCong.AutoGenerateColumns = false;
-            if (gridPhanCong.Columns.Count == 0)
+            dgvPhanCong.AutoGenerateColumns = false;
+            if (dgvPhanCong.Columns.Count == 0)
             {
-                gridPhanCong.Columns.Add(new DataGridViewTextBoxColumn { Name = "PhanCongID", DataPropertyName = "PhanCongID", HeaderText = "Mã phân công" });
+                dgvPhanCong.Columns.Add(new DataGridViewTextBoxColumn { Name = "PhanCongID", DataPropertyName = "PhanCongID", HeaderText = "Mã phân công" });
                 //gridPhanCong.Columns.Add(new DataGridViewTextBoxColumn { Name = "XeID", DataPropertyName = "XeID", HeaderText = "Mã xe" });
                 //gridPhanCong.Columns.Add(new DataGridViewTextBoxColumn { Name = "NhanVienID", DataPropertyName = "NhanVienID", HeaderText = "Mã nhân viên" });
-                gridPhanCong.Columns.Add(new DataGridViewTextBoxColumn { Name = "HoTen", DataPropertyName = "HoTen", HeaderText = "Họ tên" });
+                dgvPhanCong.Columns.Add(new DataGridViewTextBoxColumn { Name = "HoTen", DataPropertyName = "HoTen", HeaderText = "Họ tên" });
                 //gridPhanCong.Columns.Add(new DataGridViewTextBoxColumn { Name = "NhanVienID", DataPropertyName = "NhanVienID", HeaderText = "Mã phân công" });
-                gridPhanCong.Columns.Add(new DataGridViewTextBoxColumn { Name = "NgayLamViec", DataPropertyName = "NgayLamViec", HeaderText = "Ngày làm việc" });
-                gridPhanCong.Columns.Add(new DataGridViewTextBoxColumn { Name = "BienSo", DataPropertyName = "BienSo", HeaderText = "Biển số" });
-                gridPhanCong.Columns.Add(new DataGridViewTextBoxColumn { Name = "Vaitro", DataPropertyName = "VaiTro", HeaderText = "Vai trò" });
+                dgvPhanCong.Columns.Add(new DataGridViewTextBoxColumn { Name = "NgayLamViec", DataPropertyName = "NgayLamViec", HeaderText = "Ngày làm việc" });
+                dgvPhanCong.Columns.Add(new DataGridViewTextBoxColumn { Name = "BienSo", DataPropertyName = "BienSo", HeaderText = "Biển số" });
+                dgvPhanCong.Columns.Add(new DataGridViewTextBoxColumn { Name = "Vaitro", DataPropertyName = "VaiTro", HeaderText = "Vai trò" });
             }
 
 
@@ -101,7 +101,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             dtNgayLam.DataBindings.Add("value", bindingSource, "NgayLamViec", false, DataSourceUpdateMode.Never);
 
 
-            gridPhanCong.DataSource = bindingSource;
+            dgvPhanCong.DataSource = bindingSource;
         }
         private void btnThem_Click(object sender, EventArgs e)
         {
@@ -111,7 +111,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
         }
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            id = Convert.ToInt32(gridPhanCong.CurrentRow.Cells["PhanCongID"].Value.ToString());
+            id = Convert.ToInt32(dgvPhanCong.CurrentRow.Cells["PhanCongID"].Value.ToString());
             PhanCong pc = context.PhanCong.Find(id);
             if (pc != null)
             {
@@ -122,7 +122,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
         }
         private void btnSua_Click(object sender, EventArgs e)
         {
-            id = Convert.ToInt32(gridPhanCong.CurrentRow.Cells["PhanCongID"].Value.ToString());
+            id = Convert.ToInt32(dgvPhanCong.CurrentRow.Cells["PhanCongID"].Value.ToString());
             xuLyThem = false;
             BatTatChucNang(true);
         }
@@ -160,7 +160,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
         }
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
-            var tukhoa = txtTuKhoa.Text.Trim();
+            var tukhoa = txtTimKiem.Text.Trim();
             try
             {
                 var phancong = context.PhanCong.Select(r => new DanhSachPhanCong
@@ -172,9 +172,9 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                 }).Where(r => r.HoTen.Contains(tukhoa) || r.BienSo.Contains(tukhoa) || r.VaiTro.Contains(tukhoa)).ToList();
                 BindingSource bindingSource = new BindingSource();
                 bindingSource.DataSource = phancong;
-                gridPhanCong.DataSource = bindingSource;
+                dgvPhanCong.DataSource = bindingSource;
 
-                if (gridPhanCong.Rows.Count == 0)
+                if (dgvPhanCong.Rows.Count == 0)
                 {
                     MessageBox.Show("Không có dữ liệu cần tìm");
                     frmPhanCong_Load(sender, e);
@@ -183,14 +183,6 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void gridPhanCong_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                btnTimKiem_Click((Control)sender, e);
             }
         }
 
@@ -246,12 +238,9 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                                 string hoTen = row["HoTen"].ToString().Trim();
                                 string ngayLamViec = row["NgayLamViec"].ToString().Trim();
 
-                            
-                             
-
-                                var nhanVienID = context.NhanVien.Where(n=> n.HoTen == hoTen).Select(n=> n.NhanVienID).FirstOrDefault();
+                                var nhanVienID = context.NhanVien.Where(n => n.HoTen == hoTen).Select(n => n.NhanVienID).FirstOrDefault();
                                 var xeID = context.XeBuyt.Where(x => x.BienSo == bienSo).Select(x => x.XeID).FirstOrDefault();
-                               
+
                                 // Kiểm tra bản ghi PhanCong đã tồn tại
                                 var existPC = context.PhanCong.FirstOrDefault(pc =>
                                     pc.PhanCongID == Convert.ToInt32(phanCongID) &&
@@ -286,7 +275,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                             context.SaveChanges();
                             MessageBox.Show($"Cập nhật: {soLuongCapNhat}\nThêm mới: {soLuongThemMoi}", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             frmPhanCong_Load(sender, e);
-                            gridPhanCong.Refresh();
+                            dgvPhanCong.Refresh();
                         }
                         else
                         {
@@ -338,6 +327,14 @@ namespace QuanLyLoTrinhXeBuyt.Forms
 
                     MessageBox.Show("Xuất Excel thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+            }
+        }
+
+        private void txtTimKiem_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnTimKiem_Click((Control)sender, e);
             }
         }
     }

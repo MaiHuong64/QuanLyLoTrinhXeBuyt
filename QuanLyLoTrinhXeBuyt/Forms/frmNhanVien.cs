@@ -50,7 +50,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             txtEmail.Clear();
             txtDiaChi.Clear();
             cboVaiTro.Text = "";
-            
+
             txtHoVaTen.Focus();
         }
         private void frmNhanVien_Load(object sender, EventArgs e)
@@ -76,7 +76,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
 
             txtEmail.DataBindings.Clear();
             txtEmail.DataBindings.Add("Text", bindingSource, "Email", false, DataSourceUpdateMode.Never);
-            
+
             cboVaiTro.DataBindings.Clear();
             cboVaiTro.DataBindings.Add("Text", bindingSource, "VaiTro", false, DataSourceUpdateMode.Never);
 
@@ -187,7 +187,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                         {
                             if (firstRow)
                             {
-                                readRange = string.Format("{0}:{1}",1, row.LastCellUsed().Address.ColumnNumber);
+                                readRange = string.Format("{0}:{1}", 1, row.LastCellUsed().Address.ColumnNumber);
                                 foreach (IXLCell cell in row.CellsUsed())
                                     table.Columns.Add(cell.GetString());
                                 firstRow = false;
@@ -288,6 +288,13 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                         MessageBox.Show($"Lỗi khi xuất file: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
+            }
+        }
+        private void txtTimKiem_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnTimKiem_Click(sender, e);
             }
         }
     }

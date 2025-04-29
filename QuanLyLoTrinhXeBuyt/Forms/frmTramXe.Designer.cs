@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            groupBox2 = new GroupBox();
-            gridTramXe = new DataGridView();
             btnThoat = new Button();
             btnHuybo = new Button();
             btnLuu = new Button();
@@ -40,39 +38,20 @@
             btnThem = new Button();
             groupBox1 = new GroupBox();
             btnTimKiem = new Button();
-            groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)gridTramXe).BeginInit();
+            groupBox2 = new GroupBox();
+            dvgTramXe = new DataGridView();
+            toolStrip = new ToolStrip();
+            toolStripLabel1 = new ToolStripLabel();
+            txtTimKiem = new ToolStripTextBox();
+            toolStripButton1 = new ToolStripButton();
+            toolStripSeparator1 = new ToolStripSeparator();
+            btnNhapFileExcel = new ToolStripButton();
+            btnXuatFileExcel = new ToolStripButton();
             groupBox1.SuspendLayout();
+            groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dvgTramXe).BeginInit();
+            toolStrip.SuspendLayout();
             SuspendLayout();
-            // 
-            // groupBox2
-            // 
-            groupBox2.Controls.Add(gridTramXe);
-            groupBox2.Location = new Point(13, 189);
-            groupBox2.Margin = new Padding(4);
-            groupBox2.Name = "groupBox2";
-            groupBox2.Padding = new Padding(4);
-            groupBox2.Size = new Size(990, 270);
-            groupBox2.TabIndex = 7;
-            groupBox2.TabStop = false;
-            groupBox2.Text = "Danh sách các tuyến xe";
-            // 
-            // gridTramXe
-            // 
-            gridTramXe.AllowUserToAddRows = false;
-            gridTramXe.AllowUserToDeleteRows = false;
-            gridTramXe.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            gridTramXe.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            gridTramXe.Dock = DockStyle.Fill;
-            gridTramXe.Location = new Point(4, 24);
-            gridTramXe.MultiSelect = false;
-            gridTramXe.Name = "gridTramXe";
-            gridTramXe.ReadOnly = true;
-            gridTramXe.RowHeadersVisible = false;
-            gridTramXe.RowHeadersWidth = 51;
-            gridTramXe.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            gridTramXe.Size = new Size(982, 242);
-            gridTramXe.TabIndex = 0;
             // 
             // btnThoat
             // 
@@ -157,6 +136,7 @@
             btnThem.TabIndex = 3;
             btnThem.Text = "Thêm";
             btnThem.UseVisualStyleBackColor = true;
+            btnThem.Click += btnThem_Click_1;
             // 
             // groupBox1
             // 
@@ -189,27 +169,106 @@
             btnTimKiem.UseVisualStyleBackColor = true;
             btnTimKiem.Click += btnTimKiem_Click;
             // 
+            // groupBox2
+            // 
+            groupBox2.Controls.Add(dvgTramXe);
+            groupBox2.Controls.Add(toolStrip);
+            groupBox2.Location = new Point(13, 189);
+            groupBox2.Margin = new Padding(4);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Padding = new Padding(4);
+            groupBox2.Size = new Size(986, 348);
+            groupBox2.TabIndex = 19;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "Danh sách nhân viên";
+            // 
+            // dvgTramXe
+            // 
+            dvgTramXe.AllowUserToAddRows = false;
+            dvgTramXe.AllowUserToDeleteRows = false;
+            dvgTramXe.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dvgTramXe.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dvgTramXe.Dock = DockStyle.Fill;
+            dvgTramXe.Location = new Point(4, 51);
+            dvgTramXe.MultiSelect = false;
+            dvgTramXe.Name = "dvgTramXe";
+            dvgTramXe.ReadOnly = true;
+            dvgTramXe.RowHeadersWidth = 51;
+            dvgTramXe.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dvgTramXe.Size = new Size(978, 293);
+            dvgTramXe.TabIndex = 4;
+            // 
+            // toolStrip
+            // 
+            toolStrip.ImageScalingSize = new Size(20, 20);
+            toolStrip.Items.AddRange(new ToolStripItem[] { toolStripLabel1, txtTimKiem, toolStripButton1, toolStripSeparator1, btnNhapFileExcel, btnXuatFileExcel });
+            toolStrip.Location = new Point(4, 24);
+            toolStrip.Name = "toolStrip";
+            toolStrip.Size = new Size(978, 27);
+            toolStrip.TabIndex = 3;
+            // 
+            // toolStripLabel1
+            // 
+            toolStripLabel1.Name = "toolStripLabel1";
+            toolStripLabel1.Size = new Size(73, 24);
+            toolStripLabel1.Text = "Tìm kiếm:";
+            // 
+            // txtTimKiem
+            // 
+            txtTimKiem.BorderStyle = BorderStyle.FixedSingle;
+            txtTimKiem.Name = "txtTimKiem";
+            txtTimKiem.Size = new Size(150, 27);
+            // 
+            // toolStripButton1
+            // 
+            toolStripButton1.ImageTransparentColor = Color.Magenta;
+            toolStripButton1.Name = "toolStripButton1";
+            toolStripButton1.Size = new Size(38, 24);
+            toolStripButton1.Text = "Tìm";
+            // 
+            // toolStripSeparator1
+            // 
+            toolStripSeparator1.Name = "toolStripSeparator1";
+            toolStripSeparator1.Size = new Size(6, 27);
+            // 
+            // btnNhapFileExcel
+            // 
+            btnNhapFileExcel.ImageTransparentColor = Color.Magenta;
+            btnNhapFileExcel.Name = "btnNhapFileExcel";
+            btnNhapFileExcel.Size = new Size(58, 24);
+            btnNhapFileExcel.Text = "Nhập...";
+            btnNhapFileExcel.ToolTipText = "Nhập dữ liệu từ Excel";
+            // 
+            // btnXuatFileExcel
+            // 
+            btnXuatFileExcel.ImageTransparentColor = Color.Magenta;
+            btnXuatFileExcel.Name = "btnXuatFileExcel";
+            btnXuatFileExcel.Size = new Size(52, 24);
+            btnXuatFileExcel.Text = "Xuất...";
+            btnXuatFileExcel.ToolTipText = "Xuất ra tập tin Excel";
+            // 
             // frmTramXe
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1024, 476);
+            ClientSize = new Size(1005, 539);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Name = "frmTramXe";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Trạm xe";
             Load += frmTramXe_Load;
-            groupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)gridTramXe).EndInit();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
+            groupBox2.ResumeLayout(false);
+            groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dvgTramXe).EndInit();
+            toolStrip.ResumeLayout(false);
+            toolStrip.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
-
-        private GroupBox groupBox2;
-        private DataGridView gridTramXe;
         private DataGridViewTextBoxColumn TuyenXeID;
         private DataGridViewTextBoxColumn TenTuyen;
         private DataGridViewTextBoxColumn DiemDung;
@@ -225,5 +284,14 @@
         private GroupBox groupBox1;
         private Button button1;
         private Button btnTimKiem;
+        private GroupBox groupBox2;
+        private DataGridView dvgTramXe;
+        private ToolStrip toolStrip;
+        private ToolStripLabel toolStripLabel1;
+        private ToolStripTextBox txtTimKiem;
+        private ToolStripButton toolStripButton1;
+        private ToolStripSeparator toolStripSeparator1;
+        private ToolStripButton btnNhapFileExcel;
+        private ToolStripButton btnXuatFileExcel;
     }
 }

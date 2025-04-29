@@ -70,7 +70,7 @@
             groupBox2.Size = new Size(1011, 259);
             groupBox2.TabIndex = 2;
             groupBox2.TabStop = false;
-            groupBox2.Text = "groupBox2";
+            groupBox2.Text = "Chi tiết tuyến";
             // 
             // btnLuu
             // 
@@ -209,7 +209,8 @@
             Controls.Add(btnLuu);
             Controls.Add(groupBox2);
             Name = "frmTuyenXe_ChiTiet";
-            Text = " ";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Chi tiết tuyến xe";
             Load += frmTuyenXe_TramXe_Load;
             ((System.ComponentModel.ISupportInitialize)gridChiTiet).EndInit();
             groupBox2.ResumeLayout(false);

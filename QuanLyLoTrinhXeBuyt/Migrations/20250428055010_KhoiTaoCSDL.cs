@@ -133,6 +133,7 @@ namespace QuanLyLoTrinhXeBuyt.Migrations
                     TenChuyen = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DiemXuatPhat = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ThoiGianDi = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ThoiGianDen = table.Column<DateTime>(type: "datetime2", nullable: false),
                     TuyenXeID = table.Column<int>(type: "int", nullable: false),
                     XeID = table.Column<int>(type: "int", nullable: false)
                 },

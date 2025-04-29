@@ -230,12 +230,12 @@
             // 
             groupBox2.Controls.Add(dvgNhanVien);
             groupBox2.Controls.Add(toolStrip);
-            groupBox2.Location = new Point(13, 227);
+            groupBox2.Location = new Point(13, 200);
             groupBox2.Margin = new Padding(4);
             groupBox2.Name = "groupBox2";
             groupBox2.Padding = new Padding(4);
-            groupBox2.Size = new Size(1164, 379);
-            groupBox2.TabIndex = 4;
+            groupBox2.Size = new Size(1159, 348);
+            groupBox2.TabIndex = 19;
             groupBox2.TabStop = false;
             groupBox2.Text = "Danh sách nhân viên";
             // 
@@ -252,7 +252,7 @@
             dvgNhanVien.ReadOnly = true;
             dvgNhanVien.RowHeadersWidth = 51;
             dvgNhanVien.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dvgNhanVien.Size = new Size(1156, 324);
+            dvgNhanVien.Size = new Size(1151, 293);
             dvgNhanVien.TabIndex = 4;
             // 
             // toolStrip
@@ -261,7 +261,7 @@
             toolStrip.Items.AddRange(new ToolStripItem[] { toolStripLabel1, txtTimKiem, btnTimKiem, toolStripSeparator1, btnNhapFileExcel, btnXuatFileExcel });
             toolStrip.Location = new Point(4, 24);
             toolStrip.Name = "toolStrip";
-            toolStrip.Size = new Size(1156, 27);
+            toolStrip.Size = new Size(1151, 27);
             toolStrip.TabIndex = 3;
             // 
             // toolStripLabel1
@@ -282,7 +282,6 @@
             btnTimKiem.Name = "btnTimKiem";
             btnTimKiem.Size = new Size(38, 24);
             btnTimKiem.Text = "Tìm";
-            btnTimKiem.Click += btnTimKiem_Click;
             // 
             // toolStripSeparator1
             // 
@@ -296,7 +295,6 @@
             btnNhapFileExcel.Size = new Size(58, 24);
             btnNhapFileExcel.Text = "Nhập...";
             btnNhapFileExcel.ToolTipText = "Nhập dữ liệu từ Excel";
-            btnNhapFileExcel.Click += btnNhapFileExcel_Click;
             // 
             // btnXuatFileExcel
             // 
@@ -305,16 +303,16 @@
             btnXuatFileExcel.Size = new Size(52, 24);
             btnXuatFileExcel.Text = "Xuất...";
             btnXuatFileExcel.ToolTipText = "Xuất ra tập tin Excel";
-            btnXuatFileExcel.Click += btnXuatFileExcel_Click;
             // 
             // frmNhanVien
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1176, 609);
+            ClientSize = new Size(1171, 547);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Name = "frmNhanVien";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Nhân viên";
             Load += frmNhanVien_Load;
             groupBox1.ResumeLayout(false);
@@ -341,7 +339,12 @@
         private Label label1;
         private TextBox txtHoVaTen;
         private GroupBox groupBox1;
+        private TextBox txtEmail;
+        private Label label2;
+        private Label label8;
+        private ComboBox cboVaiTro;
         private GroupBox groupBox2;
+        private DataGridView dvgNhanVien;
         private ToolStrip toolStrip;
         private ToolStripLabel toolStripLabel1;
         private ToolStripTextBox txtTimKiem;
@@ -349,10 +352,5 @@
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripButton btnNhapFileExcel;
         private ToolStripButton btnXuatFileExcel;
-        private TextBox txtEmail;
-        private Label label2;
-        private DataGridView dvgNhanVien;
-        private Label label8;
-        private ComboBox cboVaiTro;
     }
 }

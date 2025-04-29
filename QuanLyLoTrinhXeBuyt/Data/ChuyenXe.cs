@@ -12,6 +12,7 @@ namespace QuanLyLoTrinhXeBuyt.Data
         public string? TenChuyen { get; set; } = null!;
         public string? DiemXuatPhat { get; set; } = null!;
         public DateTime ThoiGianDi { get; set; }
+        public DateTime ThoiGianDen { get; set; }
         public int TuyenXeID { get; set; }
         public int XeID { get; set; }
         public virtual TuyenXe TuyenXe { get; set; } = null!;
@@ -24,6 +25,7 @@ namespace QuanLyLoTrinhXeBuyt.Data
         public string? TenChuyen { get; set; } = null!;
         public string? DiemXuatPhat { get; set; } = null!;
         public DateTime ThoiGianDi { get; set; }
+        public DateTime ThoiGianDen { get; set; }
         public int TuyenXeID { get; set; }
         public string? TenTuyen { get; set; } = null!;
         public int XeID { get; set; }

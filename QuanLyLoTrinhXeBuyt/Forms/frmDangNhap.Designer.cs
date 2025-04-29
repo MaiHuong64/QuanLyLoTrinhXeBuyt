@@ -68,16 +68,19 @@
             // 
             // txtMatKhau
             // 
+            txtMatKhau.Font = new Font("Segoe UI", 13.8F);
             txtMatKhau.Location = new Point(29, 154);
             txtMatKhau.Multiline = true;
             txtMatKhau.Name = "txtMatKhau";
-            txtMatKhau.PasswordChar = '*';
+            txtMatKhau.PasswordChar = '•';
             txtMatKhau.PlaceholderText = "Mật khẩu";
             txtMatKhau.Size = new Size(219, 43);
             txtMatKhau.TabIndex = 12;
+            txtMatKhau.KeyDown += txtMatKhau_KeyDown;
             // 
             // txtTenDangNhap
             // 
+            txtTenDangNhap.Font = new Font("Segoe UI", 13.8F);
             txtTenDangNhap.Location = new Point(29, 103);
             txtTenDangNhap.Multiline = true;
             txtTenDangNhap.Name = "txtTenDangNhap";
@@ -144,7 +147,6 @@
             Name = "frmDangNhap";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Đăng nhập";
-            Load += frmDangNhap_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)picDisplay).EndInit();
             ((System.ComponentModel.ISupportInitialize)picHide).EndInit();

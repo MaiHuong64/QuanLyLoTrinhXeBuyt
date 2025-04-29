@@ -22,14 +22,14 @@ namespace QuanLyLoTrinhXeBuyt.Forms
         private void frmTuyenXe_Load(object sender, EventArgs e)
         {
             BatTatChucNang(false);
-            gridTuyenXe.AutoGenerateColumns = false;
+            dvgTuyenXe.AutoGenerateColumns = false;
 
-            if(gridTuyenXe.Columns.Count == 0)
+            if(dvgTuyenXe.Columns.Count == 0)
             {
-                gridTuyenXe.Columns.Add(new DataGridViewTextBoxColumn { Name = "TuyenXeID", DataPropertyName = "TuyenXeID", HeaderText = "Mã tuyến xe" });
-                gridTuyenXe.Columns.Add(new DataGridViewTextBoxColumn { Name = "TenTuyen", DataPropertyName = "TenTuyen", HeaderText = "Tên tuyến xe" });
-                gridTuyenXe.Columns.Add(new DataGridViewTextBoxColumn { Name = "MoTa", DataPropertyName = "MoTa", HeaderText = "Mô tả" });
-                gridTuyenXe.Columns.Add(new DataGridViewTextBoxColumn { Name = "XemChiTiet", DataPropertyName = "XemChiTiet", HeaderText = "Xem chi tiết" });
+                dvgTuyenXe.Columns.Add(new DataGridViewTextBoxColumn { Name = "TuyenXeID", DataPropertyName = "TuyenXeID", HeaderText = "Mã tuyến xe" });
+                dvgTuyenXe.Columns.Add(new DataGridViewTextBoxColumn { Name = "TenTuyen", DataPropertyName = "TenTuyen", HeaderText = "Tên tuyến xe" });
+                dvgTuyenXe.Columns.Add(new DataGridViewTextBoxColumn { Name = "MoTa", DataPropertyName = "MoTa", HeaderText = "Mô tả" });
+                dvgTuyenXe.Columns.Add(new DataGridViewTextBoxColumn { Name = "XemChiTiet", DataPropertyName = "XemChiTiet", HeaderText = "Xem chi tiết" });
             }
 
             List<DanhSachTuyenXe> tuyenXe = new List<DanhSachTuyenXe>();
@@ -42,7 +42,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                 XemChiTiet = "Xem chi tiết"
             }).ToList();
 
-            gridTuyenXe.DataSource = tuyenXe;
+            dvgTuyenXe.DataSource = tuyenXe;
         }
         private void btnThem_Click(object sender, EventArgs e)
         {
@@ -55,7 +55,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
         }
         private void btnSua_Click(object sender, EventArgs e)
         {
-            id = Convert.ToInt32(gridTuyenXe.CurrentRow.Cells["TuyenXeID"].Value.ToString());
+            id = Convert.ToInt32(dvgTuyenXe.CurrentRow.Cells["TuyenXeID"].Value.ToString());
             using(frmTuyenXe_ChiTiet frm = new frmTuyenXe_ChiTiet(id))
             {
                 frm.ShowDialog();
@@ -136,11 +136,11 @@ namespace QuanLyLoTrinhXeBuyt.Forms
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            int index = gridTuyenXe.CurrentRow.Index;
-            var ten = gridTuyenXe.Rows[index].Cells["TenTuyen"].Value.ToString();
+            int index = dvgTuyenXe.CurrentRow.Index;
+            var ten = dvgTuyenXe.Rows[index].Cells["TenTuyen"].Value.ToString();
             if (MessageBox.Show("Xác nhận xóa chuyến " + ten + "?", "Xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                id = Convert.ToInt32(gridTuyenXe.Rows[index].Cells["TuyenXeID"].Value.ToString());
+                id = Convert.ToInt32(dvgTuyenXe.Rows[index].Cells["TuyenXeID"].Value.ToString());
                 TuyenXe tuyenxe = context.TuyenXe.Find(id);
                 context.Remove(tuyenxe);
 

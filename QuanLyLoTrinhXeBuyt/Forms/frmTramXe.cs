@@ -40,14 +40,14 @@ namespace QuanLyLoTrinhXeBuyt.Forms
 
             BindingSource bindingSource = new BindingSource();
             bindingSource.DataSource = tramXe;
-            gridTramXe.DataSource = bindingSource;
+            dvgTramXe.DataSource = bindingSource;
 
             txtTenTramXe.DataBindings.Clear();
             txtTenTramXe.DataBindings.Add("Text", bindingSource, "TenTramXe", true, DataSourceUpdateMode.OnPropertyChanged);
-            if (gridTramXe.Columns.Count == 0)
+            if (dvgTramXe.Columns.Count == 0)
             {
-                gridTramXe.Columns.Add(new DataGridViewTextBoxColumn { Name = "TramXeID", DataPropertyName = "TramXeID", HeaderText = "Mã trạm" });
-                gridTramXe.Columns.Add(new DataGridViewTextBoxColumn { Name = "TenTramXe", DataPropertyName = "TenTramXe", HeaderText = "Tên trạm" });
+                dvgTramXe.Columns.Add(new DataGridViewTextBoxColumn { Name = "TramXeID", DataPropertyName = "TramXeID", HeaderText = "Mã trạm" });
+                dvgTramXe.Columns.Add(new DataGridViewTextBoxColumn { Name = "TenTramXe", DataPropertyName = "TenTramXe", HeaderText = "Tên trạm" });
 
             }
 
@@ -63,7 +63,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
         {
             if (MessageBox.Show("Xác nhận xóa hãng sản xuất " + txtTenTramXe.Text + "?", "Xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                id = Convert.ToInt32(gridTramXe.CurrentRow.Cells["TramXeID"].Value);
+                id = Convert.ToInt32(dvgTramXe.CurrentRow.Cells["TramXeID"].Value);
                 TramXe tramXe = context.TramXe.Find(id);
                 context.TramXe.Remove(tramXe);
                 context.SaveChanges();
@@ -75,7 +75,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
         {
             xuLyThem = false;
             BatTatChucNang(true);
-            id = Convert.ToInt32(gridTramXe.CurrentRow.Cells["TramXeID"].Value);
+            id = Convert.ToInt32(dvgTramXe.CurrentRow.Cells["TramXeID"].Value);
         }
 
         private void btnLuu_Click(object sender, EventArgs e)
@@ -111,15 +111,20 @@ namespace QuanLyLoTrinhXeBuyt.Forms
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
             var tram = context.TramXe.Where(x => x.TenTramXe.Contains(txtTenTramXe.Text)).ToList();
-            gridTramXe.DataSource = tram;
+            dvgTramXe.DataSource = tram;
         }
 
         private void txtTenTramXe_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter)
             {
                 btnTimKiem_Click(sender, e);
             }
+        }
+
+        private void btnThem_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }
