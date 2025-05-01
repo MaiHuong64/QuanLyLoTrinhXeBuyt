@@ -216,10 +216,10 @@
             // dtpThoiGianDen
             // 
             dtpThoiGianDen.CustomFormat = "dd/MM/yyyy HH:mm";
+            dtpThoiGianDen.Format = DateTimePickerFormat.Custom;
             dtpThoiGianDen.Location = new Point(862, 33);
             dtpThoiGianDen.Name = "dtpThoiGianDen";
-            dtpThoiGianDen.ShowUpDown = true;
-            dtpThoiGianDen.Size = new Size(237, 27);
+            dtpThoiGianDen.Size = new Size(167, 27);
             dtpThoiGianDen.TabIndex = 24;
             // 
             // label4
@@ -253,11 +253,10 @@
             // dtpThoiGianDi
             // 
             dtpThoiGianDi.CustomFormat = "dd/MM/yyyy HH:mm";
-            dtpThoiGianDi.Format = DateTimePickerFormat.Time;
+            dtpThoiGianDi.Format = DateTimePickerFormat.Custom;
             dtpThoiGianDi.Location = new Point(493, 37);
             dtpThoiGianDi.Name = "dtpThoiGianDi";
-            dtpThoiGianDi.ShowUpDown = true;
-            dtpThoiGianDi.Size = new Size(186, 27);
+            dtpThoiGianDi.Size = new Size(176, 27);
             dtpThoiGianDi.TabIndex = 18;
             // 
             // label6
@@ -326,7 +325,7 @@
             btnTimKiem.Name = "btnTimKiem";
             btnTimKiem.Size = new Size(38, 24);
             btnTimKiem.Text = "Tìm";
-            //btnTimKiem.Click += btnTimKiem_Click;
+            btnTimKiem.Click += btnTimKiem_Click;
             // 
             // toolStripSeparator1
             // 

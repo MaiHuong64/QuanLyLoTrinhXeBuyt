@@ -39,7 +39,7 @@
             cboNhanVien = new ComboBox();
             label2 = new Label();
             dtNgayLam = new DateTimePicker();
-            cboXeBuyt = new ComboBox();
+            cboChuyenXe = new ComboBox();
             label1 = new Label();
             groupBox2 = new GroupBox();
             dgvPhanCong = new DataGridView();
@@ -68,7 +68,7 @@
             groupBox1.Controls.Add(cboNhanVien);
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(dtNgayLam);
-            groupBox1.Controls.Add(cboXeBuyt);
+            groupBox1.Controls.Add(cboChuyenXe);
             groupBox1.Controls.Add(label1);
             groupBox1.Location = new Point(12, 12);
             groupBox1.Name = "groupBox1";
@@ -177,22 +177,22 @@
             dtNgayLam.Size = new Size(154, 27);
             dtNgayLam.TabIndex = 3;
             // 
-            // cboXeBuyt
+            // cboChuyenXe
             // 
-            cboXeBuyt.FormattingEnabled = true;
-            cboXeBuyt.Location = new Point(95, 28);
-            cboXeBuyt.Name = "cboXeBuyt";
-            cboXeBuyt.Size = new Size(151, 28);
-            cboXeBuyt.TabIndex = 2;
+            cboChuyenXe.FormattingEnabled = true;
+            cboChuyenXe.Location = new Point(113, 30);
+            cboChuyenXe.Name = "cboChuyenXe";
+            cboChuyenXe.Size = new Size(151, 28);
+            cboChuyenXe.TabIndex = 2;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Location = new Point(6, 38);
             label1.Name = "label1";
-            label1.Size = new Size(59, 20);
+            label1.Size = new Size(101, 20);
             label1.TabIndex = 0;
-            label1.Text = "Xe buýt";
+            label1.Text = "Tên chuyến xe";
             // 
             // groupBox2
             // 
@@ -265,6 +265,7 @@
             btnNhapFileExcel.Size = new Size(58, 24);
             btnNhapFileExcel.Text = "Nhập...";
             btnNhapFileExcel.ToolTipText = "Nhập dữ liệu từ Excel";
+            btnNhapFileExcel.Click += btnNhapFileExcel_Click;
             // 
             // btnXuatFileExcel
             // 
@@ -273,6 +274,7 @@
             btnXuatFileExcel.Size = new Size(52, 24);
             btnXuatFileExcel.Text = "Xuất...";
             btnXuatFileExcel.ToolTipText = "Xuất ra tập tin Excel";
+            btnXuatFileExcel.Click += btnXuatFileExcel_Click;
             // 
             // frmPhanCong
             // 
@@ -299,7 +301,7 @@
 
         private GroupBox groupBox1;
         private DateTimePicker dtNgayLam;
-        private ComboBox cboXeBuyt;
+        private ComboBox cboChuyenXe;
         private Label label1;
         private ComboBox cboNhanVien;
         private Label label2;

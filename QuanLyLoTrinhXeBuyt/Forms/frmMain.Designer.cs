@@ -54,10 +54,12 @@
             mnNhanVien = new ToolStripMenuItem();
             mnPhanCong = new ToolStripMenuItem();
             mnThongKeBaoCao = new ToolStripMenuItem();
+            mnThongKeChuyenXe = new ToolStripMenuItem();
+            mnThongKePhanCong = new ToolStripMenuItem();
             mnTroGiup = new ToolStripMenuItem();
             hướngDẫnSửDụngPhầnMềmToolStripMenuItem = new ToolStripMenuItem();
             mnThongTin = new ToolStripMenuItem();
-            mnThongKeChuyenXe = new ToolStripMenuItem();
+            mnDashBoard = new ToolStripMenuItem();
             statusStrip1.SuspendLayout();
             menuStrip1.SuspendLayout();
             SuspendLayout();
@@ -243,11 +245,25 @@
             // 
             // mnThongKeBaoCao
             // 
-            mnThongKeBaoCao.DropDownItems.AddRange(new ToolStripItem[] { mnThongKeChuyenXe });
+            mnThongKeBaoCao.DropDownItems.AddRange(new ToolStripItem[] { mnThongKeChuyenXe, mnThongKePhanCong, mnDashBoard });
             mnThongKeBaoCao.ForeColor = SystemColors.ButtonHighlight;
             mnThongKeBaoCao.Name = "mnThongKeBaoCao";
             mnThongKeBaoCao.Size = new Size(178, 27);
             mnThongKeBaoCao.Text = "Thống kê - Báo cáo";
+            // 
+            // mnThongKeChuyenXe
+            // 
+            mnThongKeChuyenXe.Name = "mnThongKeChuyenXe";
+            mnThongKeChuyenXe.Size = new Size(345, 28);
+            mnThongKeChuyenXe.Text = "Thống kê chuyến xe";
+            mnThongKeChuyenXe.Click += mnThongKeChuyenXe_Click;
+            // 
+            // mnThongKePhanCong
+            // 
+            mnThongKePhanCong.Name = "mnThongKePhanCong";
+            mnThongKePhanCong.Size = new Size(345, 28);
+            mnThongKePhanCong.Text = "Thống kê phân công nhân viên ";
+            mnThongKePhanCong.Click += mnThongKePhanCong_Click;
             // 
             // mnTroGiup
             // 
@@ -274,12 +290,12 @@
             mnThongTin.Size = new Size(326, 28);
             mnThongTin.Text = "Thông tin phần mềm";
             // 
-            // mnThongKeChuyenXe
+            // mnDashBoard
             // 
-            mnThongKeChuyenXe.Name = "mnThongKeChuyenXe";
-            mnThongKeChuyenXe.Size = new Size(253, 28);
-            mnThongKeChuyenXe.Text = "Thống kê chuyến xe";
-            mnThongKeChuyenXe.Click += mnThongKeChuyenXe_Click;
+            mnDashBoard.Name = "mnDashBoard";
+            mnDashBoard.Size = new Size(345, 28);
+            mnDashBoard.Text = "DashBoard";
+            mnDashBoard.Click += mnDashBoard_Click;
             // 
             // frmMain
             // 
@@ -333,5 +349,7 @@
         private ToolStripMenuItem mnPhanCong;
         private ToolStripStatusLabel lbRole;
         private ToolStripMenuItem mnThongKeChuyenXe;
+        private ToolStripMenuItem mnThongKePhanCong;
+        private ToolStripMenuItem mnDashBoard;
     }
 }

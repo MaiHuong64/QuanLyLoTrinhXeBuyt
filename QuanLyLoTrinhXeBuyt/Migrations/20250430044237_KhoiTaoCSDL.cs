@@ -160,7 +160,7 @@ namespace QuanLyLoTrinhXeBuyt.Migrations
                 {
                     PhanCongID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    XeID = table.Column<int>(type: "int", nullable: false),
+                    ChuyenXeID = table.Column<int>(type: "int", nullable: false),
                     NhanVienID = table.Column<int>(type: "int", nullable: false),
                     NgayLamViec = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -168,16 +168,16 @@ namespace QuanLyLoTrinhXeBuyt.Migrations
                 {
                     table.PrimaryKey("PK_PhanCong", x => x.PhanCongID);
                     table.ForeignKey(
+                        name: "FK_PhanCong_ChuyenXe_ChuyenXeID",
+                        column: x => x.ChuyenXeID,
+                        principalTable: "ChuyenXe",
+                        principalColumn: "ChuyenXeID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
                         name: "FK_PhanCong_NhanVien_NhanVienID",
                         column: x => x.NhanVienID,
                         principalTable: "NhanVien",
                         principalColumn: "NhanVienID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_PhanCong_XeBuyt_XeID",
-                        column: x => x.XeID,
-                        principalTable: "XeBuyt",
-                        principalColumn: "XeID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -192,14 +192,14 @@ namespace QuanLyLoTrinhXeBuyt.Migrations
                 column: "XeID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_PhanCong_ChuyenXeID",
+                table: "PhanCong",
+                column: "ChuyenXeID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_PhanCong_NhanVienID",
                 table: "PhanCong",
                 column: "NhanVienID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PhanCong_XeID",
-                table: "PhanCong",
-                column: "XeID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_TaiKhoan_NhanVienID",
@@ -226,9 +226,6 @@ namespace QuanLyLoTrinhXeBuyt.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "ChuyenXe");
-
-            migrationBuilder.DropTable(
                 name: "PhanCong");
 
             migrationBuilder.DropTable(
@@ -238,13 +235,16 @@ namespace QuanLyLoTrinhXeBuyt.Migrations
                 name: "TuyenXe_ChiTiet");
 
             migrationBuilder.DropTable(
-                name: "XeBuyt");
+                name: "ChuyenXe");
 
             migrationBuilder.DropTable(
                 name: "TramXe");
 
             migrationBuilder.DropTable(
                 name: "TuyenXe");
+
+            migrationBuilder.DropTable(
+                name: "XeBuyt");
 
             migrationBuilder.DropTable(
                 name: "NhanVien");

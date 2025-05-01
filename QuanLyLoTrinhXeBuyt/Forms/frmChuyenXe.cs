@@ -1,4 +1,5 @@
 ﻿using ClosedXML.Excel;
+using DocumentFormat.OpenXml.Office.CustomUI;
 using QuanLyLoTrinhXeBuyt.Data;
 using System;
 using System.Collections.Generic;
@@ -28,7 +29,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             btnSua.Enabled = !giaTri;
 
             btnLuu.Enabled = giaTri;
-            btnHuyBo.Enabled = giaTri;
+            btnHuyBo.Enabled = true;
             txtTenChuyenXe.Enabled = giaTri;
             cboDiemXuatPhat.Enabled = giaTri;
             cboTuyenXe.Enabled = giaTri;
@@ -53,7 +54,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
         public void LayDiemXuatPhat()
         {
             cboDiemXuatPhat.DataSource = context.TramXe.ToList();
-            cboDiemXuatPhat.DisplayMember = "TenTram";
+            cboDiemXuatPhat.DisplayMember = "TenTramXe";
             cboDiemXuatPhat.ValueMember = "TramXeID";
         }
         private void frmChuyenXe_Load(object sender, EventArgs e)
@@ -62,8 +63,19 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             BatTatChucNang(false);
             LayTuyenXeVaoComboBox();
             LayXeVaoComboBox();
+            LayDiemXuatPhat();
 
             dvgChuyenXe.AutoGenerateColumns = false;
+            if (dvgChuyenXe.Columns.Count == 0)
+            {
+                dvgChuyenXe.Columns.Add(new DataGridViewTextBoxColumn { Name = "ChuyenXeID", DataPropertyName = "ChuyenXeID", HeaderText = "Mã phân công" });
+                dvgChuyenXe.Columns.Add(new DataGridViewTextBoxColumn { Name = "TenChuyen", DataPropertyName = "TenChuyen", HeaderText = "HTên chuyến" });
+                dvgChuyenXe.Columns.Add(new DataGridViewTextBoxColumn { Name = "DiemXuatPhat", DataPropertyName = "DiemXuatPhat", HeaderText = "Điểm xuất phát" });
+                dvgChuyenXe.Columns.Add(new DataGridViewTextBoxColumn { Name = "ThoiGianDi", DataPropertyName = "ThoiGianDi", HeaderText = "Thời gian đi" });
+                dvgChuyenXe.Columns.Add(new DataGridViewTextBoxColumn { Name = "ThoiGianDen", DataPropertyName = "ThoiGianDen", HeaderText = "Thời gian đến" });
+                dvgChuyenXe.Columns.Add(new DataGridViewTextBoxColumn { Name = "TenTuyen", DataPropertyName = "TenTuyen", HeaderText = "Tuyến xe" });
+                dvgChuyenXe.Columns.Add(new DataGridViewTextBoxColumn { Name = "BienSo", DataPropertyName = "BienSo", HeaderText = "Biển số" });
+            }
 
             List<DanhSachChuyenXe> chuyenXe = new List<DanhSachChuyenXe>();
 
@@ -322,6 +334,25 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                     }
                 }
             }
+        }
+
+        private void btnTimKiem_Click(object sender, EventArgs e)
+        {
+            string tuKhoa = txtTimKiem.Text.ToLower();
+
+            var ketQua = context.ChuyenXe.Where(r => r.TenChuyen!.Contains(tuKhoa)).Select(r => new DanhSachChuyenXe
+            {
+                ChuyenXeID = r.ChuyenXeID,
+                TenChuyen = r.TenChuyen,
+                DiemXuatPhat = r.DiemXuatPhat,
+                ThoiGianDi = r.ThoiGianDi,
+                ThoiGianDen = r.ThoiGianDen,
+                TuyenXeID = r.TuyenXeID,
+                TenTuyen = r.TuyenXe.TenTuyen,
+                XeID = r.XeID,
+                BienSo = r.Xe.BienSo
+            }).ToList();
+            dvgChuyenXe.DataSource = ketQua;
         }
     }
 }

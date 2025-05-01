@@ -35,7 +35,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             btnTimKiem.Enabled = true;
             txtTimKiem.Enabled = true;
             cboNhanVien.Enabled = giaTri;
-            cboXeBuyt.Enabled = giaTri;
+            cboChuyenXe.Enabled = giaTri;
             dtNgayLam.Enabled = giaTri;
         }
         public void LayDuLieuNhanVienVaoComboBox()
@@ -44,22 +44,22 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             cboNhanVien.ValueMember = "NhanVienID";
             cboNhanVien.DisplayMember = "HoTen";
         }
-        public void LayDuLieuXeVaoComboBox()
+        public void LayDuLieuChuyenXeVaoComboBox()
         {
-            cboXeBuyt.DataSource = context.XeBuyt.ToList();
-            cboXeBuyt.ValueMember = "XeID";
-            cboXeBuyt.DisplayMember = "BienSo";
+            cboChuyenXe.DataSource = context.ChuyenXe.ToList();
+            cboChuyenXe.ValueMember = "ChuyenXeID";
+            cboChuyenXe.DisplayMember = "TenChuyen";
         }
         public void ClearField()
         {
-            cboXeBuyt.SelectedIndex = -1;
+            cboChuyenXe.SelectedIndex = -1;
             cboNhanVien.SelectedIndex = -1;
             dtNgayLam.Value = DateTime.Now;
         }
         private void frmPhanCong_Load(object sender, EventArgs e)
         {
             LayDuLieuNhanVienVaoComboBox();
-            LayDuLieuXeVaoComboBox();
+            LayDuLieuChuyenXeVaoComboBox();
 
             BatTatChucNang(false);
             dgvPhanCong.AutoGenerateColumns = false;
@@ -71,7 +71,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                 dgvPhanCong.Columns.Add(new DataGridViewTextBoxColumn { Name = "HoTen", DataPropertyName = "HoTen", HeaderText = "Họ tên" });
                 //gridPhanCong.Columns.Add(new DataGridViewTextBoxColumn { Name = "NhanVienID", DataPropertyName = "NhanVienID", HeaderText = "Mã phân công" });
                 dgvPhanCong.Columns.Add(new DataGridViewTextBoxColumn { Name = "NgayLamViec", DataPropertyName = "NgayLamViec", HeaderText = "Ngày làm việc" });
-                dgvPhanCong.Columns.Add(new DataGridViewTextBoxColumn { Name = "BienSo", DataPropertyName = "BienSo", HeaderText = "Biển số" });
+                dgvPhanCong.Columns.Add(new DataGridViewTextBoxColumn { Name = "TenChuyen", DataPropertyName = "TenChuyen", HeaderText = "Chuyến xe" });
                 dgvPhanCong.Columns.Add(new DataGridViewTextBoxColumn { Name = "Vaitro", DataPropertyName = "VaiTro", HeaderText = "Vai trò" });
             }
 
@@ -80,8 +80,8 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             phanCong = context.PhanCong.Select(t => new DanhSachPhanCong
             {
                 PhanCongID = t.PhanCongID,
-                XeID = t.XeID,
-                BienSo = t.Xe.BienSo,
+                ChuyenXeID = t.ChuyenXeID,
+                TenChuyen = t.ChuyenXe.TenChuyen,
                 NhanVienID = t.NhanVienID,
                 HoTen = t.NhanVien.HoTen,
                 NgayLamViec = t.NgayLamViec,
@@ -91,8 +91,8 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             BindingSource bindingSource = new BindingSource();
             bindingSource.DataSource = phanCong;
 
-            cboXeBuyt.DataBindings.Clear();
-            cboXeBuyt.DataBindings.Add("SelectedValue", bindingSource, "XeID", false, DataSourceUpdateMode.Never);
+            cboChuyenXe.DataBindings.Clear();
+            cboChuyenXe.DataBindings.Add("SelectedValue", bindingSource, "ChuyenXeID", false, DataSourceUpdateMode.Never);
 
             cboNhanVien.DataBindings.Clear();
             cboNhanVien.DataBindings.Add("SelectedValue", bindingSource, "NhanVienID", false, DataSourceUpdateMode.Never);
@@ -132,7 +132,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             {
                 PhanCong pc = new PhanCong();
                 pc.NhanVienID = (int)cboNhanVien.SelectedValue;
-                pc.XeID = (int)cboXeBuyt.SelectedValue;
+                pc.ChuyenXeID = (int)cboChuyenXe.SelectedValue;
                 pc.NgayLamViec = dtNgayLam.Value;
 
                 context.PhanCong.Add(pc);
@@ -141,7 +141,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             {
                 PhanCong pc = context.PhanCong.Find(id);
                 pc.NhanVienID = (int)cboNhanVien.SelectedValue;
-                pc.XeID = (int)cboXeBuyt.SelectedValue;
+                pc.ChuyenXeID = (int)cboChuyenXe.SelectedValue;
                 pc.NgayLamViec = dtNgayLam.Value;
 
                 context.PhanCong.Update(pc);
@@ -166,10 +166,10 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                 var phancong = context.PhanCong.Select(r => new DanhSachPhanCong
                 {
                     HoTen = r.NhanVien.HoTen,
-                    BienSo = r.Xe.BienSo,
+                    TenChuyen = r.ChuyenXe.TenChuyen,
                     NgayLamViec = r.NgayLamViec,
                     VaiTro = r.NhanVien.VaiTro
-                }).Where(r => r.HoTen.Contains(tukhoa) || r.BienSo.Contains(tukhoa) || r.VaiTro.Contains(tukhoa)).ToList();
+                }).Where(r => r.HoTen.Contains(tukhoa) ||r.TenChuyen.Contains(tukhoa)|| r.VaiTro.Contains(tukhoa)).ToList();
                 BindingSource bindingSource = new BindingSource();
                 bindingSource.DataSource = phancong;
                 dgvPhanCong.DataSource = bindingSource;
@@ -234,25 +234,25 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                             foreach (DataRow row in dataTable.Rows)
                             {
                                 string phanCongID = row["PhanCongID"].ToString().Trim();
-                                string bienSo = row["BienSo"].ToString().Trim();
+                                string TenChuyen = row["TenChuyen"].ToString().Trim();
                                 string hoTen = row["HoTen"].ToString().Trim();
                                 string ngayLamViec = row["NgayLamViec"].ToString().Trim();
 
                                 var nhanVienID = context.NhanVien.Where(n => n.HoTen == hoTen).Select(n => n.NhanVienID).FirstOrDefault();
-                                var xeID = context.XeBuyt.Where(x => x.BienSo == bienSo).Select(x => x.XeID).FirstOrDefault();
+                                var ChuyenXeID = context.ChuyenXe.Where(x => x.TenChuyen == TenChuyen).Select(x => x.ChuyenXeID).FirstOrDefault();
 
                                 // Kiểm tra bản ghi PhanCong đã tồn tại
                                 var existPC = context.PhanCong.FirstOrDefault(pc =>
                                     pc.PhanCongID == Convert.ToInt32(phanCongID) &&
                                     pc.NhanVienID == nhanVienID &&
-                                    pc.XeID == xeID &&
+                                    pc.ChuyenXeID == ChuyenXeID &&
                                     pc.NgayLamViec == dtNgayLam.Value);
 
                                 if (existPC != null)
                                 {
                                     // Cập nhật bản ghi
                                     existPC.NhanVienID = nhanVienID;
-                                    existPC.XeID = xeID;
+                                    existPC.ChuyenXeID = ChuyenXeID;
                                     existPC.NgayLamViec = dtNgayLam.Value;
                                     soLuongCapNhat++;
                                 }
@@ -261,9 +261,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                                     // Thêm bản ghi mới
                                     var newPC = new PhanCong
                                     {
-                                        // Chỉ gán PhanCongID nếu không phải tự động tăng
-                                        // PhanCongID = phanCongIdParsed,
-                                        XeID = xeID,
+                                        ChuyenXeID = ChuyenXeID,
                                         NhanVienID = nhanVienID,
                                         NgayLamViec = dtNgayLam.Value
                                     };
@@ -306,7 +304,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                     {
                         DataTable dt = new DataTable();
                         dt.Columns.Add("PhanCongID");
-                        dt.Columns.Add("BienSo");
+                        dt.Columns.Add("TenChuyen");
                         dt.Columns.Add("HoTen");
                         dt.Columns.Add("VaiTro");
                         dt.Columns.Add("NgayLamViec");
@@ -314,12 +312,12 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                         var phanCong = context.PhanCong.Select(pc => new
                         {
                             pc.PhanCongID,
-                            pc.Xe.BienSo,
+                            pc.ChuyenXe.TenChuyen,
                             pc.NhanVien.HoTen,
                             pc.NgayLamViec
                         }).ToList();
                         foreach (var pc in phanCong)
-                            dt.Rows.Add(pc.PhanCongID, pc.BienSo, pc.HoTen, pc.NgayLamViec);
+                            dt.Rows.Add(pc.PhanCongID, pc.TenChuyen, pc.HoTen, pc.NgayLamViec);
                         var sheet = wb.Worksheets.Add(dt, "PhanCong");
                         sheet.Columns().AdjustToContents();
                         wb.SaveAs(saveFileDialog.FileName);

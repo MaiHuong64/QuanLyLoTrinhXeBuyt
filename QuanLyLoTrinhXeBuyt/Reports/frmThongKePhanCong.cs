@@ -1,4 +1,7 @@
-﻿using System;
+﻿using DocumentFormat.OpenXml.InkML;
+using Microsoft.Reporting.WinForms;
+using QuanLyLoTrinhXeBuyt.Data;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,14 +10,60 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static QuanLyLoTrinhXeBuyt.Reports.QLLTXBDataSet;
 
 namespace QuanLyLoTrinhXeBuyt.Reports
 {
     public partial class frmThongKePhanCong : Form
     {
+        QLLTXBContext context = new QLLTXBContext();
+        QLLTXBDataSet.DanhSachPhanCongDataTable danhSachPhanCongDataTable = new QLLTXBDataSet.DanhSachPhanCongDataTable();
+        string reportsFolder = Application.StartupPath.Replace("bin\\Debug\\net8.0-windows", "Reports");
+
         public frmThongKePhanCong()
         {
             InitializeComponent();
+        }
+
+        private void frmThongKePhanCong_Load(object sender, EventArgs e)
+        {
+            var danhSachPhanCong = context.PhanCong.Select(r => new
+            {
+                r.PhanCongID,
+                r.NhanVienID,
+                r.ChuyenXeID,
+                r.NgayLamViec,
+                r.NhanVien.HoTen,
+                r.ChuyenXe.TenChuyen,
+                r.NhanVien.VaiTro
+            }).ToList();
+
+            danhSachPhanCongDataTable.Clear();
+            foreach (var row in danhSachPhanCong)
+            {
+                danhSachPhanCongDataTable.AddDanhSachPhanCongRow(
+                    row.PhanCongID,
+                    row.ChuyenXeID,
+                    row.NhanVienID,
+                    row.NgayLamViec,
+                    row.HoTen,
+                    row.TenChuyen,
+                    row.VaiTro
+                );
+            }
+
+            ReportDataSource reportDataSource = new ReportDataSource();
+            reportDataSource.Name = "dsPhanCong";
+            reportDataSource.Value = danhSachPhanCongDataTable;
+
+            reportViewer1.LocalReport.DataSources.Clear();
+            reportViewer1.LocalReport.DataSources.Add(reportDataSource);
+            reportViewer1.LocalReport.ReportPath = Path.Combine(reportsFolder, "rptThongKePhanCong.rdlc");
+
+            reportViewer1.SetDisplayMode(DisplayMode.PrintLayout);
+            reportViewer1.ZoomMode = ZoomMode.Percent;
+            reportViewer1.ZoomPercent = 100;
+            reportViewer1.RefreshReport();
         }
     }
 }

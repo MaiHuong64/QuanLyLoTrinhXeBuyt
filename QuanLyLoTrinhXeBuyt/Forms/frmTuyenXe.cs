@@ -11,20 +11,25 @@ namespace QuanLyLoTrinhXeBuyt.Forms
         {
             InitializeComponent();
         }
+
         QLLTXBContext context = new QLLTXBContext();
         int id;
+
         void BatTatChucNang(bool giaTri)
         {
             btnThem.Enabled = !giaTri;
             btnSua.Enabled = !giaTri;
-     
+            btnTimKiem.Enabled = true;
+            btnXuatFileExcel.Enabled = true;
+            btnNhapFileExcel.Enabled = true;
         }
+
         private void frmTuyenXe_Load(object sender, EventArgs e)
         {
             BatTatChucNang(false);
             dvgTuyenXe.AutoGenerateColumns = false;
 
-            if(dvgTuyenXe.Columns.Count == 0)
+            if (dvgTuyenXe.Columns.Count == 0)
             {
                 dvgTuyenXe.Columns.Add(new DataGridViewTextBoxColumn { Name = "TuyenXeID", DataPropertyName = "TuyenXeID", HeaderText = "Mã tuyến xe" });
                 dvgTuyenXe.Columns.Add(new DataGridViewTextBoxColumn { Name = "TenTuyen", DataPropertyName = "TenTuyen", HeaderText = "Tên tuyến xe" });
@@ -48,23 +53,23 @@ namespace QuanLyLoTrinhXeBuyt.Forms
         {
             using (frmTuyenXe_ChiTiet frm = new frmTuyenXe_ChiTiet(id))
             {
-                //Console.WriteLine(id);
                 frm.ShowDialog();
-                this.Close();
+                frmTuyenXe_Load(sender, e);
             }
         }
         private void btnSua_Click(object sender, EventArgs e)
         {
             id = Convert.ToInt32(dvgTuyenXe.CurrentRow.Cells["TuyenXeID"].Value.ToString());
-            using(frmTuyenXe_ChiTiet frm = new frmTuyenXe_ChiTiet(id))
+            using (var frm = new frmTuyenXe_ChiTiet(id))
             {
-                frm.ShowDialog();
-                this.Close();
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    frmTuyenXe_Load(sender, e);
+                }
             }
-
         }
 
-        private void btnXuat_Click(object sender, EventArgs e)
+        private void btnXuatExcel_Click(object sender, EventArgs e)
         {
             using (SaveFileDialog saveFileDialog = new SaveFileDialog())
             {
@@ -75,7 +80,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                 {
                     try
                     {
-                        using(XLWorkbook wb = new XLWorkbook())
+                        using (XLWorkbook wb = new XLWorkbook())
                         {
                             DataTable tableTuyenXe = new DataTable();
                             tableTuyenXe.Columns.Add("Mã tuyến xe");
@@ -94,7 +99,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                                 tableTuyenXe.Rows.Add(item.TuyenXeID, item.TenTuyen, item.MoTa);
                             }
 
-                            var sheet  = wb.Worksheets.Add(tableTuyenXe, "TuyenXe");
+                            var sheet = wb.Worksheets.Add(tableTuyenXe, "TuyenXe");
                             sheet.Columns().AdjustToContents();
 
                             // Chi tiet tuyen xe 
@@ -129,11 +134,6 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             }
         }
 
-        private void btnTimKiem_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnXoa_Click(object sender, EventArgs e)
         {
             int index = dvgTuyenXe.CurrentRow.Index;
@@ -148,6 +148,38 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                 frmTuyenXe_Load(sender, e);
             }
 
+        }
+
+        private void dvgTuyenXe_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == dvgTuyenXe.Columns["XemChiTiet"].Index && e.RowIndex >= 0)
+            {
+                int id = Convert.ToInt32(dvgTuyenXe.Rows[e.RowIndex].Cells["TuyenXeID"].Value);
+                using (var frm = new frmTuyenXe_ChiTiet(id))
+                {
+                    if (frm.ShowDialog() == DialogResult.OK)
+                    {
+                        frmTuyenXe_Load(sender, e);
+                    }
+                }
+            }
+        }
+
+        private void btnTimKiem_Click(object sender, EventArgs e)
+        {
+            var tuKhoa = context.TuyenXe.Where(r => r.TenTuyen.Contains(txtTimKiem.Text)).Select(t => new DanhSachTuyenXe
+            {
+                TuyenXeID = t.TuyenXeID,
+                TenTuyen = t.TenTuyen,
+                MoTa = t.MoTa,
+                XemChiTiet = "Xem chi tiết"
+            }).ToList();
+            dvgTuyenXe.DataSource = tuKhoa;
+        }
+
+        private void btnHuy_Click(object sender, EventArgs e)
+        {
+            frmTuyenXe_Load(sender, e);
         }
     }
 }

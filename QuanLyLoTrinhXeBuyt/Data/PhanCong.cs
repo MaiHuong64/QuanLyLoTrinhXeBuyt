@@ -8,10 +8,10 @@ namespace QuanLyLoTrinhXeBuyt.Data
     {
         [Key]
         public int PhanCongID { get; set; }
-        public int XeID { get; set; }
+        public int ChuyenXeID { get; set; }
         public int NhanVienID { get; set; }
         public DateTime NgayLamViec { get; set; }
-        public virtual XeBuyt Xe { get; set; } = null!;
+        public virtual ChuyenXe ChuyenXe { get; set; } = null!;
         public virtual NhanVien NhanVien { get; set; } = null!;
     }
 
@@ -19,11 +19,11 @@ namespace QuanLyLoTrinhXeBuyt.Data
     public class DanhSachPhanCong
     {
         public int PhanCongID { get; set; }
-        public int XeID { get; set; }
+        public int ChuyenXeID { get; set; }
         public int NhanVienID { get; set; }
         public DateTime NgayLamViec { get; set; }
         public string? HoTen { get; set; }
-        public string? BienSo { get; set; }
+        public string? TenChuyen { get; set; }
         public string? VaiTro { get; set; }
     }
 }

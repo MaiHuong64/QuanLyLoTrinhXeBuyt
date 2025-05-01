@@ -12,7 +12,7 @@ using QuanLyLoTrinhXeBuyt.Data;
 namespace QuanLyLoTrinhXeBuyt.Migrations
 {
     [DbContext(typeof(QLLTXBContext))]
-    [Migration("20250428055010_KhoiTaoCSDL")]
+    [Migration("20250430044237_KhoiTaoCSDL")]
     partial class KhoiTaoCSDL
     {
         /// <inheritdoc />
@@ -96,20 +96,20 @@ namespace QuanLyLoTrinhXeBuyt.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PhanCongID"));
 
+                    b.Property<int>("ChuyenXeID")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("NgayLamViec")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("NhanVienID")
                         .HasColumnType("int");
 
-                    b.Property<int>("XeID")
-                        .HasColumnType("int");
-
                     b.HasKey("PhanCongID");
 
-                    b.HasIndex("NhanVienID");
+                    b.HasIndex("ChuyenXeID");
 
-                    b.HasIndex("XeID");
+                    b.HasIndex("NhanVienID");
 
                     b.ToTable("PhanCong");
                 });
@@ -250,21 +250,21 @@ namespace QuanLyLoTrinhXeBuyt.Migrations
 
             modelBuilder.Entity("QuanLyLoTrinhXeBuyt.Data.PhanCong", b =>
                 {
+                    b.HasOne("QuanLyLoTrinhXeBuyt.Data.ChuyenXe", "ChuyenXe")
+                        .WithMany()
+                        .HasForeignKey("ChuyenXeID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("QuanLyLoTrinhXeBuyt.Data.NhanVien", "NhanVien")
                         .WithMany()
                         .HasForeignKey("NhanVienID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("QuanLyLoTrinhXeBuyt.Data.XeBuyt", "Xe")
-                        .WithMany()
-                        .HasForeignKey("XeID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("ChuyenXe");
 
                     b.Navigation("NhanVien");
-
-                    b.Navigation("Xe");
                 });
 
             modelBuilder.Entity("QuanLyLoTrinhXeBuyt.Data.TaiKhoan", b =>

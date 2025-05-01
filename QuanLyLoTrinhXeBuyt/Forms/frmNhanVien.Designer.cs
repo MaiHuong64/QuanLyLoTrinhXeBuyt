@@ -282,6 +282,7 @@
             btnTimKiem.Name = "btnTimKiem";
             btnTimKiem.Size = new Size(38, 24);
             btnTimKiem.Text = "Tìm";
+            btnTimKiem.Click += btnTimKiem_Click;
             // 
             // toolStripSeparator1
             // 
@@ -295,6 +296,7 @@
             btnNhapFileExcel.Size = new Size(58, 24);
             btnNhapFileExcel.Text = "Nhập...";
             btnNhapFileExcel.ToolTipText = "Nhập dữ liệu từ Excel";
+            btnNhapFileExcel.Click += btnNhapFileExcel_Click;
             // 
             // btnXuatFileExcel
             // 
@@ -303,6 +305,7 @@
             btnXuatFileExcel.Size = new Size(52, 24);
             btnXuatFileExcel.Text = "Xuất...";
             btnXuatFileExcel.ToolTipText = "Xuất ra tập tin Excel";
+            btnXuatFileExcel.Click += btnXuatFileExcel_Click;
             // 
             // frmNhanVien
             // 

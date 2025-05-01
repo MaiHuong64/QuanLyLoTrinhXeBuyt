@@ -24,6 +24,23 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             InitializeComponent();
             id = maTuyenXe;
         }
+        public bool KiemTraDuLieu()
+        {
+            if (string.IsNullOrWhiteSpace(txtTenTuyen.Text))
+            {
+                MessageBox.Show("Tên tuyến xe không được để trống.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtTenTuyen.Focus();
+                return false;
+            }
+
+            if (tuyenXeChiTiet.Count == 0)
+            {
+                MessageBox.Show("Tuyến xe phải có ít nhất một trạm.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            return true;
+        }
         public void LayTramXeVaoComboBox()
         {
             cboTramXe.DataSource = context.TramXe.ToList();
@@ -100,22 +117,41 @@ namespace QuanLyLoTrinhXeBuyt.Forms
         }
         private void btnLuu_Click(object sender, EventArgs e)
         {
-            if (id != 0)
+            if (!KiemTraDuLieu()) return;
+            try
             {
-                TuyenXe tuyenXe = context.TuyenXe.Find(id);
-                if (tuyenXe != null)
+                if (id != 0)
                 {
+                    TuyenXe tuyenXe = context.TuyenXe.Find(id);
+                    if (tuyenXe != null)
+                    {
+                        tuyenXe.TenTuyen = txtTenTuyen.Text;
+                        tuyenXe.MoTa = txtGhiChu.Text;
+                        context.SaveChanges();
+
+                        id = tuyenXe.TuyenXeID;
+
+                        // Xoa tram cu
+                        var tramCu = context.TuyenXe_ChiTiet.Where(r => r.TuyenXeID == id).ToList();
+                        context.TuyenXe_ChiTiet.RemoveRange(tramCu);
+
+                        // Them tram moi
+                        foreach (var item in tuyenXeChiTiet)
+                        {
+                            TuyenXe_ChiTiet tuyenXeChiTiet = new TuyenXe_ChiTiet();
+                            tuyenXeChiTiet.TuyenXeID = id;
+                            tuyenXeChiTiet.TramXeID = item.TramXeID;
+                            context.TuyenXe_ChiTiet.Add(tuyenXeChiTiet);
+                        }
+                        context.SaveChanges();
+                    }
+                }
+                else
+                {
+                    TuyenXe tuyenXe = new TuyenXe();
                     tuyenXe.TenTuyen = txtTenTuyen.Text;
                     tuyenXe.MoTa = txtGhiChu.Text;
-                    context.SaveChanges();
 
-                    id = tuyenXe.TuyenXeID;
-
-                    // Xoa tram cu
-                    var tramCu = context.TuyenXe_ChiTiet.Where(r => r.TuyenXeID == id).ToList();
-                    context.TuyenXe_ChiTiet.RemoveRange(tramCu);
-
-                    // Them tram moi
                     foreach (var item in tuyenXeChiTiet)
                     {
                         TuyenXe_ChiTiet tuyenXeChiTiet = new TuyenXe_ChiTiet();
@@ -125,46 +161,42 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                     }
                     context.SaveChanges();
                 }
+                btnThoat_Click(sender, e);
             }
-            else
+            catch(Exception ex)
             {
-                TuyenXe tuyenXe = new TuyenXe();
-                tuyenXe.TenTuyen = txtTenTuyen.Text;
-                tuyenXe.MoTa = txtGhiChu.Text;
-
-                foreach (var item in tuyenXeChiTiet)
-                {
-                    TuyenXe_ChiTiet tuyenXeChiTiet = new TuyenXe_ChiTiet();
-                    tuyenXeChiTiet.TuyenXeID = id;
-                    tuyenXeChiTiet.TramXeID = item.TramXeID;
-                    context.TuyenXe_ChiTiet.Add(tuyenXeChiTiet);
-                }
-                context.SaveChanges();
+                MessageBox.Show(ex.Message);
             }
         }
 
         private void btnThemTram_Click(object sender, EventArgs e)
         {
-            int tramxeID = (int)cboTramXe.SelectedValue;
-            var tramXe = context.TramXe.Where(r => r.TramXeID == tramxeID).SingleOrDefault();
-            if (tramXe == null)
+            try
             {
-                MessageBox.Show("Trạm không tồn tại");
+                int tramxeID = (int)cboTramXe.SelectedValue;
+                var tramXe = context.TramXe.Where(r => r.TramXeID == tramxeID).SingleOrDefault();
+                if (tramXe == null)
+                {
+                    MessageBox.Show("Trạm không tồn tại");
+                }
+
+                if (tuyenXeChiTiet.Any(r => r.TramXeID == tramxeID))
+                {
+                    MessageBox.Show("Trạm đã tồn tại trong danh sách");
+                    return;
+                }
+
+                tuyenXeChiTiet.Add(new DanhSachTuyenXe_ChiTiet
+                {
+                    TramXeID = tramxeID,
+                    TenTuyen = txtTenTuyen.Text,
+                    TenTramXe = cboTramXe.Text
+                });
             }
-
-            if (tuyenXeChiTiet.Any(r => r.TramXeID == tramxeID))
+            catch(Exception ex) 
             {
-                MessageBox.Show("Trạm đã tồn tại trong danh sách");
-                return;
+                MessageBox.Show(ex.Message); 
             }
-
-            tuyenXeChiTiet.Add(new DanhSachTuyenXe_ChiTiet
-            {
-                TramXeID = tramxeID,
-                TenTuyen = txtTenTuyen.Text,
-                TenTramXe = cboTramXe.Text
-            });
-
         }
 
         private void btnXoaTram_Click(object sender, EventArgs e)
@@ -175,11 +207,8 @@ namespace QuanLyLoTrinhXeBuyt.Forms
 
         private void btnThoat_Click(object sender, EventArgs e)
         {
-            if(MessageBox.Show("Bạn có muốn thoát không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                this.Close();
-                
-            }
+            //this.Close();
+            this.Hide();
         }
     }
 }

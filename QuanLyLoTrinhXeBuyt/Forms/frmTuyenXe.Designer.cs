@@ -30,17 +30,17 @@
         {
             btnThem = new Button();
             btnXoa = new Button();
-            btnXuat = new Button();
             btnSua = new Button();
             groupBox2 = new GroupBox();
             dvgTuyenXe = new DataGridView();
             toolStrip = new ToolStrip();
             toolStripLabel1 = new ToolStripLabel();
             txtTimKiem = new ToolStripTextBox();
-            toolStripButton1 = new ToolStripButton();
+            btnTimKiem = new ToolStripButton();
             toolStripSeparator1 = new ToolStripSeparator();
             btnNhapFileExcel = new ToolStripButton();
             btnXuatFileExcel = new ToolStripButton();
+            btnHuy = new Button();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dvgTuyenXe).BeginInit();
             toolStrip.SuspendLayout();
@@ -66,16 +66,6 @@
             btnXoa.Text = "Xoá";
             btnXoa.UseVisualStyleBackColor = true;
             btnXoa.Click += btnXoa_Click;
-            // 
-            // btnXuat
-            // 
-            btnXuat.Location = new Point(795, 441);
-            btnXuat.Name = "btnXuat";
-            btnXuat.Size = new Size(144, 41);
-            btnXuat.TabIndex = 9;
-            btnXuat.Text = "Xuất Excel";
-            btnXuat.UseVisualStyleBackColor = true;
-            btnXuat.Click += btnXuat_Click;
             // 
             // btnSua
             // 
@@ -116,12 +106,13 @@
             dvgTuyenXe.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dvgTuyenXe.Size = new Size(1156, 324);
             dvgTuyenXe.TabIndex = 4;
+            dvgTuyenXe.CellContentClick += dvgTuyenXe_CellContentClick;
             // 
             // toolStrip
             // 
             toolStrip.Dock = DockStyle.Bottom;
             toolStrip.ImageScalingSize = new Size(20, 20);
-            toolStrip.Items.AddRange(new ToolStripItem[] { toolStripLabel1, txtTimKiem, toolStripButton1, toolStripSeparator1, btnNhapFileExcel, btnXuatFileExcel });
+            toolStrip.Items.AddRange(new ToolStripItem[] { toolStripLabel1, txtTimKiem, btnTimKiem, toolStripSeparator1, btnNhapFileExcel, btnXuatFileExcel });
             toolStrip.Location = new Point(4, 348);
             toolStrip.Name = "toolStrip";
             toolStrip.Size = new Size(1156, 27);
@@ -139,12 +130,13 @@
             txtTimKiem.Name = "txtTimKiem";
             txtTimKiem.Size = new Size(150, 27);
             // 
-            // toolStripButton1
+            // btnTimKiem
             // 
-            toolStripButton1.ImageTransparentColor = Color.Magenta;
-            toolStripButton1.Name = "toolStripButton1";
-            toolStripButton1.Size = new Size(38, 24);
-            toolStripButton1.Text = "Tìm";
+            btnTimKiem.ImageTransparentColor = Color.Magenta;
+            btnTimKiem.Name = "btnTimKiem";
+            btnTimKiem.Size = new Size(38, 24);
+            btnTimKiem.Text = "Tìm";
+            btnTimKiem.Click += btnTimKiem_Click;
             // 
             // toolStripSeparator1
             // 
@@ -166,6 +158,17 @@
             btnXuatFileExcel.Size = new Size(52, 24);
             btnXuatFileExcel.Text = "Xuất...";
             btnXuatFileExcel.ToolTipText = "Xuất ra tập tin Excel";
+            btnXuatFileExcel.Click += btnXuatExcel_Click;
+            // 
+            // btnHuy
+            // 
+            btnHuy.Location = new Point(373, 441);
+            btnHuy.Name = "btnHuy";
+            btnHuy.Size = new Size(109, 41);
+            btnHuy.TabIndex = 6;
+            btnHuy.Text = "Hủy";
+            btnHuy.UseVisualStyleBackColor = true;
+            btnHuy.Click += btnHuy_Click;
             // 
             // frmTuyenXe
             // 
@@ -173,8 +176,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1184, 506);
             Controls.Add(groupBox2);
+            Controls.Add(btnHuy);
             Controls.Add(btnXoa);
-            Controls.Add(btnXuat);
             Controls.Add(btnSua);
             Controls.Add(btnThem);
             Name = "frmTuyenXe";
@@ -194,16 +197,16 @@
         //private DataGridViewTextBoxColumn TenDiemDung;
         private Button btnThem;
         private Button btnXoa;
-        private Button btnXuat;
         private Button btnSua;
         private GroupBox groupBox2;
         private DataGridView dvgTuyenXe;
         private ToolStrip toolStrip;
         private ToolStripLabel toolStripLabel1;
         private ToolStripTextBox txtTimKiem;
-        private ToolStripButton toolStripButton1;
+        private ToolStripButton btnTimKiem;
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripButton btnNhapFileExcel;
         private ToolStripButton btnXuatFileExcel;
+        private Button btnHuy;
     }
 }

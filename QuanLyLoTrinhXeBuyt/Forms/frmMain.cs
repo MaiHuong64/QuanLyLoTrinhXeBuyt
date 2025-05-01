@@ -27,6 +27,8 @@ namespace QuanLyLoTrinhXeBuyt.Forms
         frmXeBuyt xeBuyt;
         frmDangNhap dangNhap;
         frmThongKeChuyenXe thongKeChuyenXe;
+        frmThongKePhanCong thongKePhanCong;
+        frmBieuDoChuyenXe bieuDoChuyenXe;
 
         #region Phân Quyền và Đóng form
         public void DongForm()
@@ -196,6 +198,32 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             }
             else
                 thongKeChuyenXe.Activate();
+        }
+
+        private void mnThongKePhanCong_Click(object sender, EventArgs e)
+        {
+            DongForm();
+            if (thongKePhanCong == null || thongKePhanCong.IsDisposed)
+            {
+                thongKePhanCong = new frmThongKePhanCong();
+                thongKePhanCong.MdiParent = this;
+                thongKePhanCong.Show();
+            }
+            else
+                thongKePhanCong.Activate();
+        }
+
+        private void mnDashBoard_Click(object sender, EventArgs e)
+        {
+            DongForm();
+            if (bieuDoChuyenXe == null || bieuDoChuyenXe.IsDisposed)
+            {
+                bieuDoChuyenXe = new frmBieuDoChuyenXe();
+                bieuDoChuyenXe.MdiParent = this;
+                bieuDoChuyenXe.Show();
+            }
+            else
+                bieuDoChuyenXe.Activate();
         }
     }
 }
