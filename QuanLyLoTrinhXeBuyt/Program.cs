@@ -1,4 +1,5 @@
 using QuanLyLoTrinhXeBuyt.Forms;
+using QuanLyLoTrinhXeBuyt.Reports;
 
 namespace QuanLyLoTrinhXeBuyt
 {
@@ -13,7 +14,7 @@ namespace QuanLyLoTrinhXeBuyt
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new frmDangNhap());
+            Application.Run(new frmSaoLuuKhoiPhuc());
         }
     }
 }

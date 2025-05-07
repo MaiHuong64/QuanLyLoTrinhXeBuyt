@@ -215,14 +215,6 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                                 nv.DiaChi = row["DiaChi"].ToString();
                                 nv.VaiTro = row["VaiTro"].ToString();
                                 context.NhanVien.Add(nv);
-
-                                //nv.NhanVienID,
-                                //nv.HoTen,
-                                //nv.SoDienThoai,
-                                //nv.Email,
-                                //nv.DiaChi,
-                                //nv.VaiTro
-
                             }
                             context.SaveChanges();
                             MessageBox.Show("Đã nhập thành công " + table.Rows.Count + " dòng.", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);

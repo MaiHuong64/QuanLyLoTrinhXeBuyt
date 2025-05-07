@@ -33,17 +33,18 @@
             // 
             // reportViewer1
             // 
-            reportViewer1.Location = new Point(2, 141);
+            reportViewer1.Dock = DockStyle.Bottom;
+            reportViewer1.Location = new Point(0, 7);
             reportViewer1.Name = "reportViewer1";
             reportViewer1.ServerReport.BearerToken = null;
-            reportViewer1.Size = new Size(798, 308);
+            reportViewer1.Size = new Size(1337, 779);
             reportViewer1.TabIndex = 0;
             // 
             // frmThongKePhanCong
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1337, 786);
             Controls.Add(reportViewer1);
             Name = "frmThongKePhanCong";
             Text = "frmThongKePhanCong";

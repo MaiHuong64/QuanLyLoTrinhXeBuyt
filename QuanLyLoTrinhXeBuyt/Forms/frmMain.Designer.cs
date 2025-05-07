@@ -39,9 +39,9 @@
             lbRole = new ToolStripStatusLabel();
             menuStrip1 = new MenuStrip();
             hệThốngToolStripMenuItem1 = new ToolStripMenuItem();
-            mnAccount = new ToolStripMenuItem();
-            mnDangXuat = new ToolStripMenuItem();
-            mnThoat = new ToolStripMenuItem();
+            quảnLýNgườiDùngToolStripMenuItem = new ToolStripMenuItem();
+            tàiKhoảnToolStripMenuItem = new ToolStripMenuItem();
+            đăngXuấtToolStripMenuItem1 = new ToolStripMenuItem();
             mnQuanLy = new ToolStripMenuItem();
             mnTuyenXe = new ToolStripMenuItem();
             toolStripSeparator5 = new ToolStripSeparator();
@@ -56,10 +56,11 @@
             mnThongKeBaoCao = new ToolStripMenuItem();
             mnThongKeChuyenXe = new ToolStripMenuItem();
             mnThongKePhanCong = new ToolStripMenuItem();
+            mnDashBoard = new ToolStripMenuItem();
+            mnThongKeXeBuyt = new ToolStripMenuItem();
             mnTroGiup = new ToolStripMenuItem();
             hướngDẫnSửDụngPhầnMềmToolStripMenuItem = new ToolStripMenuItem();
             mnThongTin = new ToolStripMenuItem();
-            mnDashBoard = new ToolStripMenuItem();
             statusStrip1.SuspendLayout();
             menuStrip1.SuspendLayout();
             SuspendLayout();
@@ -137,39 +138,30 @@
             // 
             // hệThốngToolStripMenuItem1
             // 
-            hệThốngToolStripMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { mnAccount, mnDangXuat, mnThoat });
+            hệThốngToolStripMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { quảnLýNgườiDùngToolStripMenuItem });
             hệThốngToolStripMenuItem1.ForeColor = SystemColors.ButtonFace;
             hệThốngToolStripMenuItem1.Name = "hệThốngToolStripMenuItem1";
             hệThốngToolStripMenuItem1.Size = new Size(99, 27);
             hệThốngToolStripMenuItem1.Text = "Hệ thống";
             // 
-            // mnAccount
+            // quảnLýNgườiDùngToolStripMenuItem
             // 
-            mnAccount.BackColor = SystemColors.ControlDarkDark;
-            mnAccount.ForeColor = SystemColors.Control;
-            mnAccount.Name = "mnAccount";
-            mnAccount.Size = new Size(205, 28);
-            mnAccount.Text = "Tài khoản";
-            mnAccount.Click += mnAccount_Click;
+            quảnLýNgườiDùngToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { tàiKhoảnToolStripMenuItem, đăngXuấtToolStripMenuItem1 });
+            quảnLýNgườiDùngToolStripMenuItem.Name = "quảnLýNgườiDùngToolStripMenuItem";
+            quảnLýNgườiDùngToolStripMenuItem.Size = new Size(255, 28);
+            quảnLýNgườiDùngToolStripMenuItem.Text = "Quản lý người dùng";
             // 
-            // mnDangXuat
+            // tàiKhoảnToolStripMenuItem
             // 
-            mnDangXuat.BackColor = SystemColors.ControlDarkDark;
-            mnDangXuat.ForeColor = SystemColors.Control;
-            mnDangXuat.Name = "mnDangXuat";
-            mnDangXuat.Size = new Size(205, 28);
-            mnDangXuat.Text = "Đăng xuất";
-            mnDangXuat.Click += mnDangXuat_Click;
+            tàiKhoảnToolStripMenuItem.Name = "tàiKhoảnToolStripMenuItem";
+            tàiKhoảnToolStripMenuItem.Size = new Size(224, 28);
+            tàiKhoảnToolStripMenuItem.Text = "Tài khoản";
             // 
-            // mnThoat
+            // đăngXuấtToolStripMenuItem1
             // 
-            mnThoat.BackColor = SystemColors.ControlDarkDark;
-            mnThoat.ForeColor = SystemColors.Control;
-            mnThoat.Name = "mnThoat";
-            mnThoat.ShortcutKeys = Keys.Alt | Keys.F4;
-            mnThoat.Size = new Size(205, 28);
-            mnThoat.Text = "Thoát";
-            mnThoat.Click += mnThoat_Click;
+            đăngXuấtToolStripMenuItem1.Name = "đăngXuấtToolStripMenuItem1";
+            đăngXuấtToolStripMenuItem1.Size = new Size(224, 28);
+            đăngXuấtToolStripMenuItem1.Text = "Đăng xuất";
             // 
             // mnQuanLy
             // 
@@ -245,7 +237,7 @@
             // 
             // mnThongKeBaoCao
             // 
-            mnThongKeBaoCao.DropDownItems.AddRange(new ToolStripItem[] { mnThongKeChuyenXe, mnThongKePhanCong, mnDashBoard });
+            mnThongKeBaoCao.DropDownItems.AddRange(new ToolStripItem[] { mnThongKeChuyenXe, mnThongKePhanCong, mnDashBoard, mnThongKeXeBuyt });
             mnThongKeBaoCao.ForeColor = SystemColors.ButtonHighlight;
             mnThongKeBaoCao.Name = "mnThongKeBaoCao";
             mnThongKeBaoCao.Size = new Size(178, 27);
@@ -264,6 +256,20 @@
             mnThongKePhanCong.Size = new Size(345, 28);
             mnThongKePhanCong.Text = "Thống kê phân công nhân viên ";
             mnThongKePhanCong.Click += mnThongKePhanCong_Click;
+            // 
+            // mnDashBoard
+            // 
+            mnDashBoard.Name = "mnDashBoard";
+            mnDashBoard.Size = new Size(345, 28);
+            mnDashBoard.Text = "DashBoard";
+            mnDashBoard.Click += mnDashBoard_Click;
+            // 
+            // mnThongKeXeBuyt
+            // 
+            mnThongKeXeBuyt.Name = "mnThongKeXeBuyt";
+            mnThongKeXeBuyt.Size = new Size(345, 28);
+            mnThongKeXeBuyt.Text = "Thống kê xe buýt";
+            mnThongKeXeBuyt.Click += mnThongKeXeBuyt_Click;
             // 
             // mnTroGiup
             // 
@@ -289,13 +295,6 @@
             mnThongTin.Name = "mnThongTin";
             mnThongTin.Size = new Size(326, 28);
             mnThongTin.Text = "Thông tin phần mềm";
-            // 
-            // mnDashBoard
-            // 
-            mnDashBoard.Name = "mnDashBoard";
-            mnDashBoard.Size = new Size(345, 28);
-            mnDashBoard.Text = "DashBoard";
-            mnDashBoard.Click += mnDashBoard_Click;
             // 
             // frmMain
             // 
@@ -332,9 +331,6 @@
         private ToolStripMenuItem mnThongKeBaoCao;
         private ToolStripMenuItem mnTroGiup;
         private ToolStripStatusLabel lbHienThi;
-        private ToolStripMenuItem mnAccount;
-        private ToolStripMenuItem mnDangXuat;
-        private ToolStripMenuItem mnThoat;
         private ToolStripMenuItem hướngDẫnSửDụngPhầnMềmToolStripMenuItem;
         private ToolStripMenuItem mnThongTin;
         private ToolStripMenuItem mnTuyenXe;
@@ -351,5 +347,9 @@
         private ToolStripMenuItem mnThongKeChuyenXe;
         private ToolStripMenuItem mnThongKePhanCong;
         private ToolStripMenuItem mnDashBoard;
+        private ToolStripMenuItem mnThongKeXeBuyt;
+        private ToolStripMenuItem quảnLýNgườiDùngToolStripMenuItem;
+        private ToolStripMenuItem tàiKhoảnToolStripMenuItem;
+        private ToolStripMenuItem đăngXuấtToolStripMenuItem1;
     }
 }

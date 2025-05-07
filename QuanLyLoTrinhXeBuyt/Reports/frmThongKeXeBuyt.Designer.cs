@@ -1,6 +1,6 @@
 ﻿namespace QuanLyLoTrinhXeBuyt.Reports
 {
-    partial class frmThongKeChuyenXe
+    partial class frmThongKeXeBuyt
     {
         /// <summary>
         /// Required designer variable.
@@ -29,73 +29,71 @@
         private void InitializeComponent()
         {
             reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
-            cboTuyenXe = new ComboBox();
-            label1 = new Label();
-            btnLoc = new Button();
             btnHuy = new Button();
+            btnLoc = new Button();
+            label1 = new Label();
+            cboTrangThai = new ComboBox();
             SuspendLayout();
             // 
             // reportViewer1
             // 
             reportViewer1.Dock = DockStyle.Bottom;
-            reportViewer1.Location = new Point(0, 98);
+            reportViewer1.Location = new Point(0, 115);
             reportViewer1.Name = "reportViewer1";
             reportViewer1.ServerReport.BearerToken = null;
-            reportViewer1.Size = new Size(1337, 750);
+            reportViewer1.Size = new Size(1337, 597);
             reportViewer1.TabIndex = 0;
-            // 
-            // cboTuyenXe
-            // 
-            cboTuyenXe.FormattingEnabled = true;
-            cboTuyenXe.Location = new Point(467, 34);
-            cboTuyenXe.Name = "cboTuyenXe";
-            cboTuyenXe.Size = new Size(275, 28);
-            cboTuyenXe.TabIndex = 1;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(394, 37);
-            label1.Name = "label1";
-            label1.Size = new Size(67, 20);
-            label1.TabIndex = 2;
-            label1.Text = "Tuyến xe";
-            // 
-            // btnLoc
-            // 
-            btnLoc.Location = new Point(764, 33);
-            btnLoc.Name = "btnLoc";
-            btnLoc.Size = new Size(94, 29);
-            btnLoc.TabIndex = 3;
-            btnLoc.Text = "Lọc kết quả";
-            btnLoc.UseVisualStyleBackColor = true;
-            btnLoc.Click += btnLoc_Click;
             // 
             // btnHuy
             // 
-            btnHuy.Location = new Point(864, 34);
+            btnHuy.Location = new Point(1055, 28);
             btnHuy.Name = "btnHuy";
             btnHuy.Size = new Size(94, 29);
-            btnHuy.TabIndex = 4;
+            btnHuy.TabIndex = 8;
             btnHuy.Text = "Hủy";
             btnHuy.UseVisualStyleBackColor = true;
             btnHuy.Click += btnHuy_Click;
             // 
-            // frmThongKeChuyenXe
+            // btnLoc
+            // 
+            btnLoc.Location = new Point(941, 27);
+            btnLoc.Name = "btnLoc";
+            btnLoc.Size = new Size(94, 29);
+            btnLoc.TabIndex = 7;
+            btnLoc.Text = "Lọc kết quả";
+            btnLoc.UseVisualStyleBackColor = true;
+            btnLoc.Click += btnLoc_Click;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(143, 32);
+            label1.Name = "label1";
+            label1.Size = new Size(75, 20);
+            label1.TabIndex = 6;
+            label1.Text = "Trạng thái";
+            // 
+            // cboTrangThai
+            // 
+            cboTrangThai.FormattingEnabled = true;
+            cboTrangThai.Location = new Point(224, 29);
+            cboTrangThai.Name = "cboTrangThai";
+            cboTrangThai.Size = new Size(511, 28);
+            cboTrangThai.TabIndex = 5;
+            // 
+            // frmThongKeXeBuyt
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1337, 848);
+            ClientSize = new Size(1337, 712);
             Controls.Add(btnHuy);
             Controls.Add(btnLoc);
             Controls.Add(label1);
-            Controls.Add(cboTuyenXe);
+            Controls.Add(cboTrangThai);
             Controls.Add(reportViewer1);
-            MaximizeBox = false;
-            MinimizeBox = false;
-            Name = "frmThongKeChuyenXe";
-            Text = "Thống kê chuyến xe";
-            Load += frmThongKeChuyenXe_Load;
+            Name = "frmThongKeXeBuyt";
+            Text = "frmThongKeXeBuyt";
+            Load += frmThongKeXeBuyt_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -103,9 +101,9 @@
         #endregion
 
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
-        private ComboBox cboTuyenXe;
-        private Label label1;
-        private Button btnLoc;
         private Button btnHuy;
+        private Button btnLoc;
+        private Label label1;
+        private ComboBox cboTrangThai;
     }
 }

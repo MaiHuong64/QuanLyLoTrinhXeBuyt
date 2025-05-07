@@ -125,10 +125,5 @@ namespace QuanLyLoTrinhXeBuyt.Reports
         {
             frmThongKeChuyenXe_Load(sender, e);
         }
-
-        private void frmThongKeChuyenXe_Load_1(object sender, EventArgs e)
-        {
-
-        }
     }
 }
