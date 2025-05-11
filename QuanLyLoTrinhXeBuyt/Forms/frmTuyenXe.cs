@@ -24,7 +24,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             btnNhapFileExcel.Enabled = true;
         }
 
-        private void frmTuyenXe_Load(object sender, EventArgs e)
+        public void frmTuyenXe_Load(object sender, EventArgs e)
         {
             BatTatChucNang(false);
             dvgTuyenXe.AutoGenerateColumns = false;

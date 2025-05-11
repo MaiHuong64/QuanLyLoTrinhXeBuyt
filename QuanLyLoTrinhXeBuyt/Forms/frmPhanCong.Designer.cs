@@ -30,15 +30,15 @@
         {
             groupBox1 = new GroupBox();
             btnThoat = new Button();
-            btnHuybo = new Button();
+            label3 = new Label();
+            btnHuy = new Button();
+            cboNhanVien = new ComboBox();
             btnLuu = new Button();
             btnSua = new Button();
-            btnXoa = new Button();
-            btnThem = new Button();
-            label3 = new Label();
-            cboNhanVien = new ComboBox();
             label2 = new Label();
+            btnXoa = new Button();
             dtNgayLam = new DateTimePicker();
+            btnThem = new Button();
             cboChuyenXe = new ComboBox();
             label1 = new Label();
             groupBox2 = new GroupBox();
@@ -59,15 +59,15 @@
             // groupBox1
             // 
             groupBox1.Controls.Add(btnThoat);
-            groupBox1.Controls.Add(btnHuybo);
+            groupBox1.Controls.Add(label3);
+            groupBox1.Controls.Add(btnHuy);
+            groupBox1.Controls.Add(cboNhanVien);
             groupBox1.Controls.Add(btnLuu);
             groupBox1.Controls.Add(btnSua);
-            groupBox1.Controls.Add(btnXoa);
-            groupBox1.Controls.Add(btnThem);
-            groupBox1.Controls.Add(label3);
-            groupBox1.Controls.Add(cboNhanVien);
             groupBox1.Controls.Add(label2);
+            groupBox1.Controls.Add(btnXoa);
             groupBox1.Controls.Add(dtNgayLam);
+            groupBox1.Controls.Add(btnThem);
             groupBox1.Controls.Add(cboChuyenXe);
             groupBox1.Controls.Add(label1);
             groupBox1.Location = new Point(12, 12);
@@ -79,69 +79,16 @@
             // 
             // btnThoat
             // 
-            btnThoat.Location = new Point(775, 82);
+            btnThoat.Image = Properties.Resources.exit;
+            btnThoat.ImageAlign = ContentAlignment.MiddleLeft;
+            btnThoat.Location = new Point(743, 82);
             btnThoat.Margin = new Padding(4);
             btnThoat.Name = "btnThoat";
-            btnThoat.Size = new Size(89, 36);
-            btnThoat.TabIndex = 21;
+            btnThoat.Size = new Size(116, 36);
+            btnThoat.TabIndex = 41;
             btnThoat.Text = "Thoát";
             btnThoat.UseVisualStyleBackColor = true;
             btnThoat.Click += btnThoat_Click;
-            // 
-            // btnHuybo
-            // 
-            btnHuybo.Location = new Point(651, 82);
-            btnHuybo.Margin = new Padding(4);
-            btnHuybo.Name = "btnHuybo";
-            btnHuybo.Size = new Size(89, 36);
-            btnHuybo.TabIndex = 20;
-            btnHuybo.Text = "Hủy bỏ";
-            btnHuybo.UseVisualStyleBackColor = true;
-            btnHuybo.Click += btnHuybo_Click;
-            // 
-            // btnLuu
-            // 
-            btnLuu.Location = new Point(527, 82);
-            btnLuu.Margin = new Padding(4);
-            btnLuu.Name = "btnLuu";
-            btnLuu.Size = new Size(89, 36);
-            btnLuu.TabIndex = 19;
-            btnLuu.Text = "Lưu";
-            btnLuu.UseVisualStyleBackColor = true;
-            btnLuu.Click += btnLuu_Click;
-            // 
-            // btnSua
-            // 
-            btnSua.Location = new Point(403, 82);
-            btnSua.Margin = new Padding(4);
-            btnSua.Name = "btnSua";
-            btnSua.Size = new Size(89, 36);
-            btnSua.TabIndex = 18;
-            btnSua.Text = "Sửa";
-            btnSua.UseVisualStyleBackColor = true;
-            btnSua.Click += btnSua_Click;
-            // 
-            // btnXoa
-            // 
-            btnXoa.Location = new Point(279, 82);
-            btnXoa.Margin = new Padding(4);
-            btnXoa.Name = "btnXoa";
-            btnXoa.Size = new Size(89, 36);
-            btnXoa.TabIndex = 17;
-            btnXoa.Text = "Xóa";
-            btnXoa.UseVisualStyleBackColor = true;
-            btnXoa.Click += btnXoa_Click;
-            // 
-            // btnThem
-            // 
-            btnThem.Location = new Point(150, 82);
-            btnThem.Margin = new Padding(4);
-            btnThem.Name = "btnThem";
-            btnThem.Size = new Size(89, 36);
-            btnThem.TabIndex = 16;
-            btnThem.Text = "Thêm";
-            btnThem.UseVisualStyleBackColor = true;
-            btnThem.Click += btnThem_Click;
             // 
             // label3
             // 
@@ -152,6 +99,19 @@
             label3.TabIndex = 6;
             label3.Text = "Ngày làm";
             // 
+            // btnHuy
+            // 
+            btnHuy.Image = Properties.Resources.tải_xuống1;
+            btnHuy.ImageAlign = ContentAlignment.MiddleLeft;
+            btnHuy.Location = new Point(609, 81);
+            btnHuy.Margin = new Padding(4);
+            btnHuy.Name = "btnHuy";
+            btnHuy.Size = new Size(116, 36);
+            btnHuy.TabIndex = 40;
+            btnHuy.Text = "Hủy bỏ";
+            btnHuy.UseVisualStyleBackColor = true;
+            btnHuy.Click += btnHuybo_Click;
+            // 
             // cboNhanVien
             // 
             cboNhanVien.FormattingEnabled = true;
@@ -159,6 +119,32 @@
             cboNhanVien.Name = "cboNhanVien";
             cboNhanVien.Size = new Size(151, 28);
             cboNhanVien.TabIndex = 5;
+            // 
+            // btnLuu
+            // 
+            btnLuu.Image = Properties.Resources.disk_blue;
+            btnLuu.ImageAlign = ContentAlignment.MiddleLeft;
+            btnLuu.Location = new Point(489, 82);
+            btnLuu.Margin = new Padding(4);
+            btnLuu.Name = "btnLuu";
+            btnLuu.Size = new Size(116, 36);
+            btnLuu.TabIndex = 39;
+            btnLuu.Text = "Lưu";
+            btnLuu.UseVisualStyleBackColor = true;
+            btnLuu.Click += btnLuu_Click;
+            // 
+            // btnSua
+            // 
+            btnSua.Image = Properties.Resources.edit1;
+            btnSua.ImageAlign = ContentAlignment.BottomLeft;
+            btnSua.Location = new Point(370, 81);
+            btnSua.Margin = new Padding(4);
+            btnSua.Name = "btnSua";
+            btnSua.Size = new Size(116, 36);
+            btnSua.TabIndex = 38;
+            btnSua.Text = "Sửa";
+            btnSua.UseVisualStyleBackColor = true;
+            btnSua.Click += btnSua_Click;
             // 
             // label2
             // 
@@ -169,6 +155,19 @@
             label2.TabIndex = 4;
             label2.Text = "Nhân viên";
             // 
+            // btnXoa
+            // 
+            btnXoa.Image = Properties.Resources.delete;
+            btnXoa.ImageAlign = ContentAlignment.MiddleLeft;
+            btnXoa.Location = new Point(246, 81);
+            btnXoa.Margin = new Padding(4);
+            btnXoa.Name = "btnXoa";
+            btnXoa.Size = new Size(116, 36);
+            btnXoa.TabIndex = 37;
+            btnXoa.Text = "Xóa";
+            btnXoa.UseVisualStyleBackColor = true;
+            btnXoa.Click += btnXoa_Click;
+            // 
             // dtNgayLam
             // 
             dtNgayLam.Format = DateTimePickerFormat.Short;
@@ -176,6 +175,19 @@
             dtNgayLam.Name = "dtNgayLam";
             dtNgayLam.Size = new Size(154, 27);
             dtNgayLam.TabIndex = 3;
+            // 
+            // btnThem
+            // 
+            btnThem.Image = Properties.Resources.add;
+            btnThem.ImageAlign = ContentAlignment.MiddleLeft;
+            btnThem.Location = new Point(126, 80);
+            btnThem.Margin = new Padding(4);
+            btnThem.Name = "btnThem";
+            btnThem.Size = new Size(116, 36);
+            btnThem.TabIndex = 36;
+            btnThem.Text = "Thêm";
+            btnThem.UseVisualStyleBackColor = true;
+            btnThem.Click += btnThem_Click;
             // 
             // cboChuyenXe
             // 
@@ -247,9 +259,10 @@
             // 
             // btnTimKiem
             // 
+            btnTimKiem.Image = Properties.Resources.pin_grey;
             btnTimKiem.ImageTransparentColor = Color.Magenta;
             btnTimKiem.Name = "btnTimKiem";
-            btnTimKiem.Size = new Size(38, 24);
+            btnTimKiem.Size = new Size(58, 24);
             btnTimKiem.Text = "Tìm";
             btnTimKiem.Click += btnTimKiem_Click;
             // 
@@ -260,18 +273,20 @@
             // 
             // btnNhapFileExcel
             // 
+            btnNhapFileExcel.Image = Properties.Resources.import1;
             btnNhapFileExcel.ImageTransparentColor = Color.Magenta;
             btnNhapFileExcel.Name = "btnNhapFileExcel";
-            btnNhapFileExcel.Size = new Size(58, 24);
+            btnNhapFileExcel.Size = new Size(78, 24);
             btnNhapFileExcel.Text = "Nhập...";
             btnNhapFileExcel.ToolTipText = "Nhập dữ liệu từ Excel";
             btnNhapFileExcel.Click += btnNhapFileExcel_Click;
             // 
             // btnXuatFileExcel
             // 
+            btnXuatFileExcel.Image = Properties.Resources.export1;
             btnXuatFileExcel.ImageTransparentColor = Color.Magenta;
             btnXuatFileExcel.Name = "btnXuatFileExcel";
-            btnXuatFileExcel.Size = new Size(52, 24);
+            btnXuatFileExcel.Size = new Size(72, 24);
             btnXuatFileExcel.Text = "Xuất...";
             btnXuatFileExcel.ToolTipText = "Xuất ra tập tin Excel";
             btnXuatFileExcel.Click += btnXuatFileExcel_Click;
@@ -306,12 +321,6 @@
         private ComboBox cboNhanVien;
         private Label label2;
         private Label label3;
-        private Button btnThoat;
-        private Button btnHuybo;
-        private Button btnLuu;
-        private Button btnSua;
-        private Button btnXoa;
-        private Button btnThem;
         private GroupBox groupBox2;
         private DataGridView dgvPhanCong;
         private ToolStrip toolStrip;
@@ -321,5 +330,11 @@
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripButton btnNhapFileExcel;
         private ToolStripButton btnXuatFileExcel;
+        private Button btnThoat;
+        private Button btnHuy;
+        private Button btnLuu;
+        private Button btnSua;
+        private Button btnXoa;
+        private Button btnThem;
     }
 }
