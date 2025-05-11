@@ -74,21 +74,27 @@
             // 
             // btnLuu
             // 
+            btnLuu.Image = Properties.Resources.disk_blue;
+            btnLuu.ImageAlign = ContentAlignment.MiddleLeft;
             btnLuu.Location = new Point(264, 465);
             btnLuu.Name = "btnLuu";
-            btnLuu.Size = new Size(94, 29);
+            btnLuu.Size = new Size(137, 44);
             btnLuu.TabIndex = 9;
             btnLuu.Text = "Lưu tuyến xe";
+            btnLuu.TextAlign = ContentAlignment.MiddleRight;
             btnLuu.UseVisualStyleBackColor = true;
             btnLuu.Click += btnLuu_Click;
             // 
             // btnThoat
             // 
+            btnThoat.Image = Properties.Resources.exit;
+            btnThoat.ImageAlign = ContentAlignment.MiddleLeft;
             btnThoat.Location = new Point(514, 465);
             btnThoat.Name = "btnThoat";
-            btnThoat.Size = new Size(94, 29);
+            btnThoat.Size = new Size(94, 44);
             btnThoat.TabIndex = 9;
             btnThoat.Text = "Thoát";
+            btnThoat.TextAlign = ContentAlignment.MiddleRight;
             btnThoat.UseVisualStyleBackColor = true;
             btnThoat.Click += btnThoat_Click;
             // 
@@ -131,9 +137,11 @@
             // 
             // btnThemTuyen
             // 
+            btnThemTuyen.Image = Properties.Resources.add;
+            btnThemTuyen.ImageAlign = ContentAlignment.MiddleLeft;
             btnThemTuyen.Location = new Point(698, 32);
             btnThemTuyen.Name = "btnThemTuyen";
-            btnThemTuyen.Size = new Size(94, 29);
+            btnThemTuyen.Size = new Size(167, 43);
             btnThemTuyen.TabIndex = 8;
             btnThemTuyen.Text = "Thêm tuyen";
             btnThemTuyen.UseVisualStyleBackColor = true;
@@ -163,9 +171,11 @@
             // 
             // btnXoaTram
             // 
+            btnXoaTram.Image = Properties.Resources.delete;
+            btnXoaTram.ImageAlign = ContentAlignment.MiddleLeft;
             btnXoaTram.Location = new Point(603, 35);
             btnXoaTram.Name = "btnXoaTram";
-            btnXoaTram.Size = new Size(94, 29);
+            btnXoaTram.Size = new Size(150, 38);
             btnXoaTram.TabIndex = 14;
             btnXoaTram.Text = "Xóa trạm";
             btnXoaTram.UseVisualStyleBackColor = true;
@@ -173,9 +183,11 @@
             // 
             // btnThemTram
             // 
+            btnThemTram.Image = Properties.Resources.add;
+            btnThemTram.ImageAlign = ContentAlignment.MiddleLeft;
             btnThemTram.Location = new Point(408, 36);
             btnThemTram.Name = "btnThemTram";
-            btnThemTram.Size = new Size(94, 29);
+            btnThemTram.Size = new Size(153, 38);
             btnThemTram.TabIndex = 13;
             btnThemTram.Text = "Thêm trạm";
             btnThemTram.UseVisualStyleBackColor = true;
@@ -202,7 +214,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1052, 501);
+            ClientSize = new Size(1052, 515);
             Controls.Add(groupBox1);
             Controls.Add(groupBox3);
             Controls.Add(btnThoat);

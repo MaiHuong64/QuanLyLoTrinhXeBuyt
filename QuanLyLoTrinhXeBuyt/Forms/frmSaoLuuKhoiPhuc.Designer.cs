@@ -68,7 +68,7 @@
             groupBox1.Controls.Add(txtBackupPath);
             groupBox1.Location = new Point(12, 12);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(696, 125);
+            groupBox1.Size = new Size(501, 125);
             groupBox1.TabIndex = 2;
             groupBox1.TabStop = false;
             groupBox1.Text = "Backup Database";
@@ -100,7 +100,7 @@
             groupBox2.Controls.Add(txtRestorePath);
             groupBox2.Location = new Point(12, 143);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(696, 125);
+            groupBox2.Size = new Size(501, 125);
             groupBox2.TabIndex = 2;
             groupBox2.TabStop = false;
             groupBox2.Text = "Restore Database";
@@ -146,7 +146,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(530, 286);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Name = "frmSaoLuuKhoiPhuc";

@@ -1,4 +1,5 @@
 ﻿using DocumentFormat.OpenXml.Drawing.Diagrams;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using QuanLyLoTrinhXeBuyt.Data;
 using System;
@@ -19,10 +20,14 @@ namespace QuanLyLoTrinhXeBuyt.Forms
         int id;
         BindingList<DanhSachTuyenXe_ChiTiet> tuyenXeChiTiet = new BindingList<DanhSachTuyenXe_ChiTiet>();
 
+        frmTuyenXe frmTuyenXe = new frmTuyenXe();
+
+
         public frmTuyenXe_ChiTiet(int maTuyenXe)
         {
             InitializeComponent();
             id = maTuyenXe;
+            this.frmTuyenXe = frmTuyenXe;
         }
         public bool KiemTraDuLieu()
         {
@@ -65,8 +70,6 @@ namespace QuanLyLoTrinhXeBuyt.Forms
 
             gridChiTiet.AutoGenerateColumns = false;
 
-
-
             if (gridChiTiet.Columns.Count == 0)
             {
                 gridChiTiet.Columns.Add(new DataGridViewTextBoxColumn { Name = "TenTuyen", DataPropertyName = "TenTuyen", HeaderText = "Tên tuyến xe" });
@@ -76,6 +79,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
 
             gridChiTiet.DataSource = tuyenXeChiTiet;
 
+            //Thêm dữ liệu để sửa
             if (id != 0)
             {
                 var tuyenXe = context.TuyenXe.Where(r => r.TuyenXeID == id).SingleOrDefault();
@@ -127,6 +131,8 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                     {
                         tuyenXe.TenTuyen = txtTenTuyen.Text;
                         tuyenXe.MoTa = txtGhiChu.Text;
+                        
+                        //Luu tuyen moi
                         context.SaveChanges();
 
                         id = tuyenXe.TuyenXeID;
@@ -144,7 +150,9 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                             context.TuyenXe_ChiTiet.Add(tuyenXeChiTiet);
                         }
                         context.SaveChanges();
+                        frmTuyenXe.frmTuyenXe_Load(sender, e);
                     }
+                  
                 }
                 else
                 {
@@ -161,6 +169,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                     }
                     context.SaveChanges();
                 }
+              
                 btnThoat_Click(sender, e);
             }
             catch(Exception ex)
@@ -193,10 +202,11 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                     TenTramXe = cboTramXe.Text
                 });
             }
-            catch(Exception ex) 
+            catch (DbUpdateException ex)
             {
-                MessageBox.Show(ex.Message); 
+                MessageBox.Show($"Lỗi cập nhật CSDL: {ex.InnerException?.Message ?? ex.Message}");
             }
+
         }
 
         private void btnXoaTram_Click(object sender, EventArgs e)

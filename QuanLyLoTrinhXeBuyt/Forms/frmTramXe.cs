@@ -21,7 +21,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
         private void BatTatChucNang(bool giaTri)
         {
             btnLuu.Enabled = giaTri;
-            btnHuybo.Enabled = giaTri;
+            btnHuy.Enabled = giaTri;
             txtTenTramXe.Enabled = giaTri;
             btnThem.Enabled = !giaTri;
             btnSua.Enabled = !giaTri;

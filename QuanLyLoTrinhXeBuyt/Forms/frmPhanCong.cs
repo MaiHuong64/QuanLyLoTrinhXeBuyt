@@ -27,7 +27,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             btnSua.Enabled = !giaTri;
             btnXoa.Enabled = !giaTri;
             btnLuu.Enabled = giaTri;
-            btnHuybo.Enabled = giaTri;
+            btnHuy.Enabled = giaTri;
             btnThoat.Enabled = giaTri;
             btnNhapFileExcel.Enabled = true;
             btnXuatFileExcel.Enabled = true;
