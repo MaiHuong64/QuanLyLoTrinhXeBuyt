@@ -1,4 +1,5 @@
-﻿using ClosedXML.Excel;
+﻿using ClosedXML;
+using ClosedXML.Excel;
 using QuanLyLoTrinhXeBuyt.Data;
 using System.Data;
 using System.Windows.Forms;
@@ -25,17 +26,23 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                 dvgNhanVien.Columns.Add(new DataGridViewTextBoxColumn { Name = "Email", DataPropertyName = "Email", HeaderText = "Email" });
                 dvgNhanVien.Columns.Add(new DataGridViewTextBoxColumn { Name = "DiaChi", DataPropertyName = "DiaChi", HeaderText = "Địa chỉ" });
                 dvgNhanVien.Columns.Add(new DataGridViewTextBoxColumn { Name = "VaiTro", DataPropertyName = "VaiTro", HeaderText = "Vai trò" });
+                dvgNhanVien.Columns.Add(new DataGridViewTextBoxColumn { Name = "TenDangNhap", DataPropertyName = "TenDangNhap", HeaderText = "Tên đăng nhập" });
+                dvgNhanVien.Columns.Add(new DataGridViewTextBoxColumn { Name = "MatKhau", DataPropertyName = "MatKhau", HeaderText = "Mật khẩu" });
+                dvgNhanVien.Columns.Add(new DataGridViewTextBoxColumn { Name = "QuyenHan", DataPropertyName = "QuyenHan", HeaderText = "Quyền hạn" });
             }
         }
         public void BatTatChucNang(bool giaTri)
         {
             btnLuu.Enabled = giaTri;
-            btnHuy.Enabled = giaTri;
+            btnHuyBo.Enabled = giaTri;
             txtHoVaTen.Enabled = giaTri;
             txtDienThoai.Enabled = giaTri;
             txtEmail.Enabled = giaTri;
             txtDiaChi.Enabled = giaTri;
             cboVaiTro.Enabled = giaTri;
+            txtTenDangNhap.Enabled = giaTri;
+            txtMatKhau.Enabled = giaTri;
+            cboQuyenHan.Enabled = giaTri;
 
             btnThem.Enabled = !giaTri;
             btnSua.Enabled = !giaTri;
@@ -50,8 +57,33 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             txtEmail.Clear();
             txtDiaChi.Clear();
             cboVaiTro.Text = "";
+            txtTenDangNhap.Clear();
+            txtMatKhau.Clear();
+            cboQuyenHan.SelectedIndex = 0;
 
             txtHoVaTen.Focus();
+        }
+       
+        public bool KiemTraDuLieu()
+        {
+            if (string.IsNullOrWhiteSpace(txtHoVaTen.Text))
+            {
+                MessageBox.Show("Vui lòng nhập họ tên", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(cboVaiTro.Text))
+            {
+                MessageBox.Show("Vui lòng chọn chức vụ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtTenDangNhap.Text) || string.IsNullOrWhiteSpace(txtMatKhau.Text))
+            {
+                MessageBox.Show("Vui lòng nhập tài khoản và mật khẩu", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            return true;
         }
         private void frmNhanVien_Load(object sender, EventArgs e)
         {
@@ -60,7 +92,20 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             ThemDuLieuVaoGrid();
 
             BatTatChucNang(false);
-            List<NhanVien> nv = context.NhanVien.ToList();
+            List<DanhSachNhanVien> nv = context.NhanVien.Select(r => new DanhSachNhanVien
+            {
+                NhanVienID = r.NhanVienID,
+                HoTen = r.HoTen,
+                SoDienThoai = r.SoDienThoai,
+                Email = r.Email,
+                DiaChi = r.DiaChi,
+                VaiTro = r.VaiTro,
+                TaiKhoanID = r.TaiKhoanID,
+                TenDangNhap = r.TaiKhoan.TenDangNhap,
+                MatKhau = r.TaiKhoan.MatKhau,
+                QuyenHan = r.TaiKhoan.QuyenHan
+
+            }).ToList();
 
             BindingSource bindingSource = new BindingSource();
             bindingSource.DataSource = nv;
@@ -71,6 +116,9 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             txtDienThoai.DataBindings.Clear();
             txtDienThoai.DataBindings.Add("Text", bindingSource, "SoDienThoai", false, DataSourceUpdateMode.Never);
 
+            txtEmail.DataBindings.Clear();
+            txtEmail.DataBindings.Add("Text", bindingSource, "Email", false, DataSourceUpdateMode.Never);
+
             txtDiaChi.DataBindings.Clear();
             txtDiaChi.DataBindings.Add("Text", bindingSource, "DiaChi", false, DataSourceUpdateMode.Never);
 
@@ -79,6 +127,12 @@ namespace QuanLyLoTrinhXeBuyt.Forms
 
             cboVaiTro.DataBindings.Clear();
             cboVaiTro.DataBindings.Add("Text", bindingSource, "VaiTro", false, DataSourceUpdateMode.Never);
+
+            txtTenDangNhap.DataBindings.Clear();
+            txtTenDangNhap.DataBindings.Add("Text", bindingSource, "TenDangNhap", false, DataSourceUpdateMode.Never);
+
+            cboQuyenHan.DataBindings.Clear();
+            cboQuyenHan.DataBindings.Add("Text", bindingSource, "QuyenHan", false, DataSourceUpdateMode.Never);
 
 
             dvgNhanVien.DataSource = bindingSource;
@@ -115,35 +169,65 @@ namespace QuanLyLoTrinhXeBuyt.Forms
 
         private void btnLuu_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtHoVaTen.Text))
-                MessageBox.Show("Vui lòng nhập họ tên", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            else if (string.IsNullOrWhiteSpace(cboVaiTro.Text))
-                MessageBox.Show("Vui lòng chọn chức vụ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            if (!KiemTraDuLieu()) return;
             else
             {
                 if (xuLyThem)
                 {
-                    NhanVien nv = new NhanVien();
-                    nv.HoTen = txtHoVaTen.Text;
-                    nv.SoDienThoai = txtDienThoai.Text;
-                    nv.DiaChi = txtDiaChi.Text;
-                    nv.VaiTro = cboVaiTro.Text;
-                    context.NhanVien.Add(nv);
+                    var tk = new TaiKhoan
+                    {
+                        TenDangNhap = txtTenDangNhap.Text,
+                        MatKhau = BCrypt.Net.BCrypt.HashPassword(txtMatKhau.Text),
+                        QuyenHan = cboQuyenHan.SelectedIndex == 0 ? "admin" : "user"
+                    };
 
+                    context.TaiKhoan.Add(tk);
                     context.SaveChanges();
+
+
+                    var nv = new NhanVien
+                    {
+                        HoTen = txtHoVaTen.Text,
+                        SoDienThoai = txtDienThoai.Text,
+                        DiaChi = txtDiaChi.Text,
+                        Email = txtEmail.Text,
+                        VaiTro = cboVaiTro.Text,
+                        TaiKhoanID = tk.TaiKhoanID
+                    };
+
+                    context.NhanVien.Add(nv);
+                    context.SaveChanges();
+
                 }
                 else
                 {
-                    NhanVien nv = context.NhanVien.Find(id);
+                    var nv = context.NhanVien.Find(id);
                     if (nv != null)
                     {
                         nv.HoTen = txtHoVaTen.Text;
                         nv.SoDienThoai = txtDienThoai.Text;
                         nv.DiaChi = txtDiaChi.Text;
+                        nv.Email = txtEmail.Text;
                         nv.VaiTro = cboVaiTro.Text;
+
                         context.Update(nv);
-                        context.SaveChanges();
                     }
+
+                    // Cập nhật tài khoản gắn với nhân viên đó
+                    var tk = context.TaiKhoan.Find(id);
+                    if (tk != null)
+                    {
+                        tk.TenDangNhap = txtTenDangNhap.Text;
+                        tk.QuyenHan = cboQuyenHan.SelectedIndex == 0 ? "admin" : "user";
+                        if (string.IsNullOrEmpty(txtMatKhau.Text))
+                            context.Entry(tk).Property(x => x.MatKhau).IsModified = false; // Giữ nguyên mật khẩu cũ
+                        else
+                            tk.MatKhau = BCrypt.Net.BCrypt.HashPassword(txtMatKhau.Text); // Cập nhật mật khẩu mới
+
+                        context.Update(tk);
+                    }
+
+                    context.SaveChanges();
                 }
                 frmNhanVien_Load(sender, e);
             }

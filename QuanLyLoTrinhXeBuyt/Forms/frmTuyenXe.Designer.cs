@@ -49,9 +49,10 @@
             // btnThem
             // 
             btnThem.AutoSize = true;
-            btnThem.Location = new Point(38, 441);
+            btnThem.Location = new Point(52, 485);
+            btnThem.Margin = new Padding(4, 3, 4, 3);
             btnThem.Name = "btnThem";
-            btnThem.Size = new Size(103, 41);
+            btnThem.Size = new Size(142, 45);
             btnThem.TabIndex = 2;
             btnThem.Text = "Thêm tuyến";
             btnThem.UseVisualStyleBackColor = true;
@@ -59,9 +60,10 @@
             // 
             // btnXoa
             // 
-            btnXoa.Location = new Point(258, 441);
+            btnXoa.Location = new Point(355, 485);
+            btnXoa.Margin = new Padding(4, 3, 4, 3);
             btnXoa.Name = "btnXoa";
-            btnXoa.Size = new Size(109, 41);
+            btnXoa.Size = new Size(150, 45);
             btnXoa.TabIndex = 6;
             btnXoa.Text = "Xoá";
             btnXoa.UseVisualStyleBackColor = true;
@@ -70,9 +72,10 @@
             // btnSua
             // 
             btnSua.AutoSize = true;
-            btnSua.Location = new Point(147, 441);
+            btnSua.Location = new Point(202, 485);
+            btnSua.Margin = new Padding(4, 3, 4, 3);
             btnSua.Name = "btnSua";
-            btnSua.Size = new Size(105, 41);
+            btnSua.Size = new Size(144, 45);
             btnSua.TabIndex = 5;
             btnSua.Text = "Sửa";
             btnSua.UseVisualStyleBackColor = true;
@@ -82,11 +85,11 @@
             // 
             groupBox2.Controls.Add(dvgTuyenXe);
             groupBox2.Controls.Add(toolStrip);
-            groupBox2.Location = new Point(13, 13);
-            groupBox2.Margin = new Padding(4);
+            groupBox2.Location = new Point(18, 14);
+            groupBox2.Margin = new Padding(6, 4, 6, 4);
             groupBox2.Name = "groupBox2";
-            groupBox2.Padding = new Padding(4);
-            groupBox2.Size = new Size(1164, 379);
+            groupBox2.Padding = new Padding(6, 4, 6, 4);
+            groupBox2.Size = new Size(1600, 417);
             groupBox2.TabIndex = 11;
             groupBox2.TabStop = false;
             groupBox2.Text = "Danh sách nhân viên";
@@ -98,13 +101,14 @@
             dvgTuyenXe.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dvgTuyenXe.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dvgTuyenXe.Dock = DockStyle.Bottom;
-            dvgTuyenXe.Location = new Point(4, 24);
+            dvgTuyenXe.Location = new Point(6, 30);
+            dvgTuyenXe.Margin = new Padding(4, 3, 4, 3);
             dvgTuyenXe.MultiSelect = false;
             dvgTuyenXe.Name = "dvgTuyenXe";
             dvgTuyenXe.ReadOnly = true;
             dvgTuyenXe.RowHeadersWidth = 51;
             dvgTuyenXe.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dvgTuyenXe.Size = new Size(1156, 324);
+            dvgTuyenXe.Size = new Size(1588, 356);
             dvgTuyenXe.TabIndex = 4;
             dvgTuyenXe.CellContentClick += dvgTuyenXe_CellContentClick;
             // 
@@ -113,9 +117,9 @@
             toolStrip.Dock = DockStyle.Bottom;
             toolStrip.ImageScalingSize = new Size(20, 20);
             toolStrip.Items.AddRange(new ToolStripItem[] { toolStripLabel1, txtTimKiem, btnTimKiem, toolStripSeparator1, btnNhapFileExcel, btnXuatFileExcel });
-            toolStrip.Location = new Point(4, 348);
+            toolStrip.Location = new Point(6, 386);
             toolStrip.Name = "toolStrip";
-            toolStrip.Size = new Size(1156, 27);
+            toolStrip.Size = new Size(1588, 27);
             toolStrip.TabIndex = 3;
             // 
             // toolStripLabel1
@@ -128,7 +132,7 @@
             // 
             txtTimKiem.BorderStyle = BorderStyle.FixedSingle;
             txtTimKiem.Name = "txtTimKiem";
-            txtTimKiem.Size = new Size(150, 27);
+            txtTimKiem.Size = new Size(206, 27);
             // 
             // btnTimKiem
             // 
@@ -162,9 +166,10 @@
             // 
             // btnHuy
             // 
-            btnHuy.Location = new Point(373, 441);
+            btnHuy.Location = new Point(513, 485);
+            btnHuy.Margin = new Padding(4, 3, 4, 3);
             btnHuy.Name = "btnHuy";
-            btnHuy.Size = new Size(109, 41);
+            btnHuy.Size = new Size(150, 45);
             btnHuy.TabIndex = 6;
             btnHuy.Text = "Hủy";
             btnHuy.UseVisualStyleBackColor = true;
@@ -172,14 +177,16 @@
             // 
             // frmTuyenXe
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(11F, 22F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1184, 506);
+            ClientSize = new Size(1628, 557);
             Controls.Add(groupBox2);
             Controls.Add(btnHuy);
             Controls.Add(btnXoa);
             Controls.Add(btnSua);
             Controls.Add(btnThem);
+            Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Margin = new Padding(4, 3, 4, 3);
             Name = "frmTuyenXe";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "TuyenXe";
