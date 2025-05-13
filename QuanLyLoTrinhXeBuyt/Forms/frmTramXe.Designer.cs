@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTramXe));
             txtTenTramXe = new TextBox();
             label2 = new Label();
@@ -38,6 +39,7 @@
             btnSua = new Button();
             btnThem = new Button();
             btnXoa = new Button();
+
             groupBox2 = new GroupBox();
             dvgTramXe = new DataGridView();
             toolStrip = new ToolStrip();
@@ -53,25 +55,30 @@
             // 
             // txtTenTramXe
             // 
+
             txtTenTramXe.Location = new Point(231, 45);
             txtTenTramXe.Margin = new Padding(6, 4, 6, 4);
             txtTenTramXe.Name = "txtTenTramXe";
             txtTenTramXe.Size = new Size(947, 30);
+
             txtTenTramXe.TabIndex = 5;
             txtTenTramXe.KeyDown += txtTenTramXe_KeyDown;
             // 
             // label2
             // 
             label2.AutoSize = true;
+
             label2.Location = new Point(48, 48);
             label2.Margin = new Padding(6, 0, 6, 0);
             label2.Name = "label2";
             label2.Size = new Size(103, 22);
+
             label2.TabIndex = 4;
             label2.Text = "Tên trạm xe";
             // 
             // groupBox1
             // 
+
             groupBox1.Controls.Add(btnThoat);
             groupBox1.Controls.Add(txtTenTramXe);
             groupBox1.Controls.Add(btnHuyBo);
@@ -172,6 +179,7 @@
             btnXoa.TextAlign = ContentAlignment.MiddleRight;
             btnXoa.UseVisualStyleBackColor = true;
             btnXoa.Click += btnXoa_Click;
+
             // 
             // groupBox2
             // 
@@ -227,17 +235,40 @@
             // 
             // toolStripButton1
             // 
+
             toolStripButton1.Image = (Image)resources.GetObject("toolStripButton1.Image");
             toolStripButton1.ImageTransparentColor = Color.Magenta;
             toolStripButton1.Name = "toolStripButton1";
             toolStripButton1.Size = new Size(66, 26);
+
             toolStripButton1.Text = "Tìm";
             toolStripButton1.Click += btnTimKiem_Click;
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
+
             toolStripSeparator1.Size = new Size(6, 29);
+
+            // 
+            // btnNhapFileExcel
+            // 
+            btnNhapFileExcel.Image = Properties.Resources.import1;
+            btnNhapFileExcel.ImageTransparentColor = Color.Magenta;
+            btnNhapFileExcel.Name = "btnNhapFileExcel";
+            btnNhapFileExcel.Size = new Size(78, 24);
+            btnNhapFileExcel.Text = "Nhập...";
+            btnNhapFileExcel.ToolTipText = "Nhập dữ liệu từ Excel";
+            // 
+            // btnXuatFileExcel
+            // 
+            btnXuatFileExcel.Image = Properties.Resources.export1;
+            btnXuatFileExcel.ImageTransparentColor = Color.Magenta;
+            btnXuatFileExcel.Name = "btnXuatFileExcel";
+            btnXuatFileExcel.Size = new Size(72, 24);
+            btnXuatFileExcel.Text = "Xuất...";
+            btnXuatFileExcel.ToolTipText = "Xuất ra tập tin Excel";
+
             // 
             // frmTramXe
             // 
@@ -278,11 +309,13 @@
         private ToolStripTextBox txtTimKiem;
         private ToolStripButton toolStripButton1;
         private ToolStripSeparator toolStripSeparator1;
+
         private Button btnThoat;
         private Button btnHuyBo;
         private Button btnLuu;
         private Button btnSua;
         private Button btnThem;
         private Button btnXoa;
+
     }
 }

@@ -17,6 +17,7 @@ namespace QuanLyLoTrinhXeBuyt.Data
         public virtual TaiKhoan TaiKhoan { get; set; } = null!;
         public virtual ObservableCollectionListSource<XeBuyt> XeBuyt { get; } = new ();
     }
+
     [NotMapped]
     public class DanhSachNhanVien
     {
@@ -27,8 +28,10 @@ namespace QuanLyLoTrinhXeBuyt.Data
         public string? DiaChi { get; set; }
         public string? VaiTro { get; set; }
         public int TaiKhoanID { get; set; }
+      
         public string? TenDangNhap {get; set; }
         public string? MatKhau { get; set; }
         public string? QuyenHan { get; set; }
+
     }
 }

@@ -31,15 +31,22 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPhanCong));
             groupBox1 = new GroupBox();
             btnThoat = new Button();
+
             btnHuyBo = new Button();
             btnLuu = new Button();
             btnSua = new Button();
             btnXoa = new Button();
             btnThem = new Button();
+          
             label3 = new Label();
+            btnHuy = new Button();
             cboNhanVien = new ComboBox();
+            btnLuu = new Button();
+            btnSua = new Button();
             label2 = new Label();
+            btnXoa = new Button();
             dtNgayLam = new DateTimePicker();
+            btnThem = new Button();
             cboChuyenXe = new ComboBox();
             label1 = new Label();
             groupBox2 = new GroupBox();
@@ -60,15 +67,22 @@
             // groupBox1
             // 
             groupBox1.Controls.Add(btnThoat);
+
             groupBox1.Controls.Add(btnHuyBo);
             groupBox1.Controls.Add(btnLuu);
             groupBox1.Controls.Add(btnSua);
             groupBox1.Controls.Add(btnXoa);
             groupBox1.Controls.Add(btnThem);
+
             groupBox1.Controls.Add(label3);
+            groupBox1.Controls.Add(btnHuy);
             groupBox1.Controls.Add(cboNhanVien);
+            groupBox1.Controls.Add(btnLuu);
+            groupBox1.Controls.Add(btnSua);
             groupBox1.Controls.Add(label2);
+            groupBox1.Controls.Add(btnXoa);
             groupBox1.Controls.Add(dtNgayLam);
+            groupBox1.Controls.Add(btnThem);
             groupBox1.Controls.Add(cboChuyenXe);
             groupBox1.Controls.Add(label1);
             groupBox1.Location = new Point(16, 13);
@@ -82,18 +96,28 @@
             // 
             // btnThoat
             // 
+
             btnThoat.Image = (Image)resources.GetObject("btnThoat.Image");
             btnThoat.ImageAlign = ContentAlignment.MiddleLeft;
             btnThoat.Location = new Point(1014, 92);
             btnThoat.Margin = new Padding(6, 4, 6, 4);
             btnThoat.Name = "btnThoat";
             btnThoat.Size = new Size(109, 40);
+
+            btnThoat.Image = Properties.Resources.exit;
+            btnThoat.ImageAlign = ContentAlignment.MiddleLeft;
+            btnThoat.Location = new Point(743, 82);
+            btnThoat.Margin = new Padding(4);
+            btnThoat.Name = "btnThoat";
+            btnThoat.Size = new Size(116, 36);
+
             btnThoat.TabIndex = 41;
             btnThoat.Text = "Thoát";
             btnThoat.TextAlign = ContentAlignment.MiddleRight;
             btnThoat.UseVisualStyleBackColor = true;
             btnThoat.Click += btnThoat_Click;
             // 
+
             // btnHuyBo
             // 
             btnHuyBo.Image = (Image)resources.GetObject("btnHuyBo.Image");
@@ -116,6 +140,46 @@
             btnLuu.Margin = new Padding(6, 4, 6, 4);
             btnLuu.Name = "btnLuu";
             btnLuu.Size = new Size(109, 40);
+
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(694, 33);
+            label3.Name = "label3";
+            label3.Size = new Size(73, 20);
+            label3.TabIndex = 6;
+            label3.Text = "Ngày làm";
+            // 
+            // btnHuy
+            // 
+            btnHuy.Image = Properties.Resources.tải_xuống1;
+            btnHuy.ImageAlign = ContentAlignment.MiddleLeft;
+            btnHuy.Location = new Point(609, 81);
+            btnHuy.Margin = new Padding(4);
+            btnHuy.Name = "btnHuy";
+            btnHuy.Size = new Size(116, 36);
+            btnHuy.TabIndex = 40;
+            btnHuy.Text = "Hủy bỏ";
+            btnHuy.UseVisualStyleBackColor = true;
+            btnHuy.Click += btnHuybo_Click;
+            // 
+            // cboNhanVien
+            // 
+            cboNhanVien.FormattingEnabled = true;
+            cboNhanVien.Location = new Point(464, 30);
+            cboNhanVien.Name = "cboNhanVien";
+            cboNhanVien.Size = new Size(151, 28);
+            cboNhanVien.TabIndex = 5;
+            // 
+            // btnLuu
+            // 
+            btnLuu.Image = Properties.Resources.disk_blue;
+            btnLuu.ImageAlign = ContentAlignment.MiddleLeft;
+            btnLuu.Location = new Point(489, 82);
+            btnLuu.Margin = new Padding(4);
+            btnLuu.Name = "btnLuu";
+            btnLuu.Size = new Size(116, 36);
+          
             btnLuu.TabIndex = 39;
             btnLuu.Text = "Lưu";
             btnLuu.UseVisualStyleBackColor = true;
@@ -123,18 +187,21 @@
             // 
             // btnSua
             // 
+
             btnSua.Image = (Image)resources.GetObject("btnSua.Image");
             btnSua.ImageAlign = ContentAlignment.MiddleLeft;
             btnSua.Location = new Point(638, 91);
             btnSua.Margin = new Padding(6, 4, 6, 4);
             btnSua.Name = "btnSua";
             btnSua.Size = new Size(109, 40);
+
             btnSua.TabIndex = 38;
             btnSua.Text = "Sửa";
             btnSua.TextAlign = ContentAlignment.MiddleRight;
             btnSua.UseVisualStyleBackColor = true;
             btnSua.Click += btnSua_Click;
             // 
+
             // btnXoa
             // 
             btnXoa.Image = (Image)resources.GetObject("btnXoa.Image");
@@ -183,6 +250,7 @@
             cboNhanVien.Size = new Size(206, 30);
             cboNhanVien.TabIndex = 5;
             // 
+
             // label2
             // 
             label2.AutoSize = true;
@@ -193,6 +261,19 @@
             label2.TabIndex = 4;
             label2.Text = "Nhân viên";
             // 
+            // btnXoa
+            // 
+            btnXoa.Image = Properties.Resources.delete;
+            btnXoa.ImageAlign = ContentAlignment.MiddleLeft;
+            btnXoa.Location = new Point(246, 81);
+            btnXoa.Margin = new Padding(4);
+            btnXoa.Name = "btnXoa";
+            btnXoa.Size = new Size(116, 36);
+            btnXoa.TabIndex = 37;
+            btnXoa.Text = "Xóa";
+            btnXoa.UseVisualStyleBackColor = true;
+            btnXoa.Click += btnXoa_Click;
+            // 
             // dtNgayLam
             // 
             dtNgayLam.Format = DateTimePickerFormat.Short;
@@ -201,6 +282,19 @@
             dtNgayLam.Name = "dtNgayLam";
             dtNgayLam.Size = new Size(210, 30);
             dtNgayLam.TabIndex = 3;
+            // 
+            // btnThem
+            // 
+            btnThem.Image = Properties.Resources.add;
+            btnThem.ImageAlign = ContentAlignment.MiddleLeft;
+            btnThem.Location = new Point(126, 80);
+            btnThem.Margin = new Padding(4);
+            btnThem.Name = "btnThem";
+            btnThem.Size = new Size(116, 36);
+            btnThem.TabIndex = 36;
+            btnThem.Text = "Thêm";
+            btnThem.UseVisualStyleBackColor = true;
+            btnThem.Click += btnThem_Click;
             // 
             // cboChuyenXe
             // 
@@ -276,10 +370,12 @@
             // 
             // btnTimKiem
             // 
+
             btnTimKiem.Image = (Image)resources.GetObject("btnTimKiem.Image");
             btnTimKiem.ImageTransparentColor = Color.Magenta;
             btnTimKiem.Name = "btnTimKiem";
             btnTimKiem.Size = new Size(66, 26);
+
             btnTimKiem.Text = "Tìm";
             btnTimKiem.Click += btnTimKiem_Click;
             // 
@@ -290,20 +386,24 @@
             // 
             // btnNhapFileExcel
             // 
+
             btnNhapFileExcel.Image = (Image)resources.GetObject("btnNhapFileExcel.Image");
             btnNhapFileExcel.ImageTransparentColor = Color.Magenta;
             btnNhapFileExcel.Name = "btnNhapFileExcel";
             btnNhapFileExcel.Size = new Size(91, 26);
+
             btnNhapFileExcel.Text = "Nhập...";
             btnNhapFileExcel.ToolTipText = "Nhập dữ liệu từ Excel";
             btnNhapFileExcel.Click += btnNhapFileExcel_Click;
             // 
             // btnXuatFileExcel
             // 
+
             btnXuatFileExcel.Image = (Image)resources.GetObject("btnXuatFileExcel.Image");
             btnXuatFileExcel.ImageTransparentColor = Color.Magenta;
             btnXuatFileExcel.Name = "btnXuatFileExcel";
             btnXuatFileExcel.Size = new Size(86, 26);
+
             btnXuatFileExcel.Text = "Xuất...";
             btnXuatFileExcel.ToolTipText = "Xuất ra tập tin Excel";
             btnXuatFileExcel.Click += btnXuatFileExcel_Click;
@@ -350,7 +450,10 @@
         private ToolStripButton btnNhapFileExcel;
         private ToolStripButton btnXuatFileExcel;
         private Button btnThoat;
+
         private Button btnHuyBo;
+
+
         private Button btnLuu;
         private Button btnSua;
         private Button btnXoa;

@@ -69,6 +69,7 @@
             btnThoat.ImageAlign = ContentAlignment.MiddleLeft;
             btnThoat.Location = new Point(265, 198);
             btnThoat.Margin = new Padding(6, 4, 6, 4);
+
             btnThoat.Name = "btnThoat";
             btnThoat.Size = new Size(109, 40);
             btnThoat.TabIndex = 15;
@@ -83,6 +84,7 @@
             btnHuyBo.ImageAlign = ContentAlignment.MiddleLeft;
             btnHuyBo.Location = new Point(135, 198);
             btnHuyBo.Margin = new Padding(6, 4, 6, 4);
+
             btnHuyBo.Name = "btnHuyBo";
             btnHuyBo.Size = new Size(118, 40);
             btnHuyBo.TabIndex = 14;
@@ -97,6 +99,7 @@
             btnLuu.ImageAlign = ContentAlignment.BottomLeft;
             btnLuu.Location = new Point(14, 198);
             btnLuu.Margin = new Padding(6, 4, 6, 4);
+
             btnLuu.Name = "btnLuu";
             btnLuu.Size = new Size(109, 40);
             btnLuu.TabIndex = 13;
@@ -110,6 +113,7 @@
             btnSua.ImageAlign = ContentAlignment.MiddleLeft;
             btnSua.Location = new Point(265, 150);
             btnSua.Margin = new Padding(6, 4, 6, 4);
+
             btnSua.Name = "btnSua";
             btnSua.Size = new Size(109, 40);
             btnSua.TabIndex = 12;
@@ -120,10 +124,12 @@
             // 
             // btnXoa
             // 
+
             btnXoa.Image = (Image)resources.GetObject("btnXoa.Image");
             btnXoa.ImageAlign = ContentAlignment.MiddleLeft;
             btnXoa.Location = new Point(135, 150);
             btnXoa.Margin = new Padding(6, 4, 6, 4);
+
             btnXoa.Name = "btnXoa";
             btnXoa.Size = new Size(118, 40);
             btnXoa.TabIndex = 11;
@@ -172,11 +178,13 @@
             // 
             // btnThem
             // 
+
             btnThem.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnThem.Image = (Image)resources.GetObject("btnThem.Image");
             btnThem.ImageAlign = ContentAlignment.MiddleLeft;
             btnThem.Location = new Point(14, 150);
             btnThem.Margin = new Padding(6, 4, 6, 4);
+
             btnThem.Name = "btnThem";
             btnThem.Size = new Size(109, 40);
             btnThem.TabIndex = 3;
@@ -346,10 +354,12 @@
             // 
             // btnTimKiem
             // 
+
             btnTimKiem.Image = (Image)resources.GetObject("btnTimKiem.Image");
             btnTimKiem.ImageTransparentColor = Color.Magenta;
             btnTimKiem.Name = "btnTimKiem";
             btnTimKiem.Size = new Size(66, 26);
+          
             btnTimKiem.Text = "Tìm";
             btnTimKiem.Click += btnTimKiem_Click;
             // 
@@ -360,10 +370,12 @@
             // 
             // btnNhapFileExcel
             // 
+
             btnNhapFileExcel.Image = (Image)resources.GetObject("btnNhapFileExcel.Image");
             btnNhapFileExcel.ImageTransparentColor = Color.Magenta;
             btnNhapFileExcel.Name = "btnNhapFileExcel";
             btnNhapFileExcel.Size = new Size(91, 26);
+
             btnNhapFileExcel.Text = "Nhập...";
             btnNhapFileExcel.ToolTipText = "Nhập dữ liệu từ Excel";
             btnNhapFileExcel.Click += btnNhapFileExcel_Click;
@@ -374,6 +386,7 @@
             btnXuatFileExcel.ImageTransparentColor = Color.Magenta;
             btnXuatFileExcel.Name = "btnXuatFileExcel";
             btnXuatFileExcel.Size = new Size(86, 26);
+          
             btnXuatFileExcel.Text = "Xuất...";
             btnXuatFileExcel.ToolTipText = "Xuất ra tập tin Excel";
             btnXuatFileExcel.Click += btnXuatFileExcel_Click;

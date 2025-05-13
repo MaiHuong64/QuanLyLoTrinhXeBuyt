@@ -118,6 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+
   <data name="btnThoat.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAS
@@ -149,11 +150,13 @@
         AevtfXE7wEkqlz6Imh/F0PTPCJr+Hbd4IMErefPR/JEM/DNq8lBqvBR7YuWP5cYdq3sxCX8mxoLVvJr5
         ih2C9bGYF8wT8ZCXU7TLv5z6igJRvlpzsPzr9Zw+ND64yhyJ22sw+AsMVOeYRstfoQAAAABJRU5ErkJg
         gg==
+
 </value>
   </data>
   <data name="btnLuu.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAS
+
         cQAAEnEB89x6jgAAAxNJREFUWEftl+9PEmEcwHnR29bWq/6EfFP+Au8QuNrUamWrZc61bLXqVb6pttaL
         ytaL2rRVVmPmAF0d2jRXi1prmVopqPnjBII7NXBm1Mwj5zCFgG935x1IPKIQ+crv9nnBsT2fz+65OziZ
         UufciBnp6qyadtP2qhem6dk5k9/vTxmDhRHWydV2tSiN9Dms2b5ZlmhwkiGVRgayazogs+olsLNzEAgE
@@ -168,11 +171,13 @@
         2QC/Q+GVA/51phamYB9VEJXb8qDCcRpC4WA0gKSXBDxyCK9mpvpj8EW/LS20NGbwDxohYFdfLvQbMoTj
         4/osIQAnnSFRzwXoB0guAioMeriqu542dr8+xd1yCihrvRg5Vqm7wcsB1w1+EPUy7vW8ayNWa67GHvSY
         0oquzZT/7DziO7NWfr9XfD2Tyf4ABTjIT0SlmTYAAAAASUVORK5CYII=
+
 </value>
   </data>
   <data name="btnSua.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAS
+
         cQAAEnEB89x6jgAABoRJREFUWEfFl1lsVHUUxqedJ3hWEYy0FLohZS2UUlqmaKDT0lKhZenGzBRfDLxp
         MICJRINsJaJhaSEalyDEyKNRiM88MFZbaUHp3GU6RTsthRIkZZZ7/M65c5kynRlIjHqTk3s7M73f73zn
         v5y/bfKll7XZ9FWtVmQg7Nry7RnaiiYbYgaePVrxtgvasq03taVb7mtLGqPqIsTChvtq0eab6oJNF9VX
@@ -274,6 +279,7 @@
         glpBovnWa7k+WGVA9vQxPq9/9noj3uGjxIILpP0Cik+GHvtE8Gkhzw4fxaUGtd668smDz4mbRXYsUjun
         YPNxbyQdnCJngo9sMj93QRr4/rMyPxVjDnPJmSdctbnf9MzfZag/p1tm9X6sDitpZ5c3svpfD8aYw1xy
         /tCf08mDp5b+9zwo98PxoK0G18f5fmLmJ79qBhfnVOx3/T338vof5S6v6sIOkpMAAAAASUVORK5CYII=
+
 </value>
   </data>
   <metadata name="toolStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">

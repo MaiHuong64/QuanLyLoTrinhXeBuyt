@@ -78,12 +78,14 @@
             // 
             // btnLuu
             // 
+
             btnLuu.Image = (Image)resources.GetObject("btnLuu.Image");
             btnLuu.ImageAlign = ContentAlignment.MiddleLeft;
             btnLuu.Location = new Point(363, 512);
             btnLuu.Margin = new Padding(4, 3, 4, 3);
             btnLuu.Name = "btnLuu";
             btnLuu.Size = new Size(153, 55);
+
             btnLuu.TabIndex = 9;
             btnLuu.Text = "Lưu tuyến xe";
             btnLuu.TextAlign = ContentAlignment.MiddleRight;
@@ -92,12 +94,14 @@
             // 
             // btnThoat
             // 
+
             btnThoat.Image = (Image)resources.GetObject("btnThoat.Image");
             btnThoat.ImageAlign = ContentAlignment.MiddleLeft;
             btnThoat.Location = new Point(707, 512);
             btnThoat.Margin = new Padding(4, 3, 4, 3);
             btnThoat.Name = "btnThoat";
             btnThoat.Size = new Size(107, 55);
+
             btnThoat.TabIndex = 9;
             btnThoat.Text = "Thoát";
             btnThoat.TextAlign = ContentAlignment.MiddleRight;
@@ -148,12 +152,14 @@
             // 
             // btnThemTuyen
             // 
+
             btnThemTuyen.Image = (Image)resources.GetObject("btnThemTuyen.Image");
             btnThemTuyen.ImageAlign = ContentAlignment.MiddleLeft;
             btnThemTuyen.Location = new Point(997, 34);
             btnThemTuyen.Margin = new Padding(4, 3, 4, 3);
             btnThemTuyen.Name = "btnThemTuyen";
             btnThemTuyen.Size = new Size(149, 49);
+
             btnThemTuyen.TabIndex = 8;
             btnThemTuyen.Text = "Thêm tuyến";
             btnThemTuyen.TextAlign = ContentAlignment.MiddleRight;
@@ -187,12 +193,14 @@
             // 
             // btnXoaTram
             // 
+
             btnXoaTram.Image = (Image)resources.GetObject("btnXoaTram.Image");
             btnXoaTram.ImageAlign = ContentAlignment.MiddleLeft;
             btnXoaTram.Location = new Point(829, 38);
             btnXoaTram.Margin = new Padding(4, 3, 4, 3);
             btnXoaTram.Name = "btnXoaTram";
             btnXoaTram.Size = new Size(129, 53);
+
             btnXoaTram.TabIndex = 14;
             btnXoaTram.Text = "Xóa trạm";
             btnXoaTram.TextAlign = ContentAlignment.MiddleRight;
@@ -201,12 +209,14 @@
             // 
             // btnThemTram
             // 
+
             btnThemTram.Image = (Image)resources.GetObject("btnThemTram.Image");
             btnThemTram.ImageAlign = ContentAlignment.MiddleLeft;
             btnThemTram.Location = new Point(561, 40);
             btnThemTram.Margin = new Padding(4, 3, 4, 3);
             btnThemTram.Name = "btnThemTram";
             btnThemTram.Size = new Size(139, 53);
+
             btnThemTram.TabIndex = 13;
             btnThemTram.Text = "Thêm trạm";
             btnThemTram.TextAlign = ContentAlignment.MiddleRight;
@@ -236,7 +246,9 @@
             // 
             AutoScaleDimensions = new SizeF(11F, 22F);
             AutoScaleMode = AutoScaleMode.Font;
+
             ClientSize = new Size(1446, 579);
+
             Controls.Add(groupBox1);
             Controls.Add(groupBox3);
             Controls.Add(btnThoat);

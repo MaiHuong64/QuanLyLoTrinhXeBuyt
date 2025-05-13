@@ -55,6 +55,9 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             mnThemTram.Enabled = true;
             mnChuyenXe.Enabled = true;
             mnXeBuyt.Enabled = true;
+            mnThongKeChuyenXe.Enabled = true;
+            mnThongKePhanCong.Enabled = true;
+            mnThongKeXeBuyt.Enabled = true;
             //mnChiTiet.Enabled = true;
         }
 
@@ -66,7 +69,10 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             mnThemTram.Enabled = false;
             mnChuyenXe.Enabled = true;
             mnXeBuyt.Enabled = true;
-            //mnChiTiet.Enabled = true;
+            mnThongKeChuyenXe.Enabled = false;
+            mnThongKePhanCong.Enabled = false;
+            mnThongKeXeBuyt.Enabled = true;
+            //mnBanDo.Enabled = true;
         }
         #endregion
 
@@ -92,11 +98,6 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             }
             else
                 tuyenXe.Activate();
-        }
-
-        private void mnChiTiet_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void mnThemTram_Click(object sender, EventArgs e)
@@ -181,11 +182,6 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             }
             else
                 dangNhap.Activate();
-        }
-
-        private void mnAccount_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void mnThongKeChuyenXe_Click(object sender, EventArgs e)

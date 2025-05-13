@@ -1,5 +1,7 @@
+
 ﻿using ClosedXML;
 using ClosedXML.Excel;
+
 using QuanLyLoTrinhXeBuyt.Data;
 using System.Data;
 using System.Windows.Forms;
@@ -27,7 +29,9 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                 dvgNhanVien.Columns.Add(new DataGridViewTextBoxColumn { Name = "DiaChi", DataPropertyName = "DiaChi", HeaderText = "Địa chỉ" });
                 dvgNhanVien.Columns.Add(new DataGridViewTextBoxColumn { Name = "VaiTro", DataPropertyName = "VaiTro", HeaderText = "Vai trò" });
                 dvgNhanVien.Columns.Add(new DataGridViewTextBoxColumn { Name = "TenDangNhap", DataPropertyName = "TenDangNhap", HeaderText = "Tên đăng nhập" });
+
                 dvgNhanVien.Columns.Add(new DataGridViewTextBoxColumn { Name = "MatKhau", DataPropertyName = "MatKhau", HeaderText = "Mật khẩu" });
+
                 dvgNhanVien.Columns.Add(new DataGridViewTextBoxColumn { Name = "QuyenHan", DataPropertyName = "QuyenHan", HeaderText = "Quyền hạn" });
             }
         }
@@ -44,6 +48,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             txtMatKhau.Enabled = giaTri;
             cboQuyenHan.Enabled = giaTri;
 
+
             btnThem.Enabled = !giaTri;
             btnSua.Enabled = !giaTri;
             btnXoa.Enabled = !giaTri;
@@ -58,8 +63,10 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             txtDiaChi.Clear();
             cboVaiTro.Text = "";
             txtTenDangNhap.Clear();
+
             txtMatKhau.Clear();
             cboQuyenHan.SelectedIndex = 0;
+
 
             txtHoVaTen.Focus();
         }
@@ -92,19 +99,19 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             ThemDuLieuVaoGrid();
 
             BatTatChucNang(false);
-            List<DanhSachNhanVien> nv = context.NhanVien.Select(r => new DanhSachNhanVien
-            {
-                NhanVienID = r.NhanVienID,
-                HoTen = r.HoTen,
-                SoDienThoai = r.SoDienThoai,
-                Email = r.Email,
-                DiaChi = r.DiaChi,
-                VaiTro = r.VaiTro,
-                TaiKhoanID = r.TaiKhoanID,
-                TenDangNhap = r.TaiKhoan.TenDangNhap,
-                MatKhau = r.TaiKhoan.MatKhau,
-                QuyenHan = r.TaiKhoan.QuyenHan
 
+            List<DanhSachNhanVien> nv = context.NhanVien.Select(nv => new DanhSachNhanVien
+            {
+                NhanVienID = nv.NhanVienID,
+                HoTen = nv.HoTen,
+                SoDienThoai = nv.SoDienThoai,
+                Email = nv.Email,
+                DiaChi = nv.DiaChi,
+                VaiTro = nv.VaiTro,
+                TaiKhoanID = nv.TaiKhoanID,
+                TenDangNhap = nv.TaiKhoan.TenDangNhap,
+                MatKhau = nv.TaiKhoan.MatKhau,
+                QuyenHan = nv.TaiKhoan.QuyenHan
             }).ToList();
 
             BindingSource bindingSource = new BindingSource();
@@ -174,16 +181,32 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             {
                 if (xuLyThem)
                 {
+
                     var tk = new TaiKhoan
                     {
                         TenDangNhap = txtTenDangNhap.Text,
                         MatKhau = BCrypt.Net.BCrypt.HashPassword(txtMatKhau.Text),
                         QuyenHan = cboQuyenHan.SelectedIndex == 0 ? "admin" : "user"
-                    };
+
+                    TaiKhoan taiKhoan = new TaiKhoan();
+                    taiKhoan.TenDangNhap = txtTenDangNhap.Text;
+                    taiKhoan.MatKhau = BCrypt.Net.BCrypt.HashPassword(txtMatKhau.Text);
+
+                    taiKhoan.QuyenHan = cboQuyenHan.SelectedIndex == 0 ? "user" : "admin";
+                    context.TaiKhoan.Add(taiKhoan);
+                    context.SaveChanges();
+
+                    NhanVien nv = new NhanVien();
+                    nv.HoTen = txtHoVaTen.Text;
+                    nv.SoDienThoai = txtDienThoai.Text;
+                    nv.Email = txtEmail.Text;
+                    nv.DiaChi = txtDiaChi.Text;
+                    nv.VaiTro = cboVaiTro.Text;
+                    nv.TaiKhoanID = context.TaiKhoan.OrderByDescending(x => x.TaiKhoanID).FirstOrDefault().TaiKhoanID; // Lấy ID của tài khoản vừa thêm
+                    context.NhanVien.Add(nv);
 
                     context.TaiKhoan.Add(tk);
                     context.SaveChanges();
-
 
                     var nv = new NhanVien
                     {
@@ -206,11 +229,30 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                     {
                         nv.HoTen = txtHoVaTen.Text;
                         nv.SoDienThoai = txtDienThoai.Text;
+                        nv.Email = txtEmail.Text;
                         nv.DiaChi = txtDiaChi.Text;
                         nv.Email = txtEmail.Text;
                         nv.VaiTro = cboVaiTro.Text;
 
                         context.Update(nv);
+
+                        context.SaveChanges();
+                        
+                        int id = Convert.ToInt32(dvgNhanVien.CurrentRow.Cells["NhanVienID"].Value.ToString());
+                        TaiKhoan taiKhoan = context.TaiKhoan.Find(id);
+                        if (taiKhoan != null)
+                        {
+                            taiKhoan.TenDangNhap = txtHoVaTen.Text;
+                            taiKhoan.MatKhau = txtDienThoai.Text;
+                            taiKhoan.QuyenHan = cboQuyenHan.SelectedIndex == 0 ? "user" : "admin";
+                            context.Update(taiKhoan);
+                            if(string.IsNullOrWhiteSpace(txtMatKhau.Text))
+                                context.Entry(taiKhoan).Property(x => x.MatKhau).IsModified = false; //Giữ lại mật khẩu cũ
+                            else
+                                taiKhoan.MatKhau = BCrypt.Net.BCrypt.HashPassword(txtMatKhau.Text); // Cập nhật mật khẩu mới
+                            context.SaveChanges();
+                        }
+
                     }
 
                     // Cập nhật tài khoản gắn với nhân viên đó

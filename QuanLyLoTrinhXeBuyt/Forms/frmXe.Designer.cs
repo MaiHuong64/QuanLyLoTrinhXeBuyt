@@ -87,9 +87,11 @@
             // 
             // btnDoiAnh
             // 
+
             btnDoiAnh.Image = (Image)resources.GetObject("btnDoiAnh.Image");
             btnDoiAnh.ImageAlign = ContentAlignment.BottomLeft;
             btnDoiAnh.Location = new Point(904, 34);
+
             btnDoiAnh.Name = "btnDoiAnh";
             btnDoiAnh.Size = new Size(136, 38);
             btnDoiAnh.TabIndex = 17;
@@ -107,6 +109,74 @@
             picHinhAnh.TabIndex = 16;
             picHinhAnh.TabStop = false;
             // 
+  // btnThoat
+            // 
+            btnThoat.Image = Properties.Resources.exit;
+            btnThoat.ImageAlign = ContentAlignment.MiddleLeft;
+            btnThoat.Location = new Point(1018, 209);
+            btnThoat.Margin = new Padding(4);
+            btnThoat.Name = "btnThoat";
+            btnThoat.Size = new Size(116, 46);
+            btnThoat.TabIndex = 15;
+            btnThoat.Text = "Thoát";
+            btnThoat.TextAlign = ContentAlignment.MiddleRight;
+            btnThoat.UseVisualStyleBackColor = true;
+            btnThoat.Click += btnThoat_Click;
+            // 
+            // btnHuyBo
+            // 
+            btnHuyBo.Image = Properties.Resources.tải_xuống1;
+            btnHuyBo.ImageAlign = ContentAlignment.MiddleLeft;
+            btnHuyBo.Location = new Point(894, 209);
+            btnHuyBo.Margin = new Padding(4);
+            btnHuyBo.Name = "btnHuyBo";
+            btnHuyBo.Size = new Size(116, 46);
+            btnHuyBo.TabIndex = 14;
+            btnHuyBo.Text = "Hủy bỏ";
+            btnHuyBo.TextAlign = ContentAlignment.MiddleRight;
+            btnHuyBo.UseVisualStyleBackColor = true;
+            btnHuyBo.Click += btnHuyBo_Click;
+            // 
+            // btnLuu
+            // 
+            btnLuu.Image = Properties.Resources.disk_blue;
+            btnLuu.ImageAlign = ContentAlignment.MiddleLeft;
+            btnLuu.Location = new Point(770, 209);
+            btnLuu.Margin = new Padding(4);
+            btnLuu.Name = "btnLuu";
+            btnLuu.Size = new Size(116, 46);
+            btnLuu.TabIndex = 13;
+            btnLuu.Text = "Lưu";
+            btnLuu.UseVisualStyleBackColor = true;
+            btnLuu.Click += btnLuu_Click;
+            // 
+            // btnSua
+            // 
+            btnSua.Image = Properties.Resources.edit1;
+            btnSua.ImageAlign = ContentAlignment.MiddleLeft;
+            btnSua.Location = new Point(637, 209);
+            btnSua.Margin = new Padding(4);
+            btnSua.Name = "btnSua";
+            btnSua.Size = new Size(116, 46);
+            btnSua.TabIndex = 12;
+            btnSua.Text = "Sửa";
+            btnSua.UseVisualStyleBackColor = true;
+            btnSua.Click += btnSua_Click;
+            // 
+            // btnXoa
+            // 
+            btnXoa.Image = Properties.Resources.delete;
+            btnXoa.ImageAlign = ContentAlignment.MiddleLeft;
+            btnXoa.Location = new Point(513, 209);
+            btnXoa.Margin = new Padding(4);
+            btnXoa.Name = "btnXoa";
+            btnXoa.Size = new Size(116, 46);
+            btnXoa.TabIndex = 11;
+            btnXoa.Text = "Xóa";
+            btnXoa.UseVisualStyleBackColor = true;
+            btnXoa.Click += btnXoa_Click;
+            // 
+
             // cboTrangThai
             // 
             cboTrangThai.FormattingEnabled = true;
@@ -144,6 +214,21 @@
             label2.Size = new Size(93, 22);
             label2.TabIndex = 4;
             label2.Text = "Biển số xe";
+            // 
+
+            // btnThem
+            // 
+            btnThem.Image = Properties.Resources.add;
+            btnThem.ImageAlign = ContentAlignment.MiddleLeft;
+            btnThem.Location = new Point(399, 209);
+            btnThem.Margin = new Padding(4);
+            btnThem.Name = "btnThem";
+            btnThem.Size = new Size(106, 46);
+            btnThem.TabIndex = 3;
+            btnThem.Text = "Thêm";
+            btnThem.TextAlign = ContentAlignment.MiddleRight;
+            btnThem.UseVisualStyleBackColor = true;
+            btnThem.Click += btnThem_Click;
             // 
             // txtMaXe
             // 
@@ -191,6 +276,7 @@
             dvgXeBuyt.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dvgXeBuyt.Size = new Size(1054, 246);
             dvgXeBuyt.TabIndex = 4;
+            dvgXeBuyt.CellFormatting += dvgXeBuyt_CellFormatting;
             // 
             // toolStrip
             // 
@@ -216,10 +302,12 @@
             // 
             // btnTimKiem
             // 
+
             btnTimKiem.Image = (Image)resources.GetObject("btnTimKiem.Image");
             btnTimKiem.ImageTransparentColor = Color.Magenta;
             btnTimKiem.Name = "btnTimKiem";
             btnTimKiem.Size = new Size(66, 26);
+
             btnTimKiem.Text = "Tìm";
             // 
             // toolStripSeparator1
@@ -229,19 +317,23 @@
             // 
             // btnNhapFileExcel
             // 
+
             btnNhapFileExcel.Image = (Image)resources.GetObject("btnNhapFileExcel.Image");
             btnNhapFileExcel.ImageTransparentColor = Color.Magenta;
             btnNhapFileExcel.Name = "btnNhapFileExcel";
             btnNhapFileExcel.Size = new Size(91, 26);
+
             btnNhapFileExcel.Text = "Nhập...";
             btnNhapFileExcel.ToolTipText = "Nhập dữ liệu từ Excel";
             // 
             // btnXuatFileExcel
             // 
+
             btnXuatFileExcel.Image = (Image)resources.GetObject("btnXuatFileExcel.Image");
             btnXuatFileExcel.ImageTransparentColor = Color.Magenta;
             btnXuatFileExcel.Name = "btnXuatFileExcel";
             btnXuatFileExcel.Size = new Size(86, 26);
+
             btnXuatFileExcel.Text = "Xuất...";
             btnXuatFileExcel.ToolTipText = "Xuất ra tập tin Excel";
             // 
@@ -336,7 +428,10 @@
             ClientSize = new Size(1098, 559);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
-            Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+
+            Font = new Font("Times New Roman", 13.2000008F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+
             Margin = new Padding(4);
             Name = "frmXeBuyt";
             StartPosition = FormStartPosition.CenterScreen;
