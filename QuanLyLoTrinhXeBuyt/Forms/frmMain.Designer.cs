@@ -302,7 +302,6 @@
             mnDoiMatKhau.Name = "mnDoiMatKhau";
             mnDoiMatKhau.Size = new Size(224, 28);
             mnDoiMatKhau.Text = "Đổi mật khẩu";
-            mnDoiMatKhau.Click += mnDoiMatKhau_Click;
             // 
             // frmMain
             // 

@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTuyenXe));
             btnThem = new Button();
-            btnXoa = new Button();
             btnSua = new Button();
             groupBox2 = new GroupBox();
             dvgTuyenXe = new DataGridView();
@@ -41,6 +41,7 @@
             btnNhapFileExcel = new ToolStripButton();
             btnXuatFileExcel = new ToolStripButton();
             btnHuy = new Button();
+            btnXoa = new Button();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dvgTuyenXe).BeginInit();
             toolStrip.SuspendLayout();
@@ -49,54 +50,27 @@
             // btnThem
             // 
             btnThem.AutoSize = true;
-
-            btnThem.Location = new Point(52, 485);
+            btnThem.Image = (Image)resources.GetObject("btnThem.Image");
+            btnThem.ImageAlign = ContentAlignment.MiddleLeft;
+            btnThem.Location = new Point(30, 466);
             btnThem.Margin = new Padding(4, 3, 4, 3);
             btnThem.Name = "btnThem";
-            btnThem.Size = new Size(142, 45);
-
-            btnThem.Image = Properties.Resources.add1;
-            btnThem.ImageAlign = ContentAlignment.MiddleLeft;
-            btnThem.Location = new Point(38, 441);
-            btnThem.Name = "btnThem";
-            btnThem.Size = new Size(119, 41);
-
+            btnThem.Size = new Size(147, 41);
             btnThem.TabIndex = 2;
             btnThem.Text = "Thêm tuyến";
             btnThem.TextAlign = ContentAlignment.MiddleRight;
             btnThem.UseVisualStyleBackColor = true;
             btnThem.Click += btnThem_Click;
             // 
-            // btnXoa
-            // 
-
-            btnXoa.Location = new Point(355, 485);
-            btnXoa.Margin = new Padding(4, 3, 4, 3);
-
-            btnXoa.Image = Properties.Resources.delete;
-            btnXoa.ImageAlign = ContentAlignment.MiddleLeft;
-            btnXoa.Location = new Point(273, 441);
-
-            btnXoa.Name = "btnXoa";
-            btnXoa.Size = new Size(150, 45);
-            btnXoa.TabIndex = 6;
-            btnXoa.Text = "Xoá";
-            btnXoa.UseVisualStyleBackColor = true;
-            btnXoa.Click += btnXoa_Click;
-            // 
             // btnSua
             // 
             btnSua.AutoSize = true;
-
-            btnSua.Location = new Point(202, 485);
-            btnSua.Margin = new Padding(4, 3, 4, 3);
-
-            btnSua.Image = Properties.Resources.edit1;
+            btnSua.Image = (Image)resources.GetObject("btnSua.Image");
             btnSua.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSua.Location = new Point(162, 441);
-
+            btnSua.Location = new Point(200, 463);
+            btnSua.Margin = new Padding(4, 3, 4, 3);
             btnSua.Name = "btnSua";
-            btnSua.Size = new Size(144, 45);
+            btnSua.Size = new Size(144, 44);
             btnSua.TabIndex = 5;
             btnSua.Text = "Sửa";
             btnSua.UseVisualStyleBackColor = true;
@@ -110,7 +84,7 @@
             groupBox2.Margin = new Padding(6, 4, 6, 4);
             groupBox2.Name = "groupBox2";
             groupBox2.Padding = new Padding(6, 4, 6, 4);
-            groupBox2.Size = new Size(1600, 417);
+            groupBox2.Size = new Size(1337, 417);
             groupBox2.TabIndex = 11;
             groupBox2.TabStop = false;
             groupBox2.Text = "Danh sách nhân viên";
@@ -129,7 +103,7 @@
             dvgTuyenXe.ReadOnly = true;
             dvgTuyenXe.RowHeadersWidth = 51;
             dvgTuyenXe.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dvgTuyenXe.Size = new Size(1588, 356);
+            dvgTuyenXe.Size = new Size(1325, 356);
             dvgTuyenXe.TabIndex = 4;
             dvgTuyenXe.CellContentClick += dvgTuyenXe_CellContentClick;
             // 
@@ -140,7 +114,7 @@
             toolStrip.Items.AddRange(new ToolStripItem[] { toolStripLabel1, txtTimKiem, btnTimKiem, toolStripSeparator1, btnNhapFileExcel, btnXuatFileExcel });
             toolStrip.Location = new Point(6, 386);
             toolStrip.Name = "toolStrip";
-            toolStrip.Size = new Size(1588, 27);
+            toolStrip.Size = new Size(1325, 27);
             toolStrip.TabIndex = 3;
             // 
             // toolStripLabel1
@@ -190,26 +164,35 @@
             // 
             // btnHuy
             // 
-
-            btnHuy.Location = new Point(513, 485);
-            btnHuy.Margin = new Padding(4, 3, 4, 3);
-
             btnHuy.Image = Properties.Resources.tải_xuống1;
             btnHuy.ImageAlign = ContentAlignment.MiddleLeft;
-            btnHuy.Location = new Point(388, 441);
-
+            btnHuy.Location = new Point(531, 466);
+            btnHuy.Margin = new Padding(4, 3, 4, 3);
             btnHuy.Name = "btnHuy";
-            btnHuy.Size = new Size(150, 45);
+            btnHuy.Size = new Size(150, 42);
             btnHuy.TabIndex = 6;
             btnHuy.Text = "Hủy";
             btnHuy.UseVisualStyleBackColor = true;
             btnHuy.Click += btnHuy_Click;
             // 
+            // btnXoa
+            // 
+            btnXoa.Image = (Image)resources.GetObject("btnXoa.Image");
+            btnXoa.ImageAlign = ContentAlignment.MiddleLeft;
+            btnXoa.Location = new Point(362, 466);
+            btnXoa.Margin = new Padding(4, 3, 4, 3);
+            btnXoa.Name = "btnXoa";
+            btnXoa.Size = new Size(150, 41);
+            btnXoa.TabIndex = 6;
+            btnXoa.Text = "Xoá";
+            btnXoa.UseVisualStyleBackColor = true;
+            btnXoa.Click += btnXoa_Click;
+            // 
             // frmTuyenXe
             // 
             AutoScaleDimensions = new SizeF(11F, 22F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1628, 557);
+            ClientSize = new Size(1365, 557);
             Controls.Add(groupBox2);
             Controls.Add(btnHuy);
             Controls.Add(btnXoa);
@@ -233,7 +216,6 @@
         #endregion
         //private DataGridViewTextBoxColumn TenDiemDung;
         private Button btnThem;
-        private Button btnXoa;
         private Button btnSua;
         private GroupBox groupBox2;
         private DataGridView dvgTuyenXe;
@@ -245,5 +227,6 @@
         private ToolStripButton btnNhapFileExcel;
         private ToolStripButton btnXuatFileExcel;
         private Button btnHuy;
+        private Button btnXoa;
     }
 }
