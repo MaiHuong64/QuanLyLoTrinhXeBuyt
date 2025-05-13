@@ -19,6 +19,8 @@ namespace QuanLyLoTrinhXeBuyt.Forms
         {
             btnThem.Enabled = !giaTri;
             btnSua.Enabled = !giaTri;
+            btnXoa.Enabled = !giaTri;
+            btnHuy.Enabled = !giaTri;
             btnTimKiem.Enabled = true;
             btnXuatFileExcel.Enabled = true;
             btnNhapFileExcel.Enabled = true;
@@ -180,6 +182,16 @@ namespace QuanLyLoTrinhXeBuyt.Forms
         private void btnHuy_Click(object sender, EventArgs e)
         {
             frmTuyenXe_Load(sender, e);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnThem_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

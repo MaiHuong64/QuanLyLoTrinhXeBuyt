@@ -5,6 +5,8 @@ VisualStudioVersion = 17.13.35825.156
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuanLyLoTrinhXeBuyt", "QuanLyLoTrinhXeBuyt\QuanLyLoTrinhXeBuyt.csproj", "{31B25827-C0DB-42DD-94A0-B58002A969D2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LuuTruCuonChieu", "LuuTruCuonChieu\LuuTruCuonChieu.csproj", "{54F8D0EB-3241-46FC-B36B-3EEBCDD0FBC8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{31B25827-C0DB-42DD-94A0-B58002A969D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{31B25827-C0DB-42DD-94A0-B58002A969D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{31B25827-C0DB-42DD-94A0-B58002A969D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54F8D0EB-3241-46FC-B36B-3EEBCDD0FBC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54F8D0EB-3241-46FC-B36B-3EEBCDD0FBC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54F8D0EB-3241-46FC-B36B-3EEBCDD0FBC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54F8D0EB-3241-46FC-B36B-3EEBCDD0FBC8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

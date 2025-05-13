@@ -12,7 +12,7 @@ using QuanLyLoTrinhXeBuyt.Data;
 namespace QuanLyLoTrinhXeBuyt.Migrations
 {
     [DbContext(typeof(QLLTXBContext))]
-    [Migration("20250430044237_KhoiTaoCSDL")]
+    [Migration("20250513082827_KhoiTaoCSDL")]
     partial class KhoiTaoCSDL
     {
         /// <inheritdoc />
@@ -80,10 +80,15 @@ namespace QuanLyLoTrinhXeBuyt.Migrations
                     b.Property<string>("SoDienThoai")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("TaiKhoanID")
+                        .HasColumnType("int");
+
                     b.Property<string>("VaiTro")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("NhanVienID");
+
+                    b.HasIndex("TaiKhoanID");
 
                     b.ToTable("NhanVien");
                 });
@@ -126,9 +131,6 @@ namespace QuanLyLoTrinhXeBuyt.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("NhanVienID")
-                        .HasColumnType("int");
-
                     b.Property<string>("QuyenHan")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -138,8 +140,6 @@ namespace QuanLyLoTrinhXeBuyt.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("TaiKhoanID");
-
-                    b.HasIndex("NhanVienID");
 
                     b.ToTable("TaiKhoan");
                 });
@@ -248,6 +248,17 @@ namespace QuanLyLoTrinhXeBuyt.Migrations
                     b.Navigation("Xe");
                 });
 
+            modelBuilder.Entity("QuanLyLoTrinhXeBuyt.Data.NhanVien", b =>
+                {
+                    b.HasOne("QuanLyLoTrinhXeBuyt.Data.TaiKhoan", "TaiKhoan")
+                        .WithMany()
+                        .HasForeignKey("TaiKhoanID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("TaiKhoan");
+                });
+
             modelBuilder.Entity("QuanLyLoTrinhXeBuyt.Data.PhanCong", b =>
                 {
                     b.HasOne("QuanLyLoTrinhXeBuyt.Data.ChuyenXe", "ChuyenXe")
@@ -263,17 +274,6 @@ namespace QuanLyLoTrinhXeBuyt.Migrations
                         .IsRequired();
 
                     b.Navigation("ChuyenXe");
-
-                    b.Navigation("NhanVien");
-                });
-
-            modelBuilder.Entity("QuanLyLoTrinhXeBuyt.Data.TaiKhoan", b =>
-                {
-                    b.HasOne("QuanLyLoTrinhXeBuyt.Data.NhanVien", "NhanVien")
-                        .WithMany()
-                        .HasForeignKey("NhanVienID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
 
                     b.Navigation("NhanVien");
                 });
