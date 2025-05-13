@@ -182,12 +182,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                 if (xuLyThem)
                 {
 
-                    var tk = new TaiKhoan
-                    {
-                        TenDangNhap = txtTenDangNhap.Text,
-                        MatKhau = BCrypt.Net.BCrypt.HashPassword(txtMatKhau.Text),
-                        QuyenHan = cboQuyenHan.SelectedIndex == 0 ? "admin" : "user"
-
+                   
                     TaiKhoan taiKhoan = new TaiKhoan();
                     taiKhoan.TenDangNhap = txtTenDangNhap.Text;
                     taiKhoan.MatKhau = BCrypt.Net.BCrypt.HashPassword(txtMatKhau.Text);
@@ -202,21 +197,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                     nv.Email = txtEmail.Text;
                     nv.DiaChi = txtDiaChi.Text;
                     nv.VaiTro = cboVaiTro.Text;
-                    nv.TaiKhoanID = context.TaiKhoan.OrderByDescending(x => x.TaiKhoanID).FirstOrDefault().TaiKhoanID; // Lấy ID của tài khoản vừa thêm
-                    context.NhanVien.Add(nv);
-
-                    context.TaiKhoan.Add(tk);
-                    context.SaveChanges();
-
-                    var nv = new NhanVien
-                    {
-                        HoTen = txtHoVaTen.Text,
-                        SoDienThoai = txtDienThoai.Text,
-                        DiaChi = txtDiaChi.Text,
-                        Email = txtEmail.Text,
-                        VaiTro = cboVaiTro.Text,
-                        TaiKhoanID = tk.TaiKhoanID
-                    };
+                   
 
                     context.NhanVien.Add(nv);
                     context.SaveChanges();

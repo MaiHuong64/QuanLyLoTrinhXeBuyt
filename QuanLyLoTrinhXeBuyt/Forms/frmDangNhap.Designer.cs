@@ -147,6 +147,7 @@
             Name = "frmDangNhap";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Đăng nhập";
+            Load += frmDangNhap_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)picDisplay).EndInit();
             ((System.ComponentModel.ISupportInitialize)picHide).EndInit();

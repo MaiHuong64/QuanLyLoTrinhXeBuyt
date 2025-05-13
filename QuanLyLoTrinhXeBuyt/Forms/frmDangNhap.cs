@@ -81,5 +81,10 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                 btnDangNhap_Click(sender, e);
             }
         }
+
+        private void frmDangNhap_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
