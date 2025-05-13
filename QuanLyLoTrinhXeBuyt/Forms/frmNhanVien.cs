@@ -181,12 +181,9 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             {
                 if (xuLyThem)
                 {
-
-                   
                     TaiKhoan taiKhoan = new TaiKhoan();
                     taiKhoan.TenDangNhap = txtTenDangNhap.Text;
                     taiKhoan.MatKhau = BCrypt.Net.BCrypt.HashPassword(txtMatKhau.Text);
-
                     taiKhoan.QuyenHan = cboQuyenHan.SelectedIndex == 0 ? "user" : "admin";
                     context.TaiKhoan.Add(taiKhoan);
                     context.SaveChanges();
@@ -197,9 +194,9 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                     nv.Email = txtEmail.Text;
                     nv.DiaChi = txtDiaChi.Text;
                     nv.VaiTro = cboVaiTro.Text;
-                   
-
+                    nv.TaiKhoanID = taiKhoan.TaiKhoanID;
                     context.NhanVien.Add(nv);
+
                     context.SaveChanges();
 
                 }
@@ -212,18 +209,14 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                         nv.SoDienThoai = txtDienThoai.Text;
                         nv.Email = txtEmail.Text;
                         nv.DiaChi = txtDiaChi.Text;
-                        nv.Email = txtEmail.Text;
                         nv.VaiTro = cboVaiTro.Text;
 
                         context.Update(nv);
 
-                        context.SaveChanges();
-                        
-                        int id = Convert.ToInt32(dvgNhanVien.CurrentRow.Cells["NhanVienID"].Value.ToString());
-                        TaiKhoan taiKhoan = context.TaiKhoan.Find(id);
+                        TaiKhoan taiKhoan = context.TaiKhoan.Find(nv.TaiKhoanID);
                         if (taiKhoan != null)
                         {
-                            taiKhoan.TenDangNhap = txtHoVaTen.Text;
+                            taiKhoan.TenDangNhap = txtTenDangNhap.Text;
                             taiKhoan.MatKhau = txtDienThoai.Text;
                             taiKhoan.QuyenHan = cboQuyenHan.SelectedIndex == 0 ? "user" : "admin";
                             context.Update(taiKhoan);
@@ -235,21 +228,6 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                         }
 
                     }
-
-                    // Cập nhật tài khoản gắn với nhân viên đó
-                    var tk = context.TaiKhoan.Find(id);
-                    if (tk != null)
-                    {
-                        tk.TenDangNhap = txtTenDangNhap.Text;
-                        tk.QuyenHan = cboQuyenHan.SelectedIndex == 0 ? "admin" : "user";
-                        if (string.IsNullOrEmpty(txtMatKhau.Text))
-                            context.Entry(tk).Property(x => x.MatKhau).IsModified = false; // Giữ nguyên mật khẩu cũ
-                        else
-                            tk.MatKhau = BCrypt.Net.BCrypt.HashPassword(txtMatKhau.Text); // Cập nhật mật khẩu mới
-
-                        context.Update(tk);
-                    }
-
                     context.SaveChanges();
                 }
                 frmNhanVien_Load(sender, e);
