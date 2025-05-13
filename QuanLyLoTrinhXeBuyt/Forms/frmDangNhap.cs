@@ -40,7 +40,8 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                 else
                 {
                     string role = taikhoan.QuyenHan == "admin" ? "admin" : "user";
-                    tennv = context.NhanVien.Where(nv => nv.TaiKhoanID == taikhoan.TaiKhoanID).Select(nv => nv.HoTen).FirstOrDefault();   
+                    tennv = context.NhanVien.Where(t => t.NhanVienID == t.TaiKhoanID).Select(t => t.HoTen).SingleOrDefault();
+
                     var mainForm = new frmMain(role);
                     mainForm.FormClosed += (s, args) => this.Close();
                     mainForm.Show();

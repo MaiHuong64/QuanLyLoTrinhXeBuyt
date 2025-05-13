@@ -1,6 +1,7 @@
 ﻿    using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 namespace QuanLyLoTrinhXeBuyt.Data
 {
     public class NhanVien
@@ -17,6 +18,7 @@ namespace QuanLyLoTrinhXeBuyt.Data
         public virtual ObservableCollectionListSource<XeBuyt> XeBuyt { get; } = new ();
     }
 
+    [NotMapped]
     public class DanhSachNhanVien
     {
         public int NhanVienID { get; set; }
@@ -26,8 +28,10 @@ namespace QuanLyLoTrinhXeBuyt.Data
         public string? DiaChi { get; set; }
         public string? VaiTro { get; set; }
         public int TaiKhoanID { get; set; }
-        public string TenDangNhap { get; set; } = null!;
-        public string MatKhau { get; set; } = null!;
-        public string QuyenHan { get; set; } = null!;
+      
+        public string? TenDangNhap {get; set; }
+        public string? MatKhau { get; set; }
+        public string? QuyenHan { get; set; }
+
     }
 }

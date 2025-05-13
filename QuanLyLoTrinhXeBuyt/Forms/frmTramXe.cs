@@ -21,7 +21,9 @@ namespace QuanLyLoTrinhXeBuyt.Forms
         private void BatTatChucNang(bool giaTri)
         {
             btnLuu.Enabled = giaTri;
-            btnHuy.Enabled = giaTri;
+
+            btnHuyBo.Enabled = giaTri;
+
             txtTenTramXe.Enabled = giaTri;
             btnThem.Enabled = !giaTri;
             btnSua.Enabled = !giaTri;
@@ -120,11 +122,6 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             {
                 btnTimKiem_Click(sender, e);
             }
-        }
-
-        private void btnThem_Click_1(object sender, EventArgs e)
-        {
-
         }
     }
 }

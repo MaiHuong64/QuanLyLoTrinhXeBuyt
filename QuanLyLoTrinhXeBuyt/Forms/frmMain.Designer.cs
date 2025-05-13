@@ -271,7 +271,6 @@
             mnThongKeXeBuyt.Name = "mnThongKeXeBuyt";
             mnThongKeXeBuyt.Size = new Size(345, 28);
             mnThongKeXeBuyt.Text = "Thống kê xe buýt";
-            mnThongKeXeBuyt.Click += mnThongKeXeBuyt_Click;
             // 
             // mnTroGiup
             // 

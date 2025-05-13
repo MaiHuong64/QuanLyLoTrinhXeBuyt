@@ -1,5 +1,7 @@
-﻿using ClosedXML.Excel;
-using DocumentFormat.OpenXml.EMMA;
+
+﻿using ClosedXML;
+using ClosedXML.Excel;
+
 using QuanLyLoTrinhXeBuyt.Data;
 using System.Data;
 using System.Windows.Forms;
@@ -27,6 +29,9 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                 dvgNhanVien.Columns.Add(new DataGridViewTextBoxColumn { Name = "DiaChi", DataPropertyName = "DiaChi", HeaderText = "Địa chỉ" });
                 dvgNhanVien.Columns.Add(new DataGridViewTextBoxColumn { Name = "VaiTro", DataPropertyName = "VaiTro", HeaderText = "Vai trò" });
                 dvgNhanVien.Columns.Add(new DataGridViewTextBoxColumn { Name = "TenDangNhap", DataPropertyName = "TenDangNhap", HeaderText = "Tên đăng nhập" });
+
+                dvgNhanVien.Columns.Add(new DataGridViewTextBoxColumn { Name = "MatKhau", DataPropertyName = "MatKhau", HeaderText = "Mật khẩu" });
+
                 dvgNhanVien.Columns.Add(new DataGridViewTextBoxColumn { Name = "QuyenHan", DataPropertyName = "QuyenHan", HeaderText = "Quyền hạn" });
             }
         }
@@ -42,7 +47,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             txtTenDangNhap.Enabled = giaTri;
             txtMatKhau.Enabled = giaTri;
             cboQuyenHan.Enabled = giaTri;
-            
+
 
             btnThem.Enabled = !giaTri;
             btnSua.Enabled = !giaTri;
@@ -58,8 +63,34 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             txtDiaChi.Clear();
             cboVaiTro.Text = "";
             txtTenDangNhap.Clear();
-            cboQuyenHan.Text = "";
+
+            txtMatKhau.Clear();
+            cboQuyenHan.SelectedIndex = 0;
+
+
             txtHoVaTen.Focus();
+        }
+       
+        public bool KiemTraDuLieu()
+        {
+            if (string.IsNullOrWhiteSpace(txtHoVaTen.Text))
+            {
+                MessageBox.Show("Vui lòng nhập họ tên", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(cboVaiTro.Text))
+            {
+                MessageBox.Show("Vui lòng chọn chức vụ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtTenDangNhap.Text) || string.IsNullOrWhiteSpace(txtMatKhau.Text))
+            {
+                MessageBox.Show("Vui lòng nhập tài khoản và mật khẩu", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            return true;
         }
         private void frmNhanVien_Load(object sender, EventArgs e)
         {
@@ -68,6 +99,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             ThemDuLieuVaoGrid();
 
             BatTatChucNang(false);
+
             List<DanhSachNhanVien> nv = context.NhanVien.Select(nv => new DanhSachNhanVien
             {
                 NhanVienID = nv.NhanVienID,
@@ -91,6 +123,9 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             txtDienThoai.DataBindings.Clear();
             txtDienThoai.DataBindings.Add("Text", bindingSource, "SoDienThoai", false, DataSourceUpdateMode.Never);
 
+            txtEmail.DataBindings.Clear();
+            txtEmail.DataBindings.Add("Text", bindingSource, "Email", false, DataSourceUpdateMode.Never);
+
             txtDiaChi.DataBindings.Clear();
             txtDiaChi.DataBindings.Add("Text", bindingSource, "DiaChi", false, DataSourceUpdateMode.Never);
 
@@ -102,8 +137,10 @@ namespace QuanLyLoTrinhXeBuyt.Forms
 
             txtTenDangNhap.DataBindings.Clear();
             txtTenDangNhap.DataBindings.Add("Text", bindingSource, "TenDangNhap", false, DataSourceUpdateMode.Never);
+
             cboQuyenHan.DataBindings.Clear();
             cboQuyenHan.DataBindings.Add("Text", bindingSource, "QuyenHan", false, DataSourceUpdateMode.Never);
+
 
             dvgNhanVien.DataSource = bindingSource;
 
@@ -139,14 +176,18 @@ namespace QuanLyLoTrinhXeBuyt.Forms
 
         private void btnLuu_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtHoVaTen.Text))
-                MessageBox.Show("Vui lòng nhập họ tên", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            else if (string.IsNullOrWhiteSpace(cboVaiTro.Text))
-                MessageBox.Show("Vui lòng chọn chức vụ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            if (!KiemTraDuLieu()) return;
             else
             {
                 if (xuLyThem)
                 {
+
+                    var tk = new TaiKhoan
+                    {
+                        TenDangNhap = txtTenDangNhap.Text,
+                        MatKhau = BCrypt.Net.BCrypt.HashPassword(txtMatKhau.Text),
+                        QuyenHan = cboQuyenHan.SelectedIndex == 0 ? "admin" : "user"
+
                     TaiKhoan taiKhoan = new TaiKhoan();
                     taiKhoan.TenDangNhap = txtTenDangNhap.Text;
                     taiKhoan.MatKhau = BCrypt.Net.BCrypt.HashPassword(txtMatKhau.Text);
@@ -164,20 +205,37 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                     nv.TaiKhoanID = context.TaiKhoan.OrderByDescending(x => x.TaiKhoanID).FirstOrDefault().TaiKhoanID; // Lấy ID của tài khoản vừa thêm
                     context.NhanVien.Add(nv);
 
+                    context.TaiKhoan.Add(tk);
+                    context.SaveChanges();
+
+                    var nv = new NhanVien
+                    {
+                        HoTen = txtHoVaTen.Text,
+                        SoDienThoai = txtDienThoai.Text,
+                        DiaChi = txtDiaChi.Text,
+                        Email = txtEmail.Text,
+                        VaiTro = cboVaiTro.Text,
+                        TaiKhoanID = tk.TaiKhoanID
+                    };
+
+                    context.NhanVien.Add(nv);
                     context.SaveChanges();
 
                 }
                 else
                 {
-                    NhanVien nv = context.NhanVien.Find(id);
+                    var nv = context.NhanVien.Find(id);
                     if (nv != null)
                     {
                         nv.HoTen = txtHoVaTen.Text;
                         nv.SoDienThoai = txtDienThoai.Text;
                         nv.Email = txtEmail.Text;
                         nv.DiaChi = txtDiaChi.Text;
+                        nv.Email = txtEmail.Text;
                         nv.VaiTro = cboVaiTro.Text;
+
                         context.Update(nv);
+
                         context.SaveChanges();
                         
                         int id = Convert.ToInt32(dvgNhanVien.CurrentRow.Cells["NhanVienID"].Value.ToString());
@@ -196,6 +254,22 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                         }
 
                     }
+
+                    // Cập nhật tài khoản gắn với nhân viên đó
+                    var tk = context.TaiKhoan.Find(id);
+                    if (tk != null)
+                    {
+                        tk.TenDangNhap = txtTenDangNhap.Text;
+                        tk.QuyenHan = cboQuyenHan.SelectedIndex == 0 ? "admin" : "user";
+                        if (string.IsNullOrEmpty(txtMatKhau.Text))
+                            context.Entry(tk).Property(x => x.MatKhau).IsModified = false; // Giữ nguyên mật khẩu cũ
+                        else
+                            tk.MatKhau = BCrypt.Net.BCrypt.HashPassword(txtMatKhau.Text); // Cập nhật mật khẩu mới
+
+                        context.Update(tk);
+                    }
+
+                    context.SaveChanges();
                 }
                 frmNhanVien_Load(sender, e);
             }

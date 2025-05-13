@@ -17,6 +17,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
         string imagesPath = Application.StartupPath.Replace("\\bin\\Debug\\net 8.0-winddows", "Images");
         private string tempImage = null;
 
+
         public void BatTatChucNang(bool giaTri)
         {
             btnThem.Enabled = !giaTri;
