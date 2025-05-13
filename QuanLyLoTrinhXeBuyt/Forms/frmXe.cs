@@ -18,7 +18,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
         }
         QLLTXBContext context = new QLLTXBContext();
         int id;
-        string imagesFolder = Application.StartupPath.Replace("bin\\Debug\\net8.0-windows", "Images");
+        string imagesFolder = Application.StartupPath.Replace("bin\\Debug\\net5.0-windows", "Images");
         public void BatTatChucNang(bool giaTri)
         {
             btnThem.Enabled = !giaTri;
