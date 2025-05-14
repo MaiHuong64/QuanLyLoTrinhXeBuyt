@@ -243,33 +243,37 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                                 var nhanVienID = context.NhanVien.Where(n => n.HoTen == hoTen).Select(n => n.NhanVienID).FirstOrDefault();
                                 var ChuyenXeID = context.ChuyenXe.Where(x => x.TenChuyen == TenChuyen).Select(x => x.ChuyenXeID).FirstOrDefault();
 
-                                // Kiểm tra bản ghi PhanCong đã tồn tại
-                                var existPC = context.PhanCong.FirstOrDefault(pc =>
+                                if (DateTime.TryParse(ngayLamViec, out DateTime parsedNgayLam))
+                                {
+                                    // Kiểm tra bản ghi PhanCong đã tồn tại
+                                    var existPC = context.PhanCong.FirstOrDefault(pc =>
                                     pc.PhanCongID == Convert.ToInt32(phanCongID) &&
                                     pc.NhanVienID == nhanVienID &&
                                     pc.ChuyenXeID == ChuyenXeID &&
-                                    pc.NgayLamViec == dtNgayLam.Value);
+                                    pc.NgayLamViec == parsedNgayLam);
 
-                                if (existPC != null)
-                                {
-                                    // Cập nhật bản ghi
-                                    existPC.NhanVienID = nhanVienID;
-                                    existPC.ChuyenXeID = ChuyenXeID;
-                                    existPC.NgayLamViec = dtNgayLam.Value;
-                                    soLuongCapNhat++;
-                                }
-                                else
-                                {
-                                    // Thêm bản ghi mới
-                                    var newPC = new PhanCong
+                                    if (existPC != null)
                                     {
-                                        ChuyenXeID = ChuyenXeID,
-                                        NhanVienID = nhanVienID,
-                                        NgayLamViec = dtNgayLam.Value
-                                    };
-                                    context.PhanCong.Add(newPC);
-                                    soLuongThemMoi++;
+                                        // Cập nhật bản ghi
+                                        existPC.NhanVienID = nhanVienID;
+                                        existPC.ChuyenXeID = ChuyenXeID;
+                                        existPC.NgayLamViec = parsedNgayLam;
+                                        soLuongCapNhat++;
+                                    }
+                                    else
+                                    {
+                                        // Thêm bản ghi mới
+                                        var newPC = new PhanCong
+                                        {
+                                            ChuyenXeID = ChuyenXeID,
+                                            NhanVienID = nhanVienID,
+                                            NgayLamViec = parsedNgayLam
+                                        };
+                                        context.PhanCong.Add(newPC);
+                                        soLuongThemMoi++;
+                                    }
                                 }
+                                    
                             }
 
                             context.SaveChanges();

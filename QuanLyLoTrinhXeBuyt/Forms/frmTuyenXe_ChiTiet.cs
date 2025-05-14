@@ -159,6 +159,8 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                     TuyenXe tuyenXe = new TuyenXe();
                     tuyenXe.TenTuyen = txtTenTuyen.Text;
                     tuyenXe.MoTa = txtGhiChu.Text;
+                    context.TuyenXe.Add(tuyenXe);
+                    context.SaveChanges(); 
 
                     foreach (var item in tuyenXeChiTiet)
                     {

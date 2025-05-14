@@ -31,22 +31,22 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             }
             else
             {
-                var taikhoan = context.TaiKhoan.Where(t => t.TenDangNhap == user).SingleOrDefault();
+                // Lấy tài khoản theo tên đăng nhập
+                var taikhoan = context.TaiKhoan.Where(t => t.TenDangNhap == user).FirstOrDefault();
                 if (taikhoan == null || !BCrypt.Net.BCrypt.Verify(pass, taikhoan.MatKhau))
                 {
                     MessageBox.Show("Tên đăng hoặc mật khẩu nhập không chính xác!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtTenDangNhap.Focus();
+                    return;
                 }
-                else
-                {
-                    string role = taikhoan.QuyenHan == "admin" ? "admin" : "user";
-                    tennv = context.NhanVien.Where(t => t.NhanVienID == t.TaiKhoanID).Select(t => t.HoTen).SingleOrDefault();
+                tennv = context.NhanVien.Where(nv => nv.TaiKhoanID == taikhoan.TaiKhoanID).Select(t => t.HoTen).FirstOrDefault();
 
-                    var mainForm = new frmMain(role);
-                    mainForm.FormClosed += (s, args) => this.Close();
-                    mainForm.Show();
-                    this.Hide();
-                }
+                string role = taikhoan.QuyenHan == "admin" ? "admin" : "user";
+
+                var mainForm = new frmMain(role);
+                mainForm.FormClosed += (s, args) => this.Close();
+                mainForm.Show();
+                this.Hide();
             }
         }
 

@@ -180,7 +180,8 @@
             // 
             // dtNgayLam
             // 
-            dtNgayLam.Format = DateTimePickerFormat.Short;
+            dtNgayLam.CustomFormat = "yyyy-MM-dd";
+            dtNgayLam.Format = DateTimePickerFormat.Custom;
             dtNgayLam.Location = new Point(1078, 31);
             dtNgayLam.Margin = new Padding(4, 3, 4, 3);
             dtNgayLam.Name = "dtNgayLam";

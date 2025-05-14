@@ -69,6 +69,11 @@ namespace QuanLyLoTrinhXeBuyt.Reports
             reportViewer1.LocalReport.DataSources.Add(reportDataSource);
             reportViewer1.LocalReport.ReportPath = Path.Combine(reportsFolder, "rptThongKeChuyenXe.rdlc");
 
+          
+
+            ReportParameter reportParameter = new ReportParameter("MoTaKetQuaHienThi", "Tất cả chuyến xe");
+            reportViewer1.LocalReport.SetParameters(reportParameter);
+
             reportViewer1.SetDisplayMode(DisplayMode.PrintLayout);
             reportViewer1.ZoomMode = ZoomMode.Percent;
             reportViewer1.ZoomPercent = 100;
@@ -115,6 +120,10 @@ namespace QuanLyLoTrinhXeBuyt.Reports
             reportViewer1.LocalReport.DataSources.Clear();
             reportViewer1.LocalReport.DataSources.Add(reportDataSource);
             reportViewer1.LocalReport.ReportPath = Path.Combine(reportsFolder, "rptThongKeChuyenXe.rdlc");
+
+            string tentuyen = context.TuyenXe.Find(tuyenCanTim).TenTuyen;
+            ReportParameter reportParameter = new ReportParameter("MoTaKetQuaHienThi", $"Tuyến xe: {tentuyen}");
+            reportViewer1.LocalReport.SetParameters(reportParameter);
 
             reportViewer1.ZoomMode = ZoomMode.Percent;
             reportViewer1.ZoomPercent = 100;

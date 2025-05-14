@@ -83,7 +83,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                 QuyenAdmin();
             else
                 QuyenUser();
-            lbHienThi.Text += frmDangNhap.tennv;
+            lbHienThi.Text = $"Chào mừng bạn: {frmDangNhap.tennv}";
             lbRole.Text += role;
 
         }

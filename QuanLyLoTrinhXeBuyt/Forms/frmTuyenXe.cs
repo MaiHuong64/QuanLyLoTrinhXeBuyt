@@ -2,6 +2,8 @@
 using System;
 using System.Data;
 using ClosedXML.Excel;
+using DocumentFormat.OpenXml.Spreadsheet;
+using Microsoft.EntityFrameworkCore;
 
 namespace QuanLyLoTrinhXeBuyt.Forms
 {
@@ -180,6 +182,118 @@ namespace QuanLyLoTrinhXeBuyt.Forms
         private void btnHuy_Click(object sender, EventArgs e)
         {
             frmTuyenXe_Load(sender, e);
+        }
+
+        
+        private void btnNhapFileExcel_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Filter = "Excel Files|*.xlsx";
+                openFileDialog.Title = "Chọn file Excel để nhập";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        using (XLWorkbook wb = new XLWorkbook(openFileDialog.FileName))
+                        {
+                            // === SHEET 1: TUYEN XE ===
+                            IXLWorksheet sheet1 = wb.Worksheet("TuyenXe");
+                            bool firstRow = true;
+                            DataTable tableTuyenXe = new DataTable();
+
+                            foreach (var row in sheet1.RowsUsed())
+                            {
+                                if (firstRow)
+                                {
+                                    foreach (IXLCell cell in row.Cells())
+                                        tableTuyenXe.Columns.Add(cell.Value.ToString());
+                                    firstRow = false;
+                                }
+                                else
+                                {
+                                    var dataRow = tableTuyenXe.NewRow();
+                                    int i = 0;
+                                    foreach (IXLCell cell in row.Cells(1, tableTuyenXe.Columns.Count))
+                                        dataRow[i++] = cell.Value.ToString();
+                                    tableTuyenXe.Rows.Add(dataRow);
+                                }
+                            }
+
+                            using (var transaction = context.Database.BeginTransaction())
+                            {
+                                foreach (DataRow r in tableTuyenXe.Rows)
+                                {
+                                    var tx = new TuyenXe
+                                    {
+                                        TuyenXeID = Convert.ToInt32(r["Mã tuyến xe"]),
+                                        TenTuyen = r["Tên tuyến xe"].ToString(),
+                                        MoTa = r["Ghi chú"].ToString()
+                                    };
+                                    context.TuyenXe.Add(tx);
+                                }
+
+                                context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT TuyenXe ON");
+                                context.SaveChanges();
+                                context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT TuyenXe OFF");
+                                transaction.Commit();
+                            }
+
+                            // === SHEET 2: TUYENXE_TRAMXE ===
+                            IXLWorksheet sheet2 = wb.Worksheet("TuyenXe_TramXe");
+                            bool isFirstRow2 = true;
+                            DataTable tableChiTiet = new DataTable();
+
+                            foreach (var row in sheet2.RowsUsed())
+                            {
+                                if (isFirstRow2)
+                                {
+                                    foreach (IXLCell cell in row.Cells())
+                                        tableChiTiet.Columns.Add(cell.Value.ToString());
+                                    isFirstRow2 = false;
+                                }
+                                else
+                                {
+                                    var dataRow = tableChiTiet.NewRow();
+                                    int i = 0;
+                                    foreach (IXLCell cell in row.Cells(1, tableChiTiet.Columns.Count))
+                                        dataRow[i++] = cell.Value.ToString();
+                                    tableChiTiet.Rows.Add(dataRow);
+                                }
+                            }
+
+                            foreach (DataRow r in tableChiTiet.Rows)
+                            {
+                                string tenTuyen = r["TuyenXe"].ToString();
+                                string tenTram = r["Tram"].ToString();
+
+                                var tuyen = context.TuyenXe.FirstOrDefault(t => t.TenTuyen == tenTuyen);
+                                var tram = context.TramXe.FirstOrDefault(t => t.TenTramXe == tenTram);
+
+                                if (tuyen != null && tram != null)
+                                {
+                                    if (!context.TuyenXe_ChiTiet.Any(ct => ct.TuyenXeID == tuyen.TuyenXeID && ct.TramXeID == tram.TramXeID))
+                                    {
+                                        context.TuyenXe_ChiTiet.Add(new TuyenXe_ChiTiet
+                                        {
+                                            TuyenXeID = tuyen.TuyenXeID,
+                                            TramXeID = tram.TramXeID
+                                        });
+                                    }
+                                }
+                            }
+                            context.SaveChanges();
+                            MessageBox.Show("Nhập dữ liệu từ Excel thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            frmTuyenXe_Load(sender, e);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Lỗi khi nhập file Excel: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
         }
     }
 }

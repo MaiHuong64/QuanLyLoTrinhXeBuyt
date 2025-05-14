@@ -38,34 +38,38 @@
             // reportViewer1
             // 
             reportViewer1.Dock = DockStyle.Bottom;
-            reportViewer1.Location = new Point(0, 98);
+            reportViewer1.Location = new Point(0, 108);
+            reportViewer1.Margin = new Padding(4, 3, 4, 3);
             reportViewer1.Name = "reportViewer1";
             reportViewer1.ServerReport.BearerToken = null;
-            reportViewer1.Size = new Size(1337, 750);
+            reportViewer1.Size = new Size(1838, 825);
             reportViewer1.TabIndex = 0;
             // 
             // cboTuyenXe
             // 
             cboTuyenXe.FormattingEnabled = true;
-            cboTuyenXe.Location = new Point(467, 34);
+            cboTuyenXe.Location = new Point(559, 39);
+            cboTuyenXe.Margin = new Padding(4, 3, 4, 3);
             cboTuyenXe.Name = "cboTuyenXe";
-            cboTuyenXe.Size = new Size(275, 28);
+            cboTuyenXe.Size = new Size(377, 30);
             cboTuyenXe.TabIndex = 1;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(394, 37);
+            label1.Location = new Point(459, 43);
+            label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(67, 20);
+            label1.Size = new Size(80, 22);
             label1.TabIndex = 2;
             label1.Text = "Tuyến xe";
             // 
             // btnLoc
             // 
-            btnLoc.Location = new Point(764, 33);
+            btnLoc.Location = new Point(967, 38);
+            btnLoc.Margin = new Padding(4, 3, 4, 3);
             btnLoc.Name = "btnLoc";
-            btnLoc.Size = new Size(94, 29);
+            btnLoc.Size = new Size(129, 32);
             btnLoc.TabIndex = 3;
             btnLoc.Text = "Lọc kết quả";
             btnLoc.UseVisualStyleBackColor = true;
@@ -73,9 +77,10 @@
             // 
             // btnHuy
             // 
-            btnHuy.Location = new Point(864, 34);
+            btnHuy.Location = new Point(1105, 39);
+            btnHuy.Margin = new Padding(4, 3, 4, 3);
             btnHuy.Name = "btnHuy";
-            btnHuy.Size = new Size(94, 29);
+            btnHuy.Size = new Size(129, 32);
             btnHuy.TabIndex = 4;
             btnHuy.Text = "Hủy";
             btnHuy.UseVisualStyleBackColor = true;
@@ -83,17 +88,20 @@
             // 
             // frmThongKeChuyenXe
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(11F, 22F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1337, 848);
+            ClientSize = new Size(1838, 933);
             Controls.Add(btnHuy);
             Controls.Add(btnLoc);
             Controls.Add(label1);
             Controls.Add(cboTuyenXe);
             Controls.Add(reportViewer1);
+            Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Margin = new Padding(4, 3, 4, 3);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "frmThongKeChuyenXe";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Thống kê chuyến xe";
             Load += frmThongKeChuyenXe_Load;
             ResumeLayout(false);

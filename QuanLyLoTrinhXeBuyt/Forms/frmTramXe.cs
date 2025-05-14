@@ -22,12 +22,11 @@ namespace QuanLyLoTrinhXeBuyt.Forms
         {
             btnLuu.Enabled = giaTri;
 
-            btnHuyBo.Enabled = giaTri;
+            btnHuy.Enabled = giaTri;
 
-            txtTenTramXe.Enabled = giaTri;
+            txtTenTram.Enabled = giaTri;
             btnThem.Enabled = !giaTri;
             btnSua.Enabled = !giaTri;
-            btnXoa.Enabled = !giaTri;
         }
         public frmTramXe()
         {
@@ -44,8 +43,8 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             bindingSource.DataSource = tramXe;
             dvgTramXe.DataSource = bindingSource;
 
-            txtTenTramXe.DataBindings.Clear();
-            txtTenTramXe.DataBindings.Add("Text", bindingSource, "TenTramXe", true, DataSourceUpdateMode.OnPropertyChanged);
+            txtTenTram.DataBindings.Clear();
+            txtTenTram.DataBindings.Add("Text", bindingSource, "TenTramXe", true, DataSourceUpdateMode.OnPropertyChanged);
             if (dvgTramXe.Columns.Count == 0)
             {
                 dvgTramXe.Columns.Add(new DataGridViewTextBoxColumn { Name = "TramXeID", DataPropertyName = "TramXeID", HeaderText = "Mã trạm" });
@@ -53,17 +52,20 @@ namespace QuanLyLoTrinhXeBuyt.Forms
 
             }
 
+            dvgTramXe.DataSource = bindingSource;
         }
         private void btnThem_Click(object sender, EventArgs e)
         {
-            BatTatChucNang(true);
             xuLyThem = true;
-            txtTenTramXe.Clear();
+            id = 0;
+            txtTenTram.Clear();
+            BatTatChucNang(true);
+            txtTenTram.Focus();
         }
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Xác nhận xóa hãng sản xuất " + txtTenTramXe.Text + "?", "Xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("Xác nhận xóa hãng sản xuất " + txtTenTram.Text + "?", "Xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 id = Convert.ToInt32(dvgTramXe.CurrentRow.Cells["TramXeID"].Value);
                 TramXe tramXe = context.TramXe.Find(id);
@@ -75,9 +77,9 @@ namespace QuanLyLoTrinhXeBuyt.Forms
 
         private void btnSua_Click(object sender, EventArgs e)
         {
+            id = Convert.ToInt32(dvgTramXe.CurrentRow.Cells["TramXeID"].Value);
             xuLyThem = false;
             BatTatChucNang(true);
-            id = Convert.ToInt32(dvgTramXe.CurrentRow.Cells["TramXeID"].Value);
         }
 
         private void btnLuu_Click(object sender, EventArgs e)
@@ -85,17 +87,17 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             if (xuLyThem)
             {
                 TramXe tramXe = new TramXe();
-                tramXe.TenTramXe = txtTenTramXe.Text;
+                tramXe.TenTramXe = txtTenTram.Text;
                 context.TramXe.Add(tramXe);
-                context.SaveChanges();
             }
             else
             {
                 TramXe tramXe = context.TramXe.Find(id);
-                tramXe.TenTramXe = txtTenTramXe.Text;
+                tramXe.TenTramXe = txtTenTram.Text;
                 context.TramXe.Update(tramXe);
-                context.SaveChanges();
+                
             }
+            context.SaveChanges();
             frmTramXe_Load(sender, e);
         }
 
@@ -112,7 +114,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
 
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
-            var tram = context.TramXe.Where(x => x.TenTramXe.Contains(txtTenTramXe.Text)).ToList();
+            var tram = context.TramXe.Where(x => x.TenTramXe.Contains(txtTenTram.Text)).ToList();
             dvgTramXe.DataSource = tram;
         }
 

@@ -1,6 +1,8 @@
-﻿using QuanLyLoTrinhXeBuyt.Data;
+﻿using ClosedXML.Excel;
+using QuanLyLoTrinhXeBuyt.Data;
 using System;
 using System.CodeDom.Compiler;
+using System.Data;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -41,8 +43,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                 {
                     try
                     {
-                        picHinhAnh.Image.Dispose(); // Giải phóng tài nguyên hình ảnh
-                        picHinhAnh.Image = null; // Đặt hình ảnh thành null
+                        File.Delete(oldImagePath);
                     }
 
                     catch (Exception ex)
@@ -63,9 +64,9 @@ namespace QuanLyLoTrinhXeBuyt.Forms
         private void frmXe_Load(object sender, EventArgs e)
         {
             BatTatChucNang(false);
-          
-            dvgXeBuyt.AutoGenerateColumns = false;  
-            if(dvgXeBuyt.Columns.Count == 0)
+
+            dvgXeBuyt.AutoGenerateColumns = false;
+            if (dvgXeBuyt.Columns.Count == 0)
             {
                 dvgXeBuyt.Columns.Add(new DataGridViewTextBoxColumn { Name = "XeID", DataPropertyName = "XeID", HeaderText = "Mã xe buýt" });
                 dvgXeBuyt.Columns.Add(new DataGridViewTextBoxColumn { Name = "BienSo", DataPropertyName = "BienSo", HeaderText = "Biển số" });
@@ -102,7 +103,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
             {
                 //Ten anh
                 string img = e.Value.ToString();
-                if(string.IsNullOrEmpty(img))
+                if (string.IsNullOrEmpty(img))
                 {
                     e.Value = Path.Combine(imagesPath, "no-image.png");
                 }
@@ -110,13 +111,13 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                 {
                     e.Value = Path.Combine(Path.GetFileName(imagesPath), e.Value.ToString());
                 }
-              
+
             };
             picHinhAnh.DataBindings.Add(hinhAnh);
 
             dvgXeBuyt.DataSource = bindingSource;
         }
-      
+
         private void btnThem_Click(object sender, EventArgs e)
         {
             id = 0;
@@ -192,7 +193,8 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                 xe.BienSo = txtBienSo.Text;
 
                 xe.TrangThai = cboTrangThai.SelectedItem.ToString();
-                xe.HinhAnh = string.IsNullOrEmpty(tempImage) ? "no-image.png" : tempImage.ToString();
+                xe.HinhAnh = string.IsNullOrEmpty(tempImage) ? xe.HinhAnh ?? "no-image.png" : tempImage;
+                ;
 
                 context.Add(xe);
 
@@ -260,12 +262,30 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                 {
                     XoaAnhCu(oldFileName);
                 }
-                // Sao chép file mới vào thư mục
-                File.Copy(openFileDialog.FileName, destPath, true);
+                try
+                {
+                    File.Copy(openFileDialog.FileName, destPath, true);
 
-                // Hiển thị ảnh mới
-                picHinhAnh.Image = Image.FromFile(destPath);
-                picHinhAnh.Tag = normalizedFileName;
+                    // Giải phóng ảnh cũ
+                    if (picHinhAnh.Image != null)
+                    {
+                        picHinhAnh.Image.Dispose();
+                        picHinhAnh.Image = null;
+                    }
+                    //Tránh lock khi sửa nhiều ảnh
+                    using (var stream = new FileStream(destPath, FileMode.Open, FileAccess.Read))
+                    {
+                        picHinhAnh.Image = Image.FromStream(stream);
+                    }
+
+                    // Cập nhật ảnh mới
+                    picHinhAnh.Tag = normalizedFileName;
+                    tempImage = normalizedFileName;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
 
@@ -300,10 +320,126 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("Lỗi khi định dạng ô: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void btnXuatFileExcel_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            {
+                saveFileDialog.Filter = "Excel Files|*.xlsx";
+                saveFileDialog.Title = "Xuất file excel";
+                saveFileDialog.FileName = "ChuyenXe_" + DateTime.Now.ToShortDateString().Replace("/", "_") + ".xlsx";
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        using (XLWorkbook wb = new XLWorkbook())
+                        {
+                            DataTable table = new DataTable();
+                            table.Columns.Add("XeID");
+                            table.Columns.Add("BienSo");
+                            table.Columns.Add("TrangThai");
+                            table.Columns.Add("HinhAnh");
+
+                           var xeBuyt = context.XeBuyt.ToList();    
+
+                            foreach (var item in xeBuyt)
+                            {
+                                table.Rows.Add(item.XeID, item.BienSo, item.TrangThai, item.HinhAnh);
+                            }
+
+                            var sheet = wb.Worksheets.Add(table, "ChuyenXe");
+                            sheet.Columns().AdjustToContents();
+
+                            wb.SaveAs(saveFileDialog.FileName);
+                            MessageBox.Show("Xuất file thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Lỗi khi xuất file: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+
+        }
+
+        private void btnNhapFileExcel_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Title = "Nhập dữ liệu từ tập tin Excel";
+            openFileDialog.Filter = "Tập tin Excel|*.xls;*.xlsx";
+            openFileDialog.Multiselect = false;
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    using (XLWorkbook workbook = new XLWorkbook(openFileDialog.FileName))
+                    {
+                        IXLWorksheet worksheet = workbook.Worksheet(1);
+                        bool firstRow = true;
+                        string readRange = "1:1";
+                        DataTable table = new DataTable();
+
+                        foreach (IXLRow row in worksheet.RowsUsed())
+                        {
+                            if (firstRow)
+                            {
+                                readRange = string.Format("{0}:{1}", 1, row.LastCellUsed().Address.ColumnNumber);
+                                foreach (IXLCell cell in row.Cells(readRange))
+                                    table.Columns.Add(cell.Value.ToString());
+                                firstRow = false;
+                            }
+                            else
+                            {
+                                table.Rows.Add();
+                                int cellIndex = 0;
+                                foreach (IXLCell cell in row.Cells(readRange))
+                                {
+                                    table.Rows[table.Rows.Count - 1][cellIndex] = cell.Value.ToString();
+                                    cellIndex++;
+                                }
+                            }
+                        }
+                        if (table.Rows.Count > 0)
+                        {
+                            foreach (DataRow row in table.Rows)
+                            {
+                                XeBuyt xeBuyt = new XeBuyt
+                                {
+                                    XeID = Convert.ToInt32(row["XeID"].ToString()),
+                                    BienSo = row["BienSo"].ToString(),
+                                    TrangThai = row["TrangThai"].ToString(),
+                                    HinhAnh = row["HinhAnh"].ToString()
+                                };
+                                context.XeBuyt.Add(xeBuyt);
+
+                            }
+                            context.SaveChanges();
+                            MessageBox.Show("Đã nhập thành công " + table.Rows.Count + " dòng.", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            frmXe_Load(sender, e);
+                        }
+                        if (firstRow)
+                            MessageBox.Show("Tập tin Excel rỗng.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+            }
+        }
+        private void btnTimKiem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

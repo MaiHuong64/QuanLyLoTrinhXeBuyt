@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTramXe));
-            txtTenTramXe = new TextBox();
+            
             label2 = new Label();
             groupBox2 = new GroupBox();
             dvgTramXe = new DataGridView();
@@ -51,15 +51,7 @@
             toolStrip.SuspendLayout();
             groupBox3.SuspendLayout();
             SuspendLayout();
-            // 
-            // txtTenTramXe
-            // 
-            txtTenTramXe.Location = new Point(231, 45);
-            txtTenTramXe.Margin = new Padding(6, 4, 6, 4);
-            txtTenTramXe.Name = "txtTenTramXe";
-            txtTenTramXe.Size = new Size(947, 27);
-            txtTenTramXe.TabIndex = 5;
-            txtTenTramXe.KeyDown += txtTenTramXe_KeyDown;
+          
             // 
             // label2
             // 
@@ -82,7 +74,7 @@
             groupBox2.Size = new Size(1356, 457);
             groupBox2.TabIndex = 19;
             groupBox2.TabStop = false;
-            groupBox2.Text = "Danh sách nhân viên";
+            groupBox2.Text = "Danh sách trạm xe";
             // 
             // dvgTramXe
             // 
@@ -207,7 +199,7 @@
             btnLuu.TabIndex = 20;
             btnLuu.Text = "Lưu";
             btnLuu.UseVisualStyleBackColor = true;
-            btnLuu.Click += btnSua_Click;
+            btnLuu.Click += btnLuu_Click;
             // 
             // btnHuy
             // 
@@ -257,11 +249,9 @@
         }
 
         #endregion
-        private DataGridViewTextBoxColumn TuyenXeID;
         private DataGridViewTextBoxColumn TenTuyen;
         private DataGridViewTextBoxColumn DiemDung;
         private DataGridViewTextBoxColumn ChuyenXe;
-        private TextBox txtTenTramXe;
         private Label label2;
         private GroupBox groupBox2;
         private DataGridView dvgTramXe;
@@ -279,5 +269,6 @@
         private Button btnThoat;
         private Button btnHuy;
         private Button btnLuu;
+        
     }
 }

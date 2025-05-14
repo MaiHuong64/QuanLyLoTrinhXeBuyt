@@ -151,6 +151,7 @@
             btnNhapFileExcel.Size = new Size(78, 24);
             btnNhapFileExcel.Text = "Nhập...";
             btnNhapFileExcel.ToolTipText = "Nhập dữ liệu từ Excel";
+            btnNhapFileExcel.Click += btnNhapFileExcel_Click;
             // 
             // btnXuatFileExcel
             // 
@@ -164,7 +165,7 @@
             // 
             // btnHuy
             // 
-            btnHuy.Image = Properties.Resources.tải_xuống1;
+            btnHuy.Image = (Image)resources.GetObject("btnHuy.Image");
             btnHuy.ImageAlign = ContentAlignment.MiddleLeft;
             btnHuy.Location = new Point(531, 466);
             btnHuy.Margin = new Padding(4, 3, 4, 3);
