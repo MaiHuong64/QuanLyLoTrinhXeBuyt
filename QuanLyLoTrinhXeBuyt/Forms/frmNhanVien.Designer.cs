@@ -38,7 +38,6 @@
             groupBox1 = new GroupBox();
             cboQuyenHan = new ComboBox();
             txtMatKhau = new TextBox();
-            label5 = new Label();
             txtTenDangNhap = new TextBox();
             label3 = new Label();
             btnThoat = new Button();
@@ -123,10 +122,10 @@
             // 
             // groupBox1
             // 
+
             groupBox1.Controls.Add(label7);
             groupBox1.Controls.Add(cboQuyenHan);
             groupBox1.Controls.Add(txtMatKhau);
-            groupBox1.Controls.Add(label5);
             groupBox1.Controls.Add(txtTenDangNhap);
             groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(btnThoat);
@@ -157,8 +156,9 @@
             // cboQuyenHan
             // 
             cboQuyenHan.FormattingEnabled = true;
-            cboQuyenHan.Items.AddRange(new object[] { "user", "admin" });
-            cboQuyenHan.Location = new Point(955, 110);
+
+            cboQuyenHan.Items.AddRange(new object[] { "admin", "user" });
+            cboQuyenHan.Location = new Point(978, 104);
             cboQuyenHan.Margin = new Padding(4, 3, 4, 3);
             cboQuyenHan.Name = "cboQuyenHan";
             cboQuyenHan.Size = new Size(236, 30);
@@ -166,25 +166,26 @@
             // 
             // txtMatKhau
             // 
-            txtMatKhau.Location = new Point(955, 74);
-            txtMatKhau.Margin = new Padding(4, 3, 4, 3);
+            txtMatKhau.Location = new Point(850, 56);
             txtMatKhau.Name = "txtMatKhau";
             txtMatKhau.Size = new Size(236, 30);
             txtMatKhau.TabIndex = 37;
+
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(812, 77);
+
+            label5.Location = new Point(835, 68);
             label5.Margin = new Padding(4, 0, 4, 0);
             label5.Name = "label5";
-            label5.Size = new Size(82, 22);
-            label5.TabIndex = 36;
-            label5.Text = "Mật khẩu";
+            label5.Size = new Size(93, 22);
+            label5.TabIndex = 38;
+            label5.Text = "Mật khẩu: ";
             // 
             // txtTenDangNhap
             // 
-            txtTenDangNhap.Location = new Point(955, 35);
+            txtTenDangNhap.Location = new Point(978, 27);
             txtTenDangNhap.Margin = new Padding(4, 3, 4, 3);
             txtTenDangNhap.Name = "txtTenDangNhap";
             txtTenDangNhap.Size = new Size(236, 30);
@@ -193,7 +194,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(812, 35);
+            label3.Location = new Point(835, 35);
             label3.Margin = new Padding(4, 0, 4, 0);
             label3.Name = "label3";
             label3.Size = new Size(135, 22);
@@ -204,7 +205,22 @@
             // 
             btnThoat.Image = (Image)resources.GetObject("btnThoat.Image");
             btnThoat.ImageAlign = ContentAlignment.MiddleLeft;
-            btnThoat.Location = new Point(865, 162);
+            btnThoat.Location = new Point(867, 168);
+            btnThoat.Margin = new Padding(6, 4, 6, 4);
+            btnThoat.Name = "btnThoat";
+            btnThoat.Size = new Size(109, 40);
+
+            label5.Location = new Point(737, 63);
+            label5.Name = "label5";
+            label5.Size = new Size(70, 20);
+            label5.TabIndex = 36;
+            label5.Text = "Mật khẩu";
+            // 
+            // btnThoat
+            // 
+            btnThoat.Image = Properties.Resources.exit;
+            btnThoat.ImageAlign = ContentAlignment.MiddleLeft;
+            btnThoat.Location = new Point(795, 146);
             btnThoat.Margin = new Padding(4);
             btnThoat.Name = "btnThoat";
             btnThoat.Size = new Size(98, 46);
@@ -474,6 +490,6 @@
         private ComboBox cboQuyenHan;
         private TextBox txtMatKhau;
         private Label label5;
-        private Label label7;
+
     }
 }

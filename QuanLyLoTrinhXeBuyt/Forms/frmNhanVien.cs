@@ -194,6 +194,7 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                     nv.VaiTro = cboVaiTro.Text;
                     nv.TaiKhoanID = taiKhoan.TaiKhoanID;
 
+                    nv.TaiKhoanID = taiKhoan.TaiKhoanID;
                     context.NhanVien.Add(nv);
                     context.SaveChanges();
 
@@ -218,6 +219,8 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                         if (taiKhoan != null)
                         {
                             taiKhoan.TenDangNhap = txtHoVaTen.Text;
+                            taiKhoan.TenDangNhap = txtTenDangNhap.Text;
+                            taiKhoan.MatKhau = txtDienThoai.Text;
                             taiKhoan.QuyenHan = cboQuyenHan.SelectedIndex == 0 ? "user" : "admin";
                             context.Update(taiKhoan);
                             if(string.IsNullOrWhiteSpace(txtMatKhau.Text))
@@ -226,6 +229,10 @@ namespace QuanLyLoTrinhXeBuyt.Forms
                                 taiKhoan.MatKhau = BCrypt.Net.BCrypt.HashPassword(txtMatKhau.Text); // Cập nhật mật khẩu mới
                             context.TaiKhoan.Update(taiKhoan);
                         }
+                    }
+                            context.SaveChanges();
+                        }
+
                     }
                     context.SaveChanges();
 
