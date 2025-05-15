@@ -7,8 +7,8 @@
 <DiagramLayout xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ex:showrelationlabel="False" ViewPortX="120" ViewPortY="0" xmlns:ex="urn:schemas-microsoft-com:xml-msdatasource-layout-extended" xmlns="urn:schemas-microsoft-com:xml-msdatasource-layout">
   <Shapes>
     <Shape ID="DesignTable:DanhSachChuyenXe" ZOrder="3" X="130" Y="100" Height="240" Width="211" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="236" />
-    <Shape ID="DesignTable:DanhSachPhanCong" ZOrder="2" X="366" Y="107" Height="194" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="190" />
-    <Shape ID="DesignTable:DanhSachXeBuyt" ZOrder="1" X="542" Y="109" Height="125" Width="157" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="121" />
+    <Shape ID="DesignTable:DanhSachPhanCong" ZOrder="2" X="366" Y="107" Height="218" Width="205" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="214" />
+    <Shape ID="DesignTable:DanhSachXeBuyt" ZOrder="1" X="769" Y="111" Height="125" Width="157" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="121" />
   </Shapes>
   <Connectors />
 </DiagramLayout>
